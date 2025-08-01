@@ -3,7 +3,6 @@
     flex-direction: row;
     gap: 15px;
     justify-content: center;
-    padding: 20px;
 }
 
 .inputDiv input {
@@ -14,7 +13,7 @@
     line-height: 22px;
     font-weight: 400;
     border-radius: 6px;
-    border: 1px solid #b1b4b8;
+    border: 1px solid var(--neutral-300);
     outline: none;
     background: transparent;
 }
@@ -28,7 +27,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #2577b1ff;
+    background-color: var(--bg-button);
     border: none;
     border-radius: 6px;
     color: #fff;
@@ -39,11 +38,9 @@
 
 /* Hover */
 .inputDiv button:hover {
-    color: #ffffffff; /* white */
     background: #194f75ff;
 }
 /* Pressed */
 .inputDiv button:active {
-    color: #ffffffff; /* white */
     background: #10324bff;
 }
