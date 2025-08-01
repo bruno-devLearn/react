@@ -19,3 +19,8 @@ body {
     display: flex;
     justify-content: center;
 }
+
+main {
+    font-family: "Open Sans";
+    width: 100%;
+}
