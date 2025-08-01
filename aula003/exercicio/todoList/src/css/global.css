@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins&display=swap");
+
+:root {
+    --neutral-900: #171a1fff;
+    --neutral-300: #b1b4b8;
+    --bg-body: #ccc;
+    --bg-button: #2577b1ff;
+    --bg-card: #c8c8c8;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--bg-body);
+
+    display: flex;
+    justify-content: center;
+    padding-bottom: 30px;
+}
+
+main {
+    font-family: "Open Sans";
+    width: 100%;
+    height: 80%;
+    padding: 0 20px;
+}
