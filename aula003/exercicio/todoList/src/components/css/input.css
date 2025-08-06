@@ -40,7 +40,14 @@
 .inputDiv button:hover {
     background: #194f75ff;
 }
+
 /* Pressed */
 .inputDiv button:active {
     background: #10324bff;
+}
+
+.menssage {
+    color: #ff3e3e;
+    height: 44px;
+    margin-top: 5px;
 }

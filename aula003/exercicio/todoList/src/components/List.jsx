@@ -1,6 +1,6 @@
 export function List() {
     return (
-        <div class="list-item">
+        <div className="list-item">
             <></>
         </div>
     );
