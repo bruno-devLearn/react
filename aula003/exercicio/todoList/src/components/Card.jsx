@@ -2,10 +2,14 @@ import { List } from "./List";
 import { NoLength } from "./NoLength";
 import "./css/card.css";
 
-export function Card({ list }) {
+export function Card({ setList, list }) {
     return (
         <div className="list">
-            {list.length === 0 ? <NoLength /> : <List list={list} />}
+            {list.length === 0 ? (
+                <NoLength />
+            ) : (
+                <List setList={setList} list={list} />
+            )}
         </div>
     );
 }

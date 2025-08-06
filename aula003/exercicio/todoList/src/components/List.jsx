@@ -1,4 +1,6 @@
-export function List({ list }) {
+import { deleteItem } from "../js/actions";
+
+export function List({ setList, list }) {
     return (
         <>
             {list.map((item) => (
@@ -17,7 +19,10 @@ export function List({ list }) {
                     </div>
 
                     <div className="actions">
-                        <span className="material-symbols-outlined">
+                        <span
+                            className="material-symbols-outlined"
+                            onClick={() => deleteItem(setList, item)}
+                        >
                             delete
                         </span>
                         <span className="material-symbols-outlined">

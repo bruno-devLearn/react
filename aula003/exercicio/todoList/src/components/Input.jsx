@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { startAll } from "../js/start";
 import "./css/input.css";
 
 export function Input({ setList }) {
+    const inputRef = useRef(null);
     const [value, setValue] = useState("");
     const [erro, setErro] = useState("");
 
@@ -11,6 +12,8 @@ export function Input({ setList }) {
 
         const nome = value.trim();
         startAll(nome, setErro, setList);
+        setValue("");
+        inputRef.current.focus();
     }
 
     return (
@@ -21,6 +24,7 @@ export function Input({ setList }) {
                     placeholder="Add a new task..."
                     maxLength={50}
                     value={value}
+                    ref={inputRef}
                     onChange={(e) => {
                         setValue(e.target.value);
                         setErro("");

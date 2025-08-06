@@ -9,7 +9,7 @@ export function Main() {
     return (
         <main>
             <Input setList={setList} list={list} />
-            <Card list={list} />
+            <Card setList={setList} list={list} />
         </main>
     );
 }
