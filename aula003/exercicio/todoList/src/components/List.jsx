@@ -1,28 +1,31 @@
-export function List() {
+export function List({ list }) {
     return (
-        <div className="list-item">
-            <></>
-        </div>
+        <>
+            {list.map((item) => (
+                <div className="list-item" key={item}>
+                    <div className="check-item checkbox">
+                        <label>
+                            <input type="checkbox" />
+                            <div className="outer-square">
+                                <div className="inner-square"></div>
+                                <span className="material-symbols-outlined">
+                                    check
+                                </span>
+                            </div>
+                            <span className="text">{item}</span>
+                        </label>
+                    </div>
+
+                    <div className="actions">
+                        <span className="material-symbols-outlined">
+                            delete
+                        </span>
+                        <span className="material-symbols-outlined">
+                            edit_square
+                        </span>
+                    </div>
+                </div>
+            ))}
+        </>
     );
 }
-
-/* 
-    <div class="list-item">
-        <div class="check-item checkbox">
-            <label>
-                <input type="checkbox" id="check-1" />
-                <div class="outer-square">
-                    <div class="inner-square"></div>
-                    <span class="material-symbols-outlined">check</span>
-                </div>
-                <span className="text">
-                    Buy fresh produce for weekly meals
-                </span>
-            </label>
-        </div>
-        <div class="actions">
-            <span class="material-symbols-outlined">delete</span>
-            <span class="material-symbols-outlined">edit_square</span>
-        </div>
-    </div>
-*/

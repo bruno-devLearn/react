@@ -2,13 +2,15 @@ import { useState } from "react";
 import { startAll } from "../js/start";
 import "./css/input.css";
 
-export function Input() {
-    const [nome, setNome] = useState("");
+export function Input({ setList }) {
+    const [value, setValue] = useState("");
     const [erro, setErro] = useState("");
 
     function handleSubmit(e) {
-        e.preventDefault(); // impede o recarregamento da página
-        startAll(nome, setErro);
+        e.preventDefault();
+
+        const nome = value.trim();
+        startAll(nome, setErro, setList);
     }
 
     return (
@@ -18,9 +20,9 @@ export function Input() {
                     type="text"
                     placeholder="Add a new task..."
                     maxLength={50}
-                    value={nome}
+                    value={value}
                     onChange={(e) => {
-                        setNome(e.target.value);
+                        setValue(e.target.value);
                         setErro("");
                     }}
                 />

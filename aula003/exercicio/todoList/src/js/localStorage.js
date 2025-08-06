@@ -2,6 +2,6 @@ const getData = () => JSON.parse(localStorage.getItem("list")) || [];
 const setData = (list) => localStorage.setItem("list", JSON.stringify(list));
 
 const list = getData();
-export { setData, list };
+export { setData, getData, list };
 
 console.log(list);
