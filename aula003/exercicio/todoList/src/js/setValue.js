@@ -1,7 +1,7 @@
 import { setData, list } from "./localStorage";
 
-export function setValue(nome) {
-    list.push(nome);
+export function setValue(item) {
+    list.push(item);
     setData(list);
     console.log(list);
 }

@@ -2,16 +2,20 @@ import { useState, useRef } from "react";
 import { startAll } from "../js/start";
 import "./css/input.css";
 
-export function Input({ setList }) {
+export function Input({ setList, setValue, value }) {
     const inputRef = useRef(null);
-    const [value, setValue] = useState("");
+
     const [erro, setErro] = useState("");
 
     function handleSubmit(e) {
         e.preventDefault();
 
-        const nome = value.trim();
-        startAll(nome, setErro, setList);
+        const item = {
+            nome: value.trim(),
+            checked: false,
+        };
+
+        startAll(item, setErro, setList);
         setValue("");
         inputRef.current.focus();
     }
