@@ -10,55 +10,59 @@ export function List({
 }) {
     return (
         <>
-            {list.map((item, index) => (
-                <div className="list-item" key={item.id}>
-                    <div className="check-item checkbox">
-                        <label>
-                            <input
-                                type="checkbox"
-                                checked={item.checked}
-                                onChange={() => {
-                                    changeValue(item, setList, index, list);
-                                }}
-                            />
+            {list.map((item, index) => {
+                const nome =
+                    item.nome.charAt(0).toUpperCase() + item.nome.slice(1);
 
-                            <div className="outer-square">
-                                <div className="inner-square"></div>
+                return (
+                    <div className="list-item" key={item.id}>
+                        <div className="check-item checkbox">
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    checked={item.checked}
+                                    onChange={() => {
+                                        changeValue(item, setList, index, list);
+                                    }}
+                                />
 
-                                <span className="material-symbols-outlined">
-                                    check
+                                <div className="outer-square">
+                                    <div className="inner-square"></div>
+
+                                    <span className="material-symbols-outlined">
+                                        check
+                                    </span>
+                                </div>
+
+                                <span className="text">
+                                    {!item.checked ? nome : <del>{nome}</del>}
                                 </span>
-                            </div>
+                            </label>
+                        </div>
 
-                            <span className="text">
-                                {item.nome.charAt(0).toUpperCase() +
-                                    item.nome.slice(1)}
+                        <div className="actions">
+                            <span
+                                className="material-symbols-outlined"
+                                onClick={() => deleteItem(setList, index)}
+                            >
+                                delete
                             </span>
-                        </label>
-                    </div>
 
-                    <div className="actions">
-                        <span
-                            className="material-symbols-outlined"
-                            onClick={() => deleteItem(setList, item, list)}
-                        >
-                            delete
-                        </span>
-
-                        <span
-                            className="material-symbols-outlined"
-                            onClick={() => {
-                                setEditIndex(index);
-                                setValue(item.nome);
-                                setBtn("Edit");
-                                setErro("");
-                            }}
-                        >
-                            edit_square
-                        </span>
+                            <span
+                                className="material-symbols-outlined"
+                                onClick={() => {
+                                    setEditIndex(index);
+                                    setValue(item.nome);
+                                    setBtn("Edit");
+                                    setErro("");
+                                }}
+                            >
+                                edit_square
+                            </span>
+                        </div>
                     </div>
-                </div>
-            ))}
+                );
+            })}
         </>
     );
 }
