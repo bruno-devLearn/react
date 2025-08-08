@@ -1,28 +1,64 @@
-export function List() {
+import { changeValue, deleteItem } from "../js/actions";
+
+export function List({
+    setList,
+    list,
+    setValue,
+    setBtn,
+    setErro,
+    setEditIndex,
+}) {
     return (
-        <div class="list-item">
-            <></>
-        </div>
+        <>
+            {list.map((item, index) => (
+                <div className="list-item" key={item.id}>
+                    <div className="check-item checkbox">
+                        <label>
+                            <input
+                                type="checkbox"
+                                checked={item.checked}
+                                onChange={() => {
+                                    changeValue(item, setList, index, list);
+                                }}
+                            />
+
+                            <div className="outer-square">
+                                <div className="inner-square"></div>
+
+                                <span className="material-symbols-outlined">
+                                    check
+                                </span>
+                            </div>
+
+                            <span className="text">
+                                {item.nome.charAt(0).toUpperCase() +
+                                    item.nome.slice(1)}
+                            </span>
+                        </label>
+                    </div>
+
+                    <div className="actions">
+                        <span
+                            className="material-symbols-outlined"
+                            onClick={() => deleteItem(setList, item, list)}
+                        >
+                            delete
+                        </span>
+
+                        <span
+                            className="material-symbols-outlined"
+                            onClick={() => {
+                                setEditIndex(index);
+                                setValue(item.nome);
+                                setBtn("Edit");
+                                setErro("");
+                            }}
+                        >
+                            edit_square
+                        </span>
+                    </div>
+                </div>
+            ))}
+        </>
     );
 }
-
-/* 
-    <div class="list-item">
-        <div class="check-item checkbox">
-            <label>
-                <input type="checkbox" id="check-1" />
-                <div class="outer-square">
-                    <div class="inner-square"></div>
-                    <span class="material-symbols-outlined">check</span>
-                </div>
-                <span className="text">
-                    Buy fresh produce for weekly meals
-                </span>
-            </label>
-        </div>
-        <div class="actions">
-            <span class="material-symbols-outlined">delete</span>
-            <span class="material-symbols-outlined">edit_square</span>
-        </div>
-    </div>
-*/

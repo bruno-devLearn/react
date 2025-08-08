@@ -1,0 +1,15 @@
+ao cliccar em add: (
+
+verifica se o input ta vazio;
+verifica se ja nao tem um item com mesmo valor;
+verifica se ta valido o valor digitado;
+
+caso tudo valido adiciona no localStorage;
+cria o item da tabela;
+atualiza a tabela;
+
+adiciona eventos de edit e remove a tabela;
+
+)
+
+
