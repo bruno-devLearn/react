@@ -1,28 +1,57 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { startAll } from "../js/start";
 import "./css/input.css";
 
-export function Input({ setList, setValue, value }) {
+import { editItem } from "../js/actions";
+
+export function Input({
+    setList,
+    list,
+    setValue,
+    value,
+    btn,
+    setBtn,
+    erro,
+    setErro,
+    editIndex,
+}) {
     const inputRef = useRef(null);
 
-    const [erro, setErro] = useState("");
-
-    function handleSubmit(e) {
-        e.preventDefault();
-
+    function handleSubmit() {
         const item = {
+            id: crypto.randomUUID(),
             nome: value.trim(),
             checked: false,
         };
 
-        startAll(item, setErro, setList);
+        startAll(item, setErro, setList, btn, editIndex, list);
         setValue("");
         inputRef.current.focus();
     }
 
     return (
         <>
-            <form className="inputDiv" onSubmit={handleSubmit}>
+            <form
+                className="inputDiv"
+                onSubmit={(e) => {
+                    e.preventDefault();
+
+                    if (btn === "Add") {
+                        handleSubmit();
+                    } else {
+                        editItem(
+                            setBtn,
+                            setValue,
+                            list,
+                            value,
+                            setList,
+                            editIndex,
+                            setErro,
+                            btn
+                        );
+                    }
+                }}
+            >
                 <input
                     type="text"
                     placeholder="Add a new task..."
@@ -35,7 +64,7 @@ export function Input({ setList, setValue, value }) {
                     }}
                 />
                 <button type="submit" className="send">
-                    Add
+                    {btn}
                 </button>
             </form>
             <div className="menssage">
