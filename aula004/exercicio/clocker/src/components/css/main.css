@@ -1,0 +1,74 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 226px;
+}
+
+main .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0px 0px 1px #171a1f12, 0px 0px 2px #171a1f1f;
+}
+
+.clock {
+    padding: 50px 99px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 16px;
+}
+
+.clock .date {
+    font-size: 24px;
+    color: var(--date-text);
+    line-height: 32px;
+    font-weight: 400;
+}
+
+.clock .time {
+    font-size: 128px;
+    line-height: 128px;
+    font-weight: 800;
+    color: var(--text-black);
+}
+
+.clock .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 67px;
+}
+
+.clock .buttons button {
+    height: 55px;
+    width: 114.875px;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 600;
+    color: var(--date-text);
+    background: #c2c3c4; /* neutral-200 */
+    opacity: 1;
+    border-radius: 9999px;
+    border: 1px solid #dee1e6ff;
+    cursor: pointer;
+}
+
+.clock .buttons button.no-selected:hover {
+    color: var(--text-black);
+    background: rgb(107, 115, 136);
+    transition: all 0.3s;
+}
+
+.clock .buttons button.selected {
+    background-color: #147699ff;
+    color: var(--background);
+}
