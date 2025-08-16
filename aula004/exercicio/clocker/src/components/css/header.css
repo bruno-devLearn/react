@@ -1,0 +1,23 @@
+header {
+    padding: 22px 0 20px 0;
+    box-shadow: 0px 0px 1px #171a1f12, 0px 0px 2px #171a1f1f;
+}
+
+header .switcher {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+header .switcher span {
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 500;
+    cursor: pointer;
+    color: var(--text-black);
+}
+
+header .switcher span:active {
+    color: var(--green);
+}
