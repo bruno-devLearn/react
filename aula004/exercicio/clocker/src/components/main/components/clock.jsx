@@ -6,7 +6,7 @@ export default function Clock() {
                     <span id="week-day">Saturday, </span>
                     <span id="mouth">August </span>
                     <span id="day">16, </span>
-                    <sapn id="year">2025</sapn>
+                    <span id="year">2025</span>
                 </div>
                 <div className="time">
                     <span id="hour">16:</span>

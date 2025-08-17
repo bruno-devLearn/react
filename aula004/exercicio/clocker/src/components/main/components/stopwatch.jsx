@@ -26,7 +26,7 @@ export default function Stopwatch() {
                 </div>
                 <div className="lap">
                     <button className="lap">
-                        <span class="material-symbols-outlined">flag</span>
+                        <span className="material-symbols-outlined">flag</span>
                         Lap
                     </button>
                 </div>
