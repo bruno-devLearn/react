@@ -7,6 +7,7 @@ import {
     formatMinutes,
     formatHour24,
     formatHour12,
+    getMeridiem,
 } from "../../js/timeFormat";
 
 export default function useTime() {
@@ -25,6 +26,7 @@ export default function useTime() {
                 minutes: formatMinutes(date.getMinutes()) + ":",
                 hour24: formatHour24(date.getHours()) + ":",
                 hour12: formatHour12(date.getHours()) + ":",
+                meridiem: getMeridiem(date.getHours()),
             });
         }, 1000);
 

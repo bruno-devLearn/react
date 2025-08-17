@@ -73,6 +73,11 @@ function formatHour12(hour) {
     return str.length !== 2 ? "0" + str : str;
 }
 
+function getMeridiem(hour) {
+    const period = hour >= 12 ? "PM" : "AM";
+    return period;
+}
+
 export {
     switchWeekDay,
     switchMonth,
@@ -81,4 +86,5 @@ export {
     formatMinutes,
     formatHour24,
     formatHour12,
+    getMeridiem,
 };
