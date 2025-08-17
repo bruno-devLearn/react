@@ -1,10 +1,10 @@
 import "../css/main.css";
-import Stopwatch from "./components/stopwatch";
+import Timer from "./components/timer.jsx";
 
 export default function Main() {
     return (
         <main>
-            <Stopwatch />
+            <Timer />
         </main>
     );
 }
