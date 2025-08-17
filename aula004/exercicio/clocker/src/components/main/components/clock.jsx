@@ -13,9 +13,13 @@ export default function Clock() {
                     <span id="year">{time.year}</span>
                 </div>
                 <div className="time">
-                    <span id="hour">16:</span>
-                    <span id="minute">30:</span>
-                    <span id="seconds">30</span>
+                    <span id="hour">{time.hour24 ? time.hour24 : "00:"}</span>
+                    <span id="minute">
+                        {time.minutes ? time.minutes : "00:"}
+                    </span>
+                    <span id="seconds">
+                        {time.seconds ? time.seconds : "00"}
+                    </span>
                 </div>
                 <div className="buttons">
                     <button id="12h" className="no-selected">
