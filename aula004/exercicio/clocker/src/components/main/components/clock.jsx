@@ -1,12 +1,16 @@
+import useTime from "../hooks/useTime";
+
 export default function Clock() {
+    const time = useTime();
+
     return (
         <div className="content">
             <div className="clock">
                 <div className="date">
-                    <span id="week-day">Saturday, </span>
-                    <span id="mouth">August </span>
-                    <span id="day">16, </span>
-                    <span id="year">2025</span>
+                    <span id="week-day">{time.weekDay}</span>
+                    <span id="mouth">{time.mouth}</span>
+                    <span id="day">{time.day}</span>
+                    <span id="year">{time.year}</span>
                 </div>
                 <div className="time">
                     <span id="hour">16:</span>
