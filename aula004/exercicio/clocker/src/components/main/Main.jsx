@@ -1,10 +1,10 @@
-import Clock from "./components/clock";
 import "../css/main.css";
+import Stopwatch from "./components/stopwatch";
 
 export default function Main() {
     return (
         <main>
-            <Clock />
+            <Stopwatch />
         </main>
     );
 }

@@ -1,8 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
 main {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 226px;
+    margin-top: 80px;
 }
 
 main .content {
@@ -10,16 +12,14 @@ main .content {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    box-shadow: 0px 0px 1px #171a1f12, 0px 0px 2px #171a1f1f;
 }
 
 .clock {
-    padding: 50px 99px;
     text-align: center;
     display: flex;
     flex-direction: column;
-    gap: 20px;
     border-radius: 16px;
+    padding-top: 100px;
 }
 
 .clock .date {
@@ -30,7 +30,7 @@ main .content {
 }
 
 .clock .time {
-    font-size: 128px;
+    font-size: 80px;
     line-height: 128px;
     font-weight: 800;
     color: var(--text-black);
@@ -41,7 +41,6 @@ main .content {
     align-items: center;
     justify-content: center;
     gap: 15px;
-    margin-top: 67px;
 }
 
 .clock .buttons button {
@@ -58,7 +57,7 @@ main .content {
     background: #c2c3c4; /* neutral-200 */
     opacity: 1;
     border-radius: 9999px;
-    border: 1px solid #dee1e6ff;
+    border: 2px solid #aaa;
     cursor: pointer;
 }
 
@@ -71,4 +70,104 @@ main .content {
 .clock .buttons button.selected {
     background-color: #147699ff;
     color: var(--background);
+}
+
+.stopwatch {
+    padding: 50px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.stopwatch .circle {
+    width: 350px;
+    height: 350px;
+    background: transparent;
+    border: 10px solid var(--date-text);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 32px;
+    position: relative;
+}
+
+.stopwatch .marker {
+    position: absolute; /* para posicionar dentro da div do círculo */
+    top: 50%; /* centro vertical da div */
+    left: 50%; /* centro horizontal da div */
+    width: 10px; /* largura da linha */
+    height: 1px; /* comprimento da linha */
+    background: red; /* cor do marcador */
+}
+
+.stopwatch .circle .time {
+    font-size: 67px;
+    line-height: 96px;
+    font-weight: 700;
+    color: var(--text-black);
+}
+
+.stopwatch .actions {
+    display: flex;
+    gap: 10px;
+}
+
+.stopwatch .actions button {
+    width: 110px;
+    height: 44px;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Roboto";
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 600;
+    color: var(--background);
+    background: var(--green);
+    border: none;
+    border-radius: 6px;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    gap: 10px;
+}
+
+.stopwatch .actions button span {
+    font-size: 20px;
+    color: var(--background);
+}
+
+.stopwatch .actions button:hover {
+    background: #0e5a72;
+    transition: all 0.3s;
+}
+
+.stopwatch .lap {
+    margin-top: 15px;
+}
+
+.stopwatch .lap button {
+    width: 110px;
+    height: 44px;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Roboto;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 600;
+    color: #147699ff;
+    gap: 5px;
+    border: 1px solid #999;
+    border-radius: 6px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.stopwatch .lap button:hover {
+    background-color: #aaa;
+    transition: all 0.3s;
 }
