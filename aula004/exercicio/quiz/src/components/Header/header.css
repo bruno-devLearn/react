@@ -1,0 +1,13 @@
+header {
+    width: 100vw;
+    text-align: center;
+    padding: 17px 0 12px 0;
+    border-bottom: 1px solid #dee1e680;
+}
+
+header span {
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 600;
+    color: var(--neutral-900);
+}
