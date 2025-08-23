@@ -1,9 +1,9 @@
 import "./header.css";
 
-export function Header() {
+export function Header({ index }) {
     return (
         <header>
-            <span>Question {} of 10</span>
+            <span>Question {index + 1} of 10</span>
         </header>
     );
 }

@@ -6,20 +6,37 @@ main {
     flex-direction: column;
 }
 
+.quiz {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 35px;
+}
+
 .quiz h1 {
     width: 320px;
+    height: 30px;
     font-size: 24px;
     line-height: 30px;
     font-weight: 700;
     color: var(--neutral-900);
     text-align: center;
-    margin-bottom: 60px;
 }
 
 .quiz .alternatives {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    padding: 15px;
+    border-radius: 16px;
+}
+
+.quiz .alternatives.win {
+    animation: animationWin 0.2s;
+}
+
+.quiz .alternatives.lose {
+    animation: animationLose 0.2s;
 }
 
 .quiz .alternativa {
@@ -37,7 +54,11 @@ main {
     border-radius: 16px;
     box-shadow: 0px 0px 1px #171a1f12, 0px 0px 2px #171a1f1f;
     cursor: pointer;
-    transition: all 0.5s;
+    transition: all 0.2s;
+}
+
+.alternativa.disabled {
+    pointer-events: none;
 }
 
 .quiz .alternativa:hover {
@@ -48,4 +69,22 @@ main {
 .quiz .alternativa:active {
     color: #323742ff;
     background: #8791a5ff;
+}
+
+@keyframes animationWin {
+    from {
+        background-color: #fff;
+    }
+    to {
+        background-color: #0fd60f;
+    }
+}
+
+@keyframes animationLose {
+    from {
+        background-color: #fff;
+    }
+    to {
+        background-color: #ff0000;
+    }
 }
