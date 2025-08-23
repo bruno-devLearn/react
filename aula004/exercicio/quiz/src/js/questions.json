@@ -1,0 +1,84 @@
+{
+    "questions": [
+        {
+            "title": "What is the largest planet in the Solar System?",
+            "A": "Earth",
+            "B": "Mars",
+            "C": "Jupiter",
+            "D": "Saturn",
+            "answer": "Jupiter"
+        },
+        {
+            "title": "Who painted the Mona Lisa?",
+            "A": "Van Gogh",
+            "B": "Leonardo",
+            "C": "Picasso",
+            "D": "Michelangelo",
+            "answer": "Leonardo"
+        },
+        {
+            "title": "Which element has the symbol O?",
+            "A": "Gold",
+            "B": "Oxygen",
+            "C": "Osmium",
+            "D": "Olive",
+            "answer": "Oxygen"
+        },
+        {
+            "title": "What is the capital of France?",
+            "A": "Berlin",
+            "B": "Paris",
+            "C": "Rome",
+            "D": "Lisbon",
+            "answer": "Paris"
+        },
+        {
+            "title": "What is the fastest animal in the world?",
+            "A": "Cheetah",
+            "B": "Tiger",
+            "C": "Lion",
+            "D": "Eagle",
+            "answer": "Cheetah"
+        },
+        {
+            "title": "How many continents are there on Earth?",
+            "A": "5",
+            "B": "6",
+            "C": "7",
+            "D": "8",
+            "answer": "7"
+        },
+        {
+            "title": "Who wrote 'Don Quixote'?",
+            "A": "Shakespeare",
+            "B": "Cervantes",
+            "C": "Tolstoy",
+            "D": "Dante",
+            "answer": "Cervantes"
+        },
+        {
+            "title": "What is the chemical formula of water?",
+            "A": "CO2",
+            "B": "H2O",
+            "C": "O2",
+            "D": "NaCl",
+            "answer": "H2O"
+        },
+        {
+            "title": "What is the official language of Brazil?",
+            "A": "Spanish",
+            "B": "Portuguese",
+            "C": "English",
+            "D": "French",
+            "answer": "Portuguese"
+        },
+        {
+            "title": "Who is known as 'The King of Football'?",
+            "A": "Neymar",
+            "B": "Pelé",
+            "C": "Maradona",
+            "D": "Messi",
+            "answer": "Pelé"
+        }
+    ]
+}
