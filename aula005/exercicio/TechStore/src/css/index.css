@@ -30,6 +30,7 @@ main {
     max-width: 1344px;
     min-width: 320px;
     margin: auto;
+    position: relative;
 }
 
 @media (max-width: 1535px) {
