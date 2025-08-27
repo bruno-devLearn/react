@@ -1,5 +1,6 @@
 import { Header } from "./components/Header/Header";
-import { Store } from "./components/Store/Store";
+import { Pages } from "./components/Main/Pages";
+import { Store } from "./components/Main/Store";
 
 function App() {
     return (
@@ -7,6 +8,7 @@ function App() {
             <Header />
             <main>
                 <Store />
+                <Pages />
             </main>
         </>
     );
