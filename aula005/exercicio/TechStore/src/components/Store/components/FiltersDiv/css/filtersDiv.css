@@ -9,6 +9,7 @@
     top: 130px;
     background-color: var(--white);
     display: none;
+    transition: all 0.3s;
 }
 
 .categories .title {
@@ -103,6 +104,7 @@
     top: 130px;
     left: 166px;
     display: none;
+    transition: all 0.3s;
 }
 
 .price-filters h2 {
@@ -180,5 +182,50 @@ input[type="range"]::-moz-range-thumb:hover {
     .price-filters {
         right: 10px;
         left: auto;
+    }
+}
+
+.order-div {
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    box-shadow: 1px 1px 1px 1px var(--border-color);
+    width: 170px;
+    height: 147px;
+    border-radius: 0.625rem;
+    padding: 3.5px;
+    position: absolute;
+    top: 130px;
+    right: 12px;
+    display: none;
+    transition: all 0.3s;
+}
+
+.order-div .select-item {
+    padding: 5.25px 7px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12.25px;
+    color: var(--title-color);
+    width: 161px;
+    height: 28px;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 6.75px;
+}
+
+.order-div .select-item:hover {
+    background: var(--hover-bg);
+}
+
+.order-div .select-item .material-symbols-outlined {
+    font-size: 20px;
+}
+
+@media (max-width: 639px) {
+    .order-div {
+        right: auto;
+        left: 15px;
+        top: 175px;
     }
 }
