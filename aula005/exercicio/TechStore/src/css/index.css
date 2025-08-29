@@ -5,13 +5,15 @@
     --input-bg: #f3f3f5;
     --input-outline: #a1a18080;
     --text-color: #717182;
-    --input-bg-color: #030213;
     --white: #fff;
     --border-color: #0000001a;
     --title-color: #0a0a0a;
     --hover-bg: #ddd;
     --remove-color: #d4183d;
     --btn-hover: #777;
+    --img-bg: #ececf033;
+    --info-bg: #eceef2;
+    --star-color: #fdc700;
 }
 
 * {

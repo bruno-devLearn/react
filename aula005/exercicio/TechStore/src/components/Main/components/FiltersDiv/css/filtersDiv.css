@@ -86,7 +86,7 @@
 
 .checkbox input:checked + .material-symbols-outlined {
     color: var(--white);
-    background-color: var(--input-bg-color);
+    background-color: var(--primary);
 }
 
 .checkbox input:checked + .material-symbols-outlined ~ .text {

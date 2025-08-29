@@ -8,6 +8,7 @@
     border-top: 1px solid var(--border-color);
     position: absolute;
     bottom: 28px;
+    background-color: var(--white);
 }
 
 .pages-div .pages {
