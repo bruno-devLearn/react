@@ -1,18 +1,12 @@
-import { Cart } from "./components/cart/Cart";
+import { Outlet } from "react-router-dom"; // Import Outlet
 import { Header } from "./components/Header/Header";
-import { Cards } from "./components/Main/Cards/Card";
-import { Pages } from "./components/Main/Pages";
-import { Store } from "./components/Main/Store";
 
 function App() {
     return (
         <>
             <Header />
             <main>
-                <Store />
-                <Cart />
-                <Cards />
-                <Pages />
+                <Outlet /> {/* This is where nested routes will be rendered */}
             </main>
         </>
     );
