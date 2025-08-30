@@ -6,13 +6,22 @@ import { FilterBar } from "./components/FilterBar";
 import { FiltersDiv } from "./components/FiltersDiv";
 import { Pages } from "./Pages";
 
-export function Store() {
+export function Store({ status }) {
     return (
         <>
-            <FilterBar />
-            <FiltersDiv />
-            <Cart />
-            <Cards />
+            {window.location.pathname === "/" ? (
+                status === "sucess" ? (
+                    <>
+                        <FilterBar />
+                        <FiltersDiv />
+                        <Cart />
+                        <Cards status={status} />
+                        <Pages />
+                    </>
+                ) : (
+                    <Cards status={status} />
+                )
+            ) : null}
         </>
     );
 }
