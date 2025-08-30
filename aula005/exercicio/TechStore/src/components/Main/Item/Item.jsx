@@ -1,15 +1,19 @@
 import "./item.css";
+import { ItemInformations } from "./ItemInformation";
+import { Link } from "react-router";
 
 export function Item() {
     return (
         <div className="item-div">
             <div className="back">
-                <button>
-                    <span className="material-symbols-outlined">
-                        arrow_back
-                    </span>
-                    <span className="text">return to the store</span>
-                </button>
+                <Link to="/">
+                    <button>
+                        <span className="material-symbols-outlined">
+                            arrow_back
+                        </span>
+                        <span className="text">return to the store</span>
+                    </button>
+                </Link>
             </div>
             <div className="item-display">
                 <div className="item">
@@ -18,31 +22,29 @@ export function Item() {
                     </div>
                     <div className="information">
                         <div className="category">
-                            <span className="text">Beauty</span>
+                            <span className="text"></span>
                         </div>
                         <div className="infos">
-                            <h2>Essence Mascara Lash Princess</h2>
+                            <h2></h2>
                             <div className="rating">
                                 <span className="rate">
                                     <span className="material-symbols-outlined">
                                         star
                                     </span>
-                                    2.6
-                                    <span className="num-reviews">
-                                        (3 reviews)
-                                    </span>
+
+                                    <span className="num-reviews">()</span>
                                 </span>
                             </div>
                             <div className="prices">
-                                <span className="current">$8.94</span>
-                                <del className="old">$9.99</del>
+                                <span className="current"></span>
+                                <del className="old"></del>
                                 <div className="discount">
-                                    <span>-10% OFF</span>
+                                    <span> OFF</span>
                                 </div>
                             </div>
                             <div className="available">
                                 <span className="text">availability:</span>
-                                <span className="quant">99 in stock</span>
+                                <span className="quant"></span>
                             </div>
                             <div className="cont">
                                 <span className="text">Amount:</span>
@@ -62,28 +64,25 @@ export function Item() {
                         <div className="characteristics">
                             <div className="left">
                                 <span className="brand light">
-                                    Brand: <span className="dark">Essence</span>
+                                    Brand: <span className="dark"></span>
                                 </span>
                                 <span className="weight light">
-                                    Weight: <span className="dark">4kg</span>
+                                    Weight: <span className="dark"></span>
                                 </span>
                             </div>
                             <div className="right">
                                 <span className="sku light">
-                                    SKU:{" "}
-                                    <span className="dark">
-                                        BEA-ESS-ESS-001
-                                    </span>
+                                    SKU: <span className="dark"></span>
                                 </span>
                                 <span className="status light">
-                                    Status:{" "}
-                                    <span className="dark">In Stock</span>
+                                    Status: <span className="dark"></span>
                                 </span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <ItemInformations />
         </div>
     );
 }
