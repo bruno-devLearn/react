@@ -13,7 +13,6 @@ export function Store() {
             <FiltersDiv />
             <Cart />
             <Cards />
-            <Pages />
         </>
     );
 }

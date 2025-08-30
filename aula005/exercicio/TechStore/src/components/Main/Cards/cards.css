@@ -1,3 +1,7 @@
+.quant {
+    display: none;
+}
+
 .cards {
     margin-top: 21px;
     overflow-y: auto; /* scroll só aparece se precisar */
