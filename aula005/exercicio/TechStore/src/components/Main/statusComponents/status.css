@@ -1,0 +1,83 @@
+.not-found {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    align-items: center;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: var(--text-color);
+}
+
+.not-found span {
+    font-size: 50px;
+}
+
+.not-found p {
+    width: 313px;
+    text-align: center;
+}
+
+.error {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    align-items: center;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: var(--remove-color);
+    gap: 5px;
+}
+
+.error span {
+    font-size: 50px;
+}
+
+.error button {
+    width: 170px;
+    height: 40px;
+    border-radius: 30px;
+    border: none;
+    background-color: #ccc;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: var(--remove-color);
+}
+
+.error button:hover {
+    background-color: var(--btn-hover);
+}
+
+.loading {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    align-items: center;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: var(--text-color);
+    gap: 5px;
+}
+
+.loading .material-symbols-outlined {
+    font-size: 100px;
+    animation: spin 1.3s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading .text {
+    font-size: 20px;
+}

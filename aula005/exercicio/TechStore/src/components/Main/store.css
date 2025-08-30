@@ -1,0 +1,223 @@
+.filter-bar {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-bar .inputFilter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filter-bar .inputFilter .input {
+    background-color: var(--input-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 392px;
+    min-width: 320px;
+    height: 42px;
+    border-radius: 6.75px;
+    margin-bottom: 21px;
+}
+
+.filter-bar .inputFilter .input span {
+    font-size: 20px;
+    position: absolute;
+    left: 10.5px;
+}
+
+.filter-bar .inputFilter .input input {
+    border-radius: 6.75px;
+    border: none;
+    padding: 3.5px 10.5px 3.5px 35px;
+    background-color: var(--input-bg);
+    width: 100%;
+    height: 100%;
+    outline: none; /* remove padrão */
+    transition: outline 0.2s ease;
+}
+
+.filter-bar .inputFilter .input input:focus {
+    outline: 3px solid var(--input-outline);
+    outline-offset: 0;
+}
+
+.filter-bar .filters {
+    width: 100%;
+    margin-bottom: 21px;
+}
+
+.filter-bar .filters .flex-itens {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.filter-bar .filters .flex-itens .specific-filters {
+    display: flex;
+    gap: 13px;
+    width: 321.5px;
+    height: 31.5px;
+}
+
+.filter-bar .filters .flex-itens .specific-filters .border {
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    border-radius: 6.75px;
+    cursor: pointer;
+    font-size: 12.25px;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.filter-bar .filters .flex-itens .specific-filters .select-category {
+    padding: 7px 10px;
+}
+
+.filter-bar .filters .flex-itens .specific-filters .select-category:hover {
+    background-color: #bbb;
+}
+
+.filter-bar .filters .flex-itens .specific-filters .specific-filter {
+    padding: 0 8.7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filter-bar .filters .flex-itens .specific-filters .specific-filter .filter {
+    width: 70px;
+    height: 26px;
+    display: flex;
+    gap: 3px;
+    align-items: center;
+}
+
+.filter-bar
+    .filters
+    .flex-itens
+    .specific-filters
+    .specific-filter
+    .filter
+    span {
+    font-size: 18px;
+}
+
+.filter-bar
+    .filters
+    .flex-itens
+    .specific-filters
+    .specific-filter
+    .filter
+    span.text {
+    font-size: 12.25px;
+}
+
+.filter-bar
+    .filters
+    .flex-itens
+    .specific-filters
+    .specific-filter
+    .filter
+    .invisible-point {
+    width: 7px;
+    height: 7px;
+    background-color: var(--primary);
+    border-radius: 50%;
+    display: none;
+}
+
+.filter-bar .filters .flex-itens .specific-filters .specific-filter:hover {
+    background-color: #bbb;
+}
+
+.filter-bar .filters .flex-itens .specific-filters .clear-filter {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 0 8.7px;
+    font-size: 12.25px;
+    font-weight: 700;
+    transition: all 0.3s;
+    border-radius: 6.75px;
+    cursor: pointer;
+}
+
+.filter-bar .filters .flex-itens .specific-filters .clear-filter span {
+    font-size: 18px;
+}
+
+.filter-bar .filters .flex-itens .specific-filters .clear-filter span.text {
+    font-size: 12.25px;
+}
+
+.filter-bar .filters .flex-itens .specific-filters .clear-filter:hover {
+    background-color: #bbb;
+}
+
+.filter-bar .filters .flex-itens .default-filters {
+    background: var(--input-bg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 168px;
+    height: 31.5px;
+    border-radius: 6.75px;
+    cursor: pointer;
+    transition: all 0.3s;
+    padding: 7px 10px;
+    font-size: 14px;
+}
+
+.filter-bar .filters .flex-itens .default-filters:hover {
+    background: #bbb;
+}
+
+.filter-bar .active-filters {
+    display: none;
+}
+
+.filter-bar .active-filters .active {
+    margin-right: 5px;
+    color: var(--text-color);
+    font-size: 12.25px;
+}
+
+.filter-bar .active-filters .filters {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.filter-bar .active-filters .filters .filter .text {
+    padding: 1.75px 7px;
+    font-size: 12.5px;
+    background-color: var(--input-bg);
+    border-radius: 0.625rem;
+    display: flex;
+    gap: 3px;
+    align-items: center;
+}
+
+.filter-bar .active-filters .filters .filter span {
+    font-size: 12px;
+    cursor: pointer;
+}
+
+@media (max-width: 639px) {
+    .filter-bar .filters .flex-itens {
+        justify-content: flex-start;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .filter-bar .filters .flex-itens .specific-filters .clear-filter span.text {
+        display: none;
+    }
+}

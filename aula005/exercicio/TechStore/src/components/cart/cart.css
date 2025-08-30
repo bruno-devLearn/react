@@ -1,0 +1,204 @@
+.background {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9;
+    transition: all 0.3s;
+    display: none;
+}
+
+.cart {
+    background-color: var(--white);
+    z-index: 99;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 336px;
+    transition: all 0.3s;
+    display: none;
+}
+
+.cart .title {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px;
+}
+
+.cart .title h2 {
+    color: var(--title-color);
+    font-size: 17.5px;
+}
+
+.cart .title .close span {
+    border: 1px solid var(--border-color);
+    border-radius: 6.75px;
+    cursor: pointer;
+    background-color: var(--white);
+    transition: all 0.3s;
+}
+
+.cart .title .close span:hover {
+    background-color: var(--hover-bg);
+}
+
+.empty {
+    margin-top: 21px;
+    padding: 28px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 14px;
+    color: var(--text-color);
+}
+
+.empty .material-symbols-outlined {
+    font-size: 42px;
+}
+
+.empty .text {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.cart-item {
+    padding: 14px 21px;
+}
+
+.cart-item .itens {
+    padding: 0 7px 14px 0;
+    width: 100%;
+    max-height: 336px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 28px;
+}
+
+.cart-item .itens .item {
+    padding: 10.5px;
+    display: flex;
+    gap: 6px;
+    border: 1px solid var(--border-color);
+    border-radius: 6.75px;
+}
+
+.cart-item .itens .item .characteristics {
+    width: 100%;
+}
+
+.cart-item .itens .item img {
+    width: 56px;
+    height: 56px;
+}
+
+.cart-item .itens .item h3 {
+    font-size: 12.25px;
+    color: var(--title-color);
+}
+
+.cart-item .itens .item span {
+    font-size: 12.25px;
+    color: var(--text-color);
+}
+
+.cart-item .itens .item .actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 7px;
+    width: 100%;
+}
+
+.cart-item .itens .item .actions .count {
+    display: flex;
+    gap: 7px;
+}
+
+.cart-item .itens .item .actions .count button {
+    border: 1px solid var(--border-color);
+    border-radius: 6.75px;
+    width: 21px;
+    height: 21px;
+    padding: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    background-color: var(--white);
+    color: var(--title-color);
+}
+
+.cart-item .itens .item .actions .count button:hover {
+    background-color: var(--hover-bg);
+}
+
+.cart-item .itens .item .actions .count span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12.25px;
+    color: var(--title-color);
+}
+
+.cart-item .itens .item .actions .delete {
+    color: var(--remove-color);
+    font-size: 12.25px;
+    border-radius: 6.75px;
+    padding: 0 10.5px;
+    background-color: var(--white);
+    transition: all 0.3s;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cart-item .itens .item .actions .delete:hover {
+    background-color: var(--hover-bg);
+}
+
+.cart-item .finish {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.cart-item .finish .purchase {
+    display: flex;
+    justify-content: space-between;
+    color: var(--title-color);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.cart-item .finish button {
+    background-color: var(--primary);
+    color: var(--white);
+    width: 100%;
+    font-size: 12.25px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0 21;
+    height: 35px;
+    border: none;
+    border-radius: 6.75px;
+    transition: all 0.5s;
+}
+
+.cart-item .finish button:hover {
+    background-color: var(--btn-hover);
+}
+
+@media (max-width: 639px) {
+    .cart {
+        width: 75vw;
+        min-width: 281px;
+    }
+}
