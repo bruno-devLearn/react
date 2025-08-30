@@ -1,12 +1,21 @@
 import { Outlet } from "react-router-dom"; // Import Outlet
 import { Header } from "./components/Header/Header";
+import { useContext, useEffect } from "react";
+import { start } from "./js/start";
+import { StatusContext } from "./components/Main/statusComponents/StatusContext";
 
 function App() {
+    const { status, setStatus } = useContext(StatusContext);
+
+    useEffect(() => {
+        start(setStatus);
+    }, [setStatus]);
+
     return (
         <>
-            <Header />
+            <Header status={status} />
             <main>
-                <Outlet /> {/* This is where nested routes will be rendered */}
+                <Outlet />
             </main>
         </>
     );
