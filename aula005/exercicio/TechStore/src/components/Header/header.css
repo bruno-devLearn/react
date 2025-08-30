@@ -44,6 +44,7 @@ header .header .flex-itens {
     padding: 5px;
     cursor: pointer;
     transition: all 0.3s;
+    position: relative;
 }
 
 .shopping-cart span {
@@ -52,6 +53,22 @@ header .header .flex-itens {
 
 .shopping-cart:hover {
     background-color: #bbb;
+}
+
+.shopping-cart .quant {
+    position: absolute;
+    top: -9px;
+    right: -8px;
+    width: 18px;
+    height: 18px;
+    border-radius: 6.75px;
+    background-color: var(--remove-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    font-size: 10.5px;
+    display: none;
 }
 
 @media (max-width: 1535px) {

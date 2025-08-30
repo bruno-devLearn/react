@@ -5,6 +5,18 @@
     --input-bg: #f3f3f5;
     --input-outline: #a1a18080;
     --text-color: #717182;
+    --white: #fff;
+    --border-color: #0000001a;
+    --title-color: #0a0a0a;
+    --hover-bg: #ddd;
+    --remove-color: #d4183d;
+    --btn-hover: #777;
+    --img-bg: #ececf033;
+    --info-bg: #eceef2;
+    --star-color: #fdc700;
+    --btn-hover: #e9ebef;
+    --select-bg: #ececf0;
+    --star-second-color: #e5e7eb;
 }
 
 * {
@@ -12,6 +24,11 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Roboto", sans-serif;
+}
+
+html,
+body {
+    overflow-x: hidden;
 }
 
 body {
@@ -25,6 +42,8 @@ main {
     max-width: 1344px;
     min-width: 320px;
     margin: auto;
+    position: relative;
+    height: calc(100vh - 56px);
 }
 
 @media (max-width: 1535px) {

@@ -1,0 +1,323 @@
+.back a {
+    text-decoration: none;
+}
+
+.back button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--white);
+    transition: all 0.3s;
+    border: none;
+    padding: 7px 10.5px;
+    border-radius: 6.75px;
+    font-size: 12.25px;
+    font-weight: 500;
+    gap: 7px;
+    color: var(--title-color);
+    margin-bottom: 21px;
+    cursor: pointer;
+}
+
+.back button:hover {
+    background-color: var(--btn-hover);
+}
+
+.back button .material-symbols-outlined {
+    font-size: 18px;
+}
+
+.item {
+    display: flex;
+    width: 1316px;
+    height: 644px;
+    gap: 28px;
+}
+
+.item .img img {
+    width: 641px;
+    height: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 8.75px;
+}
+
+.item .information {
+    width: 100%;
+    height: auto;
+}
+
+.item .information .category {
+    margin-bottom: 7px;
+}
+
+.item .information .category span {
+    padding: 1.75px 7px;
+    border-radius: 6.75px;
+    background-color: var(--info-bg);
+    font-size: 10.5px;
+    font-weight: 500;
+}
+
+.item .information .infos h2 {
+    font-size: 26.25px;
+    font-weight: 700;
+    color: var(--title-color);
+    margin-bottom: 7px;
+}
+
+.item .information .infos .rating .rate {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    margin-bottom: 14px;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--title-color);
+}
+
+.item .information .infos .rating .rate .material-symbols-outlined {
+    font-size: 20px;
+    color: var(--star-color);
+}
+
+.item .information .infos .rating .rate .num-reviews {
+    color: var(--text-color);
+}
+
+.item .information .infos .prices {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 21px;
+    align-items: baseline;
+}
+
+.item .information .infos .prices .current {
+    font-weight: 700;
+    color: var(--title-color);
+    font-size: 26.25px;
+}
+
+.item .information .infos .prices .old {
+    font-size: 17.5px;
+    font-weight: 400;
+    color: var(--text-color);
+}
+
+.item .information .infos .prices .discount span {
+    background-color: var(--remove-color);
+    color: var(--white);
+    border-radius: 6.75px;
+    font-size: 10.5px;
+    font-weight: 500;
+    padding: 1.75px 7px;
+}
+
+.item .information .infos .available {
+    margin-bottom: 21px;
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+}
+
+.item .information .infos .available .text {
+    color: var(--title-color);
+    font-size: 12.25px;
+    font-weight: 400;
+}
+
+.item .information .infos .available .quant {
+    font-weight: 500;
+    font-size: 10.5px;
+    background-color: var(--primary);
+    color: var(--white);
+    border-radius: 6.75px;
+    padding: 1.75px 7px;
+}
+
+.item .information .infos .cont {
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.item .information .infos .cont .text {
+    color: var(--title-color);
+    font-size: 12.25px;
+    font-weight: 500;
+}
+
+.item .information .infos .cont .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.item .information .infos .cont .buttons button {
+    padding: 0 8.75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--title-color);
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 6.75px;
+    transition: all 0.3s;
+    cursor: pointer;
+    width: 34px;
+    height: 28px;
+}
+
+.item .information .infos .cont .buttons button:hover {
+    background-color: var(--btn-hover);
+}
+
+.item .information .infos .cont .buttons .value {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--title-color);
+}
+
+.item .information .add {
+    margin-bottom: 21px;
+    width: 100%;
+    border: none;
+    padding: 0 14px;
+    height: 35px;
+    border-radius: 6.75px;
+    background-color: var(--primary);
+    color: var(--white);
+    font-size: 12.25px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+.item .information .add .material-symbols-outlined {
+    font-size: 20px;
+}
+
+.item .information .add:hover {
+    background-color: var(--btn-hover);
+    color: var(--title-color);
+}
+
+.item .information .characteristics {
+    padding: 14px;
+    padding-bottom: 21px;
+    border-radius: 12.75px;
+    border: 1px solid var(--border-color);
+    display: flex;
+}
+
+.item .information .characteristics .right,
+.item .information .characteristics .left {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.item .information .characteristics .light {
+    font-size: 12.25px;
+    font-weight: 400;
+    color: var(--text-color);
+    margin-right: 7px;
+}
+
+.item .information .characteristics .dark {
+    color: var(--title-color);
+    font-size: 12.25px;
+    font-weight: 500;
+}
+
+@media (max-width: 1535px) {
+    .item {
+        height: 529.5px;
+        width: 1092px;
+    }
+
+    .item .img {
+        height: 529.5px;
+    }
+
+    .item .img img {
+        width: 529.5px;
+        height: 529.5px;
+    }
+}
+
+@media (max-width: 1279px) {
+    .item {
+        height: 417.5px;
+        width: 868px;
+    }
+
+    .item .img {
+        height: 417.5px;
+    }
+
+    .item .img img {
+        width: 417.5px;
+        height: 417.5px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .item {
+        height: 1059px;
+        width: 644px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .item .img {
+        height: 641.5px;
+    }
+
+    .item .img img {
+        width: 641.5px;
+        height: 641.5px;
+    }
+}
+
+@media (max-width: 768px) {
+    .item {
+        height: 947.5px;
+        width: 532px;
+    }
+
+    .item .img {
+        height: 529.5px;
+    }
+
+    .item .img img {
+        width: 529.5px;
+        height: 529.5px;
+    }
+}
+
+@media (max-width: 639px) {
+    .item {
+        width: 100%;
+        height: auto;
+    }
+
+    .item .img {
+        max-width: 608.25px;
+        width: 100%;
+        height: auto;
+    }
+
+    .item .img img {
+        width: 100%;
+        height: auto;
+    }
+}
