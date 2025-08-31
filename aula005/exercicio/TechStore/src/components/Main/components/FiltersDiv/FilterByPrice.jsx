@@ -1,6 +1,9 @@
-export function FilterByPrice() {
+export function FilterByPrice({ divRef }) {
     return (
-        <div className="price-filters">
+        <div
+            className="price-filters fadeIn"
+            ref={(el) => (divRef.current.order = el)}
+        >
             <div className="price">
                 <h2>Price Range</h2>
                 <div className="price-itens">

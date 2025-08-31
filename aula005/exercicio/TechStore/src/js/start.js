@@ -1,7 +1,7 @@
 import { getDataCategories, getDataProducts } from "./gets";
 
 const products = { items: [] };
-const categories = { categItem: [] };
+export const categories = { categItem: [] };
 
 export async function start(setStatus) {
     const dataProducts = await getDataProducts(setStatus);

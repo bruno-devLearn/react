@@ -8,8 +8,20 @@
     position: absolute;
     top: 130px;
     background-color: var(--white);
-    display: none;
     transition: all 0.3s;
+}
+
+.fadeIn {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .categories .title {
@@ -31,7 +43,6 @@
     color: var(--text-color);
     cursor: pointer;
     transition: all 0.3s;
-    display: none;
 }
 
 .categories .clear:hover {
@@ -57,7 +68,13 @@
 }
 
 .checkbox input {
-    display: none;
+    position: absolute;
+    opacity: 0;
+    width: 16px; /* igual ao span */
+    height: 16px;
+    margin: 0;
+    z-index: 1;
+    cursor: pointer;
 }
 
 .checkbox .material-symbols-outlined {
@@ -73,6 +90,11 @@
     font-size: 12px;
     color: transparent;
     transition: 0.2s;
+}
+
+.checkbox .material-symbols-outlined.active {
+    color: var(--white);
+    background-color: var(--primary);
 }
 
 .checkbox span {
@@ -103,7 +125,6 @@
     position: absolute;
     top: 130px;
     left: 166px;
-    display: none;
     transition: all 0.3s;
 }
 
@@ -196,7 +217,6 @@ input[type="range"]::-moz-range-thumb:hover {
     position: absolute;
     top: 130px;
     right: 12px;
-    display: none;
     transition: all 0.3s;
 }
 

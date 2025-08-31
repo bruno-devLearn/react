@@ -1,3 +1,4 @@
+import { start } from "../../../js/start";
 import "./status.css";
 
 export function NotFound() {
@@ -18,7 +19,13 @@ export function ErrorDiv() {
         <div className="error">
             <span className="material-symbols-outlined">cancel</span>
             <h2>Error! Try Again</h2>
-            <button>Try Again</button>
+            <button
+                onClick={() => {
+                    start();
+                }}
+            >
+                Try Again
+            </button>
         </div>
     );
 }

@@ -1,8 +1,11 @@
 // <span className="material-symbols-outlined">check</span>
 
-export function FilterByOrder() {
+export function FilterByOrder({ divRef }) {
     return (
-        <div className="order-div">
+        <div
+            className="order-div fadeIn"
+            ref={(el) => (divRef.current.order = el)}
+        >
             <div className="select-item">
                 <span className="text">Default</span>
             </div>
