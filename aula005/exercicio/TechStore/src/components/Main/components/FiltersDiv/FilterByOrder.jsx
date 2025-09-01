@@ -1,10 +1,15 @@
 // <span className="material-symbols-outlined">check</span>
 
-export function FilterByOrder({ divRef }) {
+import { useContext } from "react";
+import { StoreContext } from "../../../../js/context";
+
+export function FilterByOrder() {
+    const { storeState } = useContext(StoreContext);
+
     return (
         <div
             className="order-div fadeIn"
-            ref={(el) => (divRef.current.order = el)}
+            ref={(el) => (storeState.divRef.current.order = el)}
         >
             <div className="select-item">
                 <span className="text">Default</span>

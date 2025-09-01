@@ -137,7 +137,8 @@
 .price-filters .price-itens {
     display: flex;
     justify-content: space-between;
-    color: var(--title-color);
+    color: var(--text-color);
+    font-weight: 600;
     font-size: 12.25px;
     margin-bottom: 10.5px;
 }

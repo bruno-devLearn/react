@@ -1,34 +1,46 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import "../store.css";
+import { StoreContext } from "../../../js/context";
 
-export function FilterBar({
-    setDivOpen,
-    divRef,
-    inputArr,
-    setInputArr,
-    inputRef,
-}) {
-    const [active, setActive] = useState("none");
+export function FilterBar() {
+    const { filters, storeState } = useContext(StoreContext);
 
     useEffect(() => {
         function handleClick(event) {
-            const clicouDentro = Object.values(divRef.current).some(
+            const clicouDentro = Object.values(storeState.divRef.current).some(
                 (el) => el && el.contains(event.target)
             );
 
             if (!clicouDentro) {
-                setDivOpen(null);
+                storeState.setDivOpen(null);
             }
         }
 
-        inputArr.length > 0 ? setActive("flex") : setActive("none");
+        if (
+            filters.minUserPrice !== filters.minPrice ||
+            filters.maxUserPrice !== filters.maxPrice ||
+            storeState.inputArr.length > 0 ||
+            filters.userAssessment > 0
+        ) {
+            storeState.setActive("flex");
+        } else {
+            storeState.setActive("none");
+        }
 
         document.addEventListener("click", handleClick);
         return () => {
             document.removeEventListener("click", handleClick);
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [inputArr]);
+    }, [
+        storeState.inputArr,
+        filters.minPrice,
+        filters.minUserPrice,
+        filters.maxPrice,
+        filters.maxUserPrice,
+        storeState.active,
+        filters.userAssessment,
+    ]);
 
     return (
         <div className="filter-bar">
@@ -45,7 +57,7 @@ export function FilterBar({
                             className="select-category border"
                             onClick={(e) => {
                                 e.stopPropagation(); // impede de cair no handleClick global
-                                setDivOpen((prev) =>
+                                storeState.setDivOpen((prev) =>
                                     prev === "category" ? null : "category"
                                 );
                             }}
@@ -59,7 +71,7 @@ export function FilterBar({
                             className="specific-filter border"
                             onClick={(e) => {
                                 e.stopPropagation(); // impede de cair no handleClick global
-                                setDivOpen((prev) =>
+                                storeState.setDivOpen((prev) =>
                                     prev === "price" ? null : "price"
                                 );
                             }}
@@ -69,22 +81,39 @@ export function FilterBar({
                                     tune
                                 </span>
                                 <span className="text">Filters</span>
-                                <div className="invisible-point"></div>
+                                <div
+                                    className="invisible-point"
+                                    style={{
+                                        display: `${
+                                            filters.minUserPrice !==
+                                                filters.minPrice ||
+                                            filters.maxUserPrice !==
+                                                filters.maxPrice ||
+                                            filters.userAssessment > 0
+                                                ? "flex"
+                                                : "none"
+                                        }`,
+                                    }}
+                                ></div>
                             </div>
                         </div>
                         <div
                             className="clear-filter"
-                            style={{ display: `${active}` }}
+                            style={{ display: `${storeState.active}` }}
                             onClick={() => {
-                                Object.keys(inputRef.current).forEach(
-                                    (slug) => {
-                                        const item = inputRef.current[slug];
-                                        if (item?.el) item.el.checked = false;
-                                        if (item) item.checked = false;
-                                    }
-                                );
+                                Object.keys(
+                                    storeState.inputRef.current
+                                ).forEach((slug) => {
+                                    const item =
+                                        storeState.inputRef.current[slug];
+                                    if (item?.el) item.el.checked = false;
+                                    if (item) item.checked = false;
+                                });
 
-                                setInputArr([]);
+                                storeState.setInputArr([]);
+                                filters.setMaxUserPrice(filters.maxPrice);
+                                filters.setMinUserPrice(filters.minPrice);
+                                filters.setUserAssessment(0);
                             }}
                         >
                             <span className="material-symbols-outlined">
@@ -97,7 +126,7 @@ export function FilterBar({
                         className="default-filters"
                         onClick={(e) => {
                             e.stopPropagation();
-                            setDivOpen((prev) =>
+                            storeState.setDivOpen((prev) =>
                                 prev === "order" ? null : "order"
                             );
                         }}
@@ -112,12 +141,12 @@ export function FilterBar({
             <div
                 className="active-filters"
                 style={{
-                    display: inputArr.length > 0 ? "flex" : "none",
+                    display: storeState.inputArr.length > 0 ? "flex" : "none",
                 }}
             >
                 <div className="filters">
                     <span className="active">Active Filters: </span>
-                    {inputArr.map((item) => {
+                    {storeState.inputArr.map((item) => {
                         return (
                             <div className="filter" key={item}>
                                 <div className="text">
@@ -125,21 +154,20 @@ export function FilterBar({
                                     <span
                                         className="material-symbols-outlined"
                                         onClick={() => {
-                                            setInputArr((prev) => {
+                                            storeState.setInputArr((prev) => {
                                                 const newArr = prev.filter(
                                                     (i) => i !== item
                                                 );
 
                                                 Object.keys(
-                                                    inputRef.current
+                                                    storeState.inputRef.current
                                                 ).forEach((slug) => {
                                                     if (
                                                         !newArr.includes(slug)
                                                     ) {
                                                         const refItem =
-                                                            inputRef.current[
-                                                                slug
-                                                            ];
+                                                            storeState.inputRef
+                                                                .current[slug];
                                                         if (refItem?.el)
                                                             refItem.el.checked = false;
                                                         if (refItem)

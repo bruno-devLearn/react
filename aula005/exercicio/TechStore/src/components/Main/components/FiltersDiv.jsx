@@ -1,28 +1,21 @@
+import { useContext } from "react";
 import { FilterByCategory } from "./FiltersDiv/FilterByCategory";
 import { FilterByOrder } from "./FiltersDiv/FilterByOrder";
 import { FilterByPrice } from "./FiltersDiv/FilterByPrice";
 import "./FiltersDiv/css/filtersDiv.css";
+import { StoreContext } from "../../../js/context";
 
-export function FiltersDiv({
-    divOpen,
-    divRef,
-    inputArr,
-    setInputArr,
-    inputRef,
-}) {
+export function FiltersDiv() {
+    const { storeState } = useContext(StoreContext);
+
     return (
         <>
-            {divOpen === "category" ? (
-                <FilterByCategory
-                    divRef={divRef}
-                    inputRef={inputRef}
-                    inputArr={inputArr}
-                    setInputArr={setInputArr}
-                />
-            ) : divOpen === "order" ? (
-                <FilterByOrder divRef={divRef} />
-            ) : divOpen === "price" ? (
-                <FilterByPrice divRef={divRef} />
+            {storeState.divOpen === "category" ? (
+                <FilterByCategory />
+            ) : storeState.divOpen === "order" ? (
+                <FilterByOrder />
+            ) : storeState.divOpen === "price" ? (
+                <FilterByPrice />
             ) : null}
         </>
     );

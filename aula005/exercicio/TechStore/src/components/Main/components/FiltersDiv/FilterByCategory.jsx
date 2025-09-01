@@ -1,17 +1,19 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { categories } from "../../../../js/start";
+import { StoreContext } from "../../../../js/context";
 
-export function FilterByCategory({ divRef, inputRef, inputArr, setInputArr }) {
+export function FilterByCategory() {
     const [active, setActive] = useState("none");
+    const { storeState } = useContext(StoreContext);
 
     useEffect(() => {
-        inputArr.length > 0 ? setActive("flex") : setActive("none");
-    }, [inputArr]);
+        storeState.inputArr.length > 0 ? setActive("flex") : setActive("none");
+    }, [storeState.inputArr]);
 
     return (
         <div
             className="categories fadeIn"
-            ref={(el) => (divRef.current.category = el)}
+            ref={(el) => (storeState.divRef.current.category = el)}
         >
             <div className="title">
                 <h2>Categories</h2>
@@ -19,13 +21,15 @@ export function FilterByCategory({ divRef, inputRef, inputArr, setInputArr }) {
                     className="clear"
                     style={{ display: `${active}` }}
                     onClick={() => {
-                        Object.keys(inputRef.current).forEach((slug) => {
-                            const item = inputRef.current[slug];
-                            if (item?.el) item.el.checked = false;
-                            if (item) item.checked = false;
-                        });
+                        Object.keys(storeState.inputRef.current).forEach(
+                            (slug) => {
+                                const item = storeState.inputRef.current[slug];
+                                if (item?.el) item.el.checked = false;
+                                if (item) item.checked = false;
+                            }
+                        );
                         setActive("none"); // esconde o botão após limpar
-                        setInputArr([]);
+                        storeState.setInputArr([]);
                     }}
                 >
                     Clear
@@ -40,39 +44,54 @@ export function FilterByCategory({ divRef, inputRef, inputArr, setInputArr }) {
                                     type="checkbox"
                                     ref={(el) => {
                                         if (!el) return; // evita erro quando el é null
-                                        if (inputRef.current[item.slug]) {
+                                        if (
+                                            storeState.inputRef.current[
+                                                item.slug
+                                            ]
+                                        ) {
                                             el.checked =
-                                                inputRef.current[
+                                                storeState.inputRef.current[
                                                     item.slug
                                                 ].checked;
-                                            inputRef.current[item.slug].el = el;
+                                            storeState.inputRef.current[
+                                                item.slug
+                                            ].el = el;
                                         } else {
-                                            inputRef.current[item.slug] = {
+                                            storeState.inputRef.current[
+                                                item.slug
+                                            ] = {
                                                 el,
                                                 checked: false,
                                             };
                                         }
                                     }}
                                     onChange={(e) => {
-                                        inputRef.current[item.slug].checked =
-                                            e.target.checked;
+                                        storeState.inputRef.current[
+                                            item.slug
+                                        ].checked = e.target.checked;
 
                                         if (e.target.checked) {
-                                            if (!inputArr.includes(item.slug)) {
-                                                setInputArr((prev) => [
-                                                    ...prev,
-                                                    item.slug,
-                                                ]);
+                                            if (
+                                                !storeState.inputArr.includes(
+                                                    item.slug
+                                                )
+                                            ) {
+                                                storeState.setInputArr(
+                                                    (prev) => [
+                                                        ...prev,
+                                                        item.slug,
+                                                    ]
+                                                );
                                             }
                                         } else if (!e.target.checked) {
-                                            setInputArr(
-                                                inputArr.filter(
+                                            storeState.setInputArr(
+                                                storeState.inputArr.filter(
                                                     (el) => el !== item.slug
                                                 )
                                             );
                                         }
                                         const anyChecked = Object.values(
-                                            inputRef.current
+                                            storeState.inputRef.current
                                         ).some((item) => item.checked);
                                         setActive(anyChecked ? "flex" : "none");
                                     }}
