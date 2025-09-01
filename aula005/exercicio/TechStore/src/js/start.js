@@ -7,6 +7,7 @@ export const prices = { priceItem: [] };
 export const userPrices = { min: 0, max: 0 };
 
 export const assessment = { value: 0 };
+export const order = { value: "Default" };
 
 export async function start(setStatus) {
     const dataProducts = await getDataProducts(setStatus);

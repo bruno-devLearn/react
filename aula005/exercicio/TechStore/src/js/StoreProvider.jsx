@@ -29,6 +29,7 @@ export function StoreProvider({ children }) {
     const inputRef = useRef({});
 
     const [active, setActive] = useState("none");
+    const [select, setSelect] = useState("Default");
 
     const storeState = {
         divOpen,
@@ -39,6 +40,8 @@ export function StoreProvider({ children }) {
         setActive,
         divRef,
         inputRef,
+        select,
+        setSelect,
     };
 
     return (

@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import "../store.css";
 import { StoreContext } from "../../../js/context";
+import { order } from "../../../js/start";
 
 export function FilterBar() {
     const { filters, storeState } = useContext(StoreContext);
@@ -131,7 +132,7 @@ export function FilterBar() {
                             );
                         }}
                     >
-                        <span className="filter">Default</span>
+                        <span className="filter">{order.value}</span>
                         <span className="material-symbols-outlined">
                             keyboard_arrow_down
                         </span>
