@@ -1,13 +1,18 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { prices } from "./start";
-import { StoreContext } from "./context";
+import { GetContext, StoreContext } from "./context";
 
 export function StoreProvider({ children }) {
     const minPrice = Math.min(...prices.priceItem.map((p) => p.price));
     const maxPrice = Math.max(...prices.priceItem.map((p) => p.price));
 
-    const [minUserPrice, setMinUserPrice] = useState(minPrice);
-    const [maxUserPrice, setMaxUserPrice] = useState(maxPrice);
+    const [minUserPrice, setMinUserPrice] = useState(0);
+    const [maxUserPrice, setMaxUserPrice] = useState(0);
+
+    useEffect(() => {
+        setMinUserPrice(minPrice);
+        setMaxUserPrice(maxPrice);
+    }, [maxPrice, minPrice]);
 
     const [userAssessment, setUserAssessment] = useState(0);
 
@@ -48,5 +53,16 @@ export function StoreProvider({ children }) {
         <StoreContext.Provider value={{ filters, storeState }}>
             {children}
         </StoreContext.Provider>
+    );
+}
+
+export function GetProvider({ children }) {
+    const [skip, setSkip] = useState(0);
+    const [select, setSelect] = useState(0);
+
+    const get = { skip, setSkip, select, setSelect };
+
+    return (
+        <GetContext.Provider value={{ get }}>{children}</GetContext.Provider>
     );
 }

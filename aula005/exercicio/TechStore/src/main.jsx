@@ -5,21 +5,35 @@ import App from "./App";
 import { Store } from "./components/Main/Store";
 import { Item } from "./components/Main/Item/Item";
 import { StatusContext } from "./components/Main/statusComponents/StatusContext";
+import { GetProvider } from "./js/StoreProvider";
 
 export function Main() {
     const [status, setStatus] = useState(null);
+    const [reload, setReload] = useState(0);
+    const [totalValue, setTotalValue] = useState(0);
 
     return (
-        <StatusContext.Provider value={{ status, setStatus }}>
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<App />}>
-                        <Route index element={<Store status={status} />} />
-                        <Route path="item" element={<Item />} />
-                    </Route>
-                </Routes>
-            </BrowserRouter>
-        </StatusContext.Provider>
+        <GetProvider>
+            <StatusContext.Provider
+                value={{
+                    status,
+                    setStatus,
+                    reload,
+                    setReload,
+                    totalValue,
+                    setTotalValue,
+                }}
+            >
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/" element={<App />}>
+                            <Route index element={<Store status={status} />} />
+                            <Route path="item" element={<Item />} />
+                        </Route>
+                    </Routes>
+                </BrowserRouter>
+            </StatusContext.Provider>
+        </GetProvider>
     );
 }
 
