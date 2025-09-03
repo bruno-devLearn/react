@@ -1,5 +1,6 @@
-import { start } from "../../../js/start";
+import { useContext } from "react";
 import "./status.css";
+import { StatusContext } from "./StatusContext";
 
 export function NotFound() {
     return (
@@ -15,13 +16,15 @@ export function NotFound() {
 }
 
 export function ErrorDiv() {
+    const { setReload } = useContext(StatusContext);
+
     return (
         <div className="error">
             <span className="material-symbols-outlined">cancel</span>
             <h2>Error! Try Again</h2>
             <button
                 onClick={() => {
-                    start();
+                    setReload((prev) => prev + 1);
                 }}
             >
                 Try Again

@@ -19,6 +19,7 @@ export function Store({ status }) {
                         </StoreProvider>
                         <Cart />
                         <Cards status={status} />
+
                         <Pages />
                     </>
                 ) : (

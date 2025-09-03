@@ -1,20 +1,25 @@
 import { Outlet } from "react-router-dom"; // Import Outlet
 import { Header } from "./components/Header/Header";
-import { useContext, useEffect } from "react";
-import { start } from "./js/start";
+import { useContext } from "react";
+import { useStart } from "./js/start";
 import { StatusContext } from "./components/Main/statusComponents/StatusContext";
 
 function App() {
-    const { status, setStatus } = useContext(StatusContext);
+    const { status } = useContext(StatusContext);
 
-    useEffect(() => {
-        start(setStatus);
-    }, [setStatus]);
+    useStart();
 
     return (
         <>
             <Header status={status} />
-            <main>
+            <main
+                style={{
+                    height:
+                        location.pathname === "/"
+                            ? "calc(100vh - 56px)"
+                            : "auto",
+                }}
+            >
                 <Outlet />
             </main>
         </>

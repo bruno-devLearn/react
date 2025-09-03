@@ -1,52 +1,114 @@
-const urlProducts = "https://dummyjson.com/products?limit=30&skip=0";
+import { useContext, useEffect, useState } from "react";
+import { GetContext } from "./context";
+import { StatusContext } from "../components/Main/statusComponents/StatusContext";
+
 const urlCategories = "https://dummyjson.com/products/categories";
 const urlPrices = "https://dummyjson.com/products?limit=0&skip=0&select=price";
 
-export async function getDataProducts(setStatus) {
-    setStatus("loading");
+// Hook para produtos
+export function useGetDataProducts() {
+    const { get } = useContext(GetContext);
+    const { setStatus } = useContext(StatusContext);
+    const [data, setData] = useState(null);
 
-    try {
-        const responseProducts = await fetch(urlProducts);
-        if (!responseProducts.ok) throw new Error("Erro ao buscar produtos");
+    useEffect(() => {
+        let isMounted = true; // previne updates depois que o componente desmonta
 
-        const dataProducts = await responseProducts.json();
-        setStatus("sucess");
+        async function fetchData() {
+            setStatus("loading");
+            const urlProducts = `https://dummyjson.com/products?limit=30&skip=${get.skip}`;
 
-        return dataProducts.products;
-    } catch (error) {
-        setStatus("error");
-        console.error(error);
-    }
+            try {
+                const response = await fetch(urlProducts);
+                if (!response.ok) throw new Error("Erro ao buscar produtos");
+
+                const dataProducts = await response.json();
+                if (isMounted) {
+                    setStatus("sucess");
+                    setData(dataProducts);
+                }
+            } catch (error) {
+                if (isMounted) setStatus("error");
+                console.error(error);
+            }
+        }
+
+        fetchData();
+
+        return () => {
+            isMounted = false;
+        }; // cleanup
+    }, [get.skip, setStatus]);
+
+    return { data }; // retorna direto o objeto, não {data}
 }
 
-export async function getDataCategories(setStatus) {
-    setStatus("loading");
+// Hook para categorias
+export function useGetDataCategories() {
+    const { setStatus } = useContext(StatusContext);
+    const [data, setData] = useState(null);
 
-    try {
-        const responseCategories = await fetch(urlCategories);
-        if (!responseCategories.ok) throw new Error("Erro ao buscar produtos");
+    useEffect(() => {
+        let isMounted = true;
 
-        const dataCategories = await responseCategories.json();
-        setStatus("sucess");
+        async function fetchData() {
+            setStatus("loading");
+            try {
+                const response = await fetch(urlCategories);
+                if (!response.ok) throw new Error("Erro ao buscar categorias");
 
-        return dataCategories;
-    } catch (error) {
-        console.log(error);
-    }
+                const categories = await response.json();
+                if (isMounted) {
+                    setStatus("sucess");
+                    setData(categories);
+                }
+            } catch (error) {
+                if (isMounted) setStatus("error");
+                console.error(error);
+            }
+        }
+
+        fetchData();
+
+        return () => {
+            isMounted = false;
+        };
+    }, [setStatus]);
+
+    return data;
 }
 
-export async function getDataPrices(setStatus) {
-    setStatus("loading");
+// Hook para preços
+export function useGetDataPrices() {
+    const { setStatus } = useContext(StatusContext);
+    const [data, setData] = useState(null);
 
-    try {
-        const responsePrices = await fetch(urlPrices);
-        if (!responsePrices.ok) throw new Error("Erro ao buscar produtos");
+    useEffect(() => {
+        let isMounted = true;
 
-        const dataPrices = await responsePrices.json();
-        setStatus("sucess");
+        async function fetchData() {
+            setStatus("loading");
+            try {
+                const response = await fetch(urlPrices);
+                if (!response.ok) throw new Error("Erro ao buscar preços");
 
-        return dataPrices.products;
-    } catch (error) {
-        console.error(error);
-    }
+                const pricesData = await response.json();
+                if (isMounted) {
+                    setStatus("sucess");
+                    setData(pricesData.products);
+                }
+            } catch (error) {
+                if (isMounted) setStatus("error");
+                console.error(error);
+            }
+        }
+
+        fetchData();
+
+        return () => {
+            isMounted = false;
+        };
+    }, [setStatus]);
+
+    return data;
 }
