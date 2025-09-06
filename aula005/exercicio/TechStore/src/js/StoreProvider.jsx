@@ -59,8 +59,9 @@ export function StoreProvider({ children }) {
 export function GetProvider({ children }) {
     const [skip, setSkip] = useState(0);
     const [select, setSelect] = useState(0);
+    const [products, setProducts] = useState({ items: [] });
 
-    const get = { skip, setSkip, select, setSelect };
+    const get = { skip, setSkip, select, setSelect, products, setProducts };
 
     return (
         <GetContext.Provider value={{ get }}>{children}</GetContext.Provider>

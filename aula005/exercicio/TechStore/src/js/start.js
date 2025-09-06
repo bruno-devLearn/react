@@ -5,9 +5,9 @@ import {
     useGetDataPrices,
 } from "./gets";
 import { StatusContext } from "../components/Main/statusComponents/StatusContext";
+import { GetContext } from "./context";
 
 // Objetos globais
-export const products = { items: [] };
 export const categories = { categItem: [] };
 export const prices = { priceItem: [] };
 export const userPrices = { min: 0, max: 0 };
@@ -15,6 +15,7 @@ export const assessment = { value: 0 };
 export const order = { value: "Default" };
 
 export function useStart() {
+    const { get } = useContext(GetContext);
     const { reload, setTotalValue } = useContext(StatusContext);
     const { data: dataProducts } = useGetDataProducts();
     const dataCategories = useGetDataCategories();
@@ -28,7 +29,17 @@ export function useStart() {
         setTotalValue(dataProducts.total);
 
         categories.categItem = [...dataCategories];
-        products.items = [...dataProducts.products];
+        get.setProducts({
+            items: dataProducts.products, // cria um novo objeto
+        });
+
         prices.priceItem = [...dataPrices];
-    }, [dataProducts, dataCategories, dataPrices, reload, setTotalValue]);
+    }, [
+        dataProducts,
+        dataCategories,
+        dataPrices,
+        reload,
+        setTotalValue,
+        get.setProducts,
+    ]);
 }

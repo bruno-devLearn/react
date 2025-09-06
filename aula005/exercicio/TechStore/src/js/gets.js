@@ -16,7 +16,9 @@ export function useGetDataProducts() {
 
         async function fetchData() {
             setStatus("loading");
-            const urlProducts = `https://dummyjson.com/products?limit=30&skip=${get.skip}`;
+            const urlProducts = `https://dummyjson.com/products?limit=30&skip=${
+                get.select * 30
+            }`;
 
             try {
                 const response = await fetch(urlProducts);
@@ -38,7 +40,7 @@ export function useGetDataProducts() {
         return () => {
             isMounted = false;
         }; // cleanup
-    }, [get.skip, setStatus]);
+    }, [get.select, setStatus]);
 
     return { data }; // retorna direto o objeto, não {data}
 }

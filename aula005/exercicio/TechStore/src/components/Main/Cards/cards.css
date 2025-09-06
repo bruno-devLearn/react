@@ -1,13 +1,9 @@
-.quant {
-    display: none;
-}
-
 .cards {
     margin-top: 21px;
     overflow-y: auto; /* scroll só aparece se precisar */
     overflow-x: hidden;
     display: grid;
-    height: calc(100vh - 340px);
+    height: calc(100vh - 352px);
     grid-template-columns: repeat(2, 1fr); /* padrão: 2 colunas */
     gap: 11px; /* reduzido de 0.75rem (~12px) */
     padding-bottom: 1.5rem; /* pb-6 */
@@ -23,6 +19,7 @@
     border-radius: 12.75px;
     cursor: pointer;
     transition: all 0.3s;
+    z-index: 9;
 }
 
 .card:hover {
@@ -66,15 +63,20 @@
 
 .card .information .category {
     margin-bottom: 7px;
+    display: flex;
+    gap: 3px;
 }
 
 .card .information .category .text {
     color: var(--primary);
     font-size: 10.5px;
-    font-weight: 500;
+    font-weight: 400;
     background-color: var(--info-bg);
     padding: 1.75px 7px;
     border-radius: 6.75px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .card .information .info h2 {

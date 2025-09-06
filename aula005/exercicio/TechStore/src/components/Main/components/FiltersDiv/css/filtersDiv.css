@@ -9,6 +9,7 @@
     top: 130px;
     background-color: var(--white);
     transition: all 0.3s;
+    z-index: 999;
 }
 
 .fadeIn {
@@ -126,6 +127,7 @@
     top: 130px;
     left: 166px;
     transition: all 0.3s;
+    z-index: 99;
 }
 
 .price-filters h2 {
@@ -219,6 +221,7 @@ input[type="range"]::-moz-range-thumb:hover {
     top: 130px;
     right: 12px;
     transition: all 0.3s;
+    z-index: 99;
 }
 
 .order-div .select-item {

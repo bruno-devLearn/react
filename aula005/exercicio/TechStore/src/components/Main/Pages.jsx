@@ -17,7 +17,7 @@ export function Pages() {
 
     useEffect(() => {
         get.setSkip(get.select * 30);
-    }, [get]);
+    }, [get.select, get.setSkip]);
 
     return (
         <div className="pages-div">
