@@ -15,8 +15,8 @@ export const assessment = { value: 0 };
 export const order = { value: "Default" };
 
 export function useStart() {
+    const { setTotalValue } = useContext(StatusContext);
     const { get } = useContext(GetContext);
-    const { reload, setTotalValue } = useContext(StatusContext);
     const { data: dataProducts } = useGetDataProducts();
     const dataCategories = useGetDataCategories();
     const dataPrices = useGetDataPrices();
@@ -25,8 +25,9 @@ export function useStart() {
         // espera todos os dados carregarem
         if (!dataProducts || !dataCategories || !dataPrices) return;
 
-        // popula os objetos globais
         setTotalValue(dataProducts.total);
+
+        // popula os objetos globais
 
         categories.categItem = [...dataCategories];
         get.setProducts({
@@ -34,12 +35,5 @@ export function useStart() {
         });
 
         prices.priceItem = [...dataPrices];
-    }, [
-        dataProducts,
-        dataCategories,
-        dataPrices,
-        reload,
-        setTotalValue,
-        get.setProducts,
-    ]);
+    }, [dataProducts, dataCategories, dataPrices, get.setProducts]);
 }

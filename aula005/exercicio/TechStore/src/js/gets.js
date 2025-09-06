@@ -114,3 +114,41 @@ export function useGetDataPrices() {
 
     return data;
 }
+
+export function useGetUrlProduct() {
+    const { get } = useContext(GetContext);
+    const { setStatus } = useContext(StatusContext);
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        let isMounted = true;
+
+        async function fetchData() {
+            setStatus("loading");
+
+            const urlProduct = `https://dummyjson.com/products/search?q=${get.url}`;
+
+            try {
+                const response = await fetch(urlProduct);
+                if (!response.ok) throw new Error("Erro ao buscar preços");
+
+                const pricesData = await response.json();
+                if (isMounted) {
+                    setStatus("sucess");
+                    setData(pricesData.products);
+                }
+            } catch (error) {
+                if (isMounted) setStatus("error");
+                console.error(error);
+            }
+        }
+
+        fetchData();
+
+        return () => {
+            isMounted = false;
+        };
+    }, [setStatus, get]);
+
+    return data;
+}

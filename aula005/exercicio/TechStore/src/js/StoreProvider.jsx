@@ -60,8 +60,18 @@ export function GetProvider({ children }) {
     const [skip, setSkip] = useState(0);
     const [select, setSelect] = useState(0);
     const [products, setProducts] = useState({ items: [] });
+    const [url, setUrl] = useState("");
 
-    const get = { skip, setSkip, select, setSelect, products, setProducts };
+    const get = {
+        skip,
+        setSkip,
+        select,
+        setSelect,
+        products,
+        setProducts,
+        url,
+        setUrl,
+    };
 
     return (
         <GetContext.Provider value={{ get }}>{children}</GetContext.Provider>
