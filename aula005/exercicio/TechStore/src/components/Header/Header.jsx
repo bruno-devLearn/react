@@ -19,7 +19,6 @@ export function Header() {
                         <span className="material-symbols-outlined">
                             shopping_cart
                         </span>
-                        <div className="quant"></div>
                     </div>
                 </div>
             </div>

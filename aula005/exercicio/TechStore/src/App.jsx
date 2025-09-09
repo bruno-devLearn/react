@@ -1,12 +1,12 @@
-import { Outlet } from "react-router-dom"; // Import Outlet
 import { Header } from "./components/Header/Header";
+import { Store } from "./components/Store/Store";
 
 function App() {
     return (
         <>
             <Header />
             <main>
-                <Outlet /> {/* This is where nested routes will be rendered */}
+                <Store />
             </main>
         </>
     );
