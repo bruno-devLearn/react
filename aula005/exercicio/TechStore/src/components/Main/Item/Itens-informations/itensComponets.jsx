@@ -1,105 +1,77 @@
-export function Description({ item }) {
-    return <span className="description">{item.description}</span>;
+export function Description() {
+    return <span className="description"></span>;
 }
 
-export function Specifications({ item }) {
+export function Specifications() {
     return (
         <div className="specifications">
             <div className="left">
                 <h2>Dimensions</h2>
                 <div className="dimensions">
-                    <span className="text">
-                        Width: {item.dimensions.width}cm
-                    </span>
-                    <span className="text">
-                        Height: {item.dimensions.height}cm
-                    </span>
-                    <span className="text">
-                        Depth: {item.dimensions.depth}cm
-                    </span>
+                    <span className="text">Width: </span>
+                    <span className="text">Height: </span>
+                    <span className="text">Depth: </span>
                 </div>
             </div>
             <div className="right">
                 <h2>General Information</h2>
                 <div className="item-info">
-                    <span className="text">Weight: {item.weight}kg</span>
-                    <span className="text">
-                        Minimum order: {item.minimumOrderQuantity} units
-                    </span>
-                    <span className="text">Barcode: {item.meta.barcode}</span>
+                    <span className="text">Weight: </span>
+                    <span className="text">Minimum order: </span>
+                    <span className="text">Barcode: </span>
                 </div>
             </div>
         </div>
     );
 }
 
-export function Reviews({ item }) {
+export function Reviews() {
     return (
-        <>
-            {item.reviews.map((review) => {
-                return (
-                    <div className="reviews" key={crypto.randomUUID()}>
-                        <div className="review-div">
-                            <div className="reviewer">
-                                <div className="star">
-                                    {Array.from({ length: 5 }).map((_, i) => (
-                                        <span
-                                            key={i}
-                                            className={`material-symbols-outlined ${
-                                                i < review.rating
-                                                    ? "completed"
-                                                    : "not-completed"
-                                            }`}
-                                        >
-                                            star
-                                        </span>
-                                    ))}
-                                </div>
-                                <div className="reviwer-name">
-                                    {review.reviewerName}
-                                </div>
-                                <div className="date">
-                                    {(() => {
-                                        const isoDate = review.date; // supondo que review.date exista
-                                        const date = new Date(isoDate);
-
-                                        const day = String(
-                                            date.getDate()
-                                        ).padStart(2, "0");
-                                        const month = String(
-                                            date.getMonth() + 1
-                                        ).padStart(2, "0");
-                                        const year = date.getFullYear();
-
-                                        return `${day}/${month}/${year}`;
-                                    })()}
-                                </div>
-                            </div>
-                            <div className="review">
-                                <p>{review.comment}</p>
-                            </div>
-                        </div>
+        <div className="reviews">
+            <div className="review-div">
+                <div className="reviewer">
+                    <div className="star">
+                        <span className="material-symbols-outlined completed">
+                            star
+                        </span>
+                        <span className="material-symbols-outlined completed">
+                            star
+                        </span>
+                        <span className="material-symbols-outlined completed">
+                            star
+                        </span>
+                        <span className="material-symbols-outlined not-completed">
+                            star
+                        </span>
+                        <span className="material-symbols-outlined not-completed">
+                            star
+                        </span>
                     </div>
-                );
-            })}
-        </>
+                    <div className="reviwer-name"></div>
+                    <div className="date"></div>
+                </div>
+                <div className="review">
+                    <p></p>
+                </div>
+            </div>
+        </div>
     );
 }
 
-export function Delivery({ item }) {
+export function Delivery() {
     return (
         <div className="delivery">
             <div className="delivery-info">
                 <h2>Delivery Information</h2>
-                <span className="text">{item.shippingInformation}</span>
+                <span className="text"></span>
             </div>
             <div className="delivery-info">
                 <h2>Warranty</h2>
-                <span className="text">{item.warrantyInformation}</span>
+                <span className="text"></span>
             </div>
             <div className="delivery-info">
                 <h2>Return Policy</h2>
-                <span className="text">{item.returnPolicy}</span>
+                <span className="text"></span>
             </div>
         </div>
     );

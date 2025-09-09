@@ -2,7 +2,7 @@ import "./header.css";
 import "../../css/index.css";
 import { Link } from "react-router";
 
-export function Header({ status }) {
+export function Header() {
     return (
         <header>
             <div className="header">
@@ -15,15 +15,10 @@ export function Header({ status }) {
                             <h1>TechStore</h1>
                         </Link>
                     </div>
-                    <div
-                        className={`shopping-cart ${
-                            status !== "sucess" ? "disabled" : ""
-                        }`}
-                    >
+                    <div className="shopping-cart">
                         <span className="material-symbols-outlined">
                             shopping_cart
                         </span>
-                        <div className="quant"></div>
                     </div>
                 </div>
             </div>

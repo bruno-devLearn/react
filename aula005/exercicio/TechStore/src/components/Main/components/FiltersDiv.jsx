@@ -1,23 +1,27 @@
-import { useContext } from "react";
-import { FilterByCategory } from "./FiltersDiv/FilterByCategory";
-import { FilterByOrder } from "./FiltersDiv/FilterByOrder";
-import { FilterByPrice } from "./FiltersDiv/FilterByPrice";
-import { StoreContext } from "../../../js/context";
+import "./css/filtersDiv.css";
 
-import "./FiltersDiv/css/filtersDiv.css";
+/* 
+<div className="select">
+    <label className="checkbox">
+        <input type="checkbox" id="" />
+        <span className="material-symbols-outlined">
+            check
+        </span>
+        <span className="text">beauty</span>
+    </label>
+</div>
+*/
 
 export function FiltersDiv() {
-    const { storeState } = useContext(StoreContext);
-
     return (
         <>
-            {storeState.divOpen === "category" ? (
-                <FilterByCategory />
-            ) : storeState.divOpen === "order" ? (
-                <FilterByOrder />
-            ) : storeState.divOpen === "price" ? (
-                <FilterByPrice />
-            ) : null}
+            <div className="categorys">
+                <div className="title">
+                    <h2>Categories</h2>
+                    <span className="clear">Clear</span>
+                </div>
+                <div className="scroll"></div>
+            </div>
         </>
     );
 }

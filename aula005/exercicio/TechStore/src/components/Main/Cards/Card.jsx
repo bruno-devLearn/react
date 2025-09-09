@@ -1,31 +1,50 @@
-import { useContext } from "react";
-import { ErrorDiv, Loading, NotFound } from "../statusComponents/status";
-import { CardItem } from "./CardItem";
 import "./cards.css";
-import { StatusContext } from "../statusComponents/StatusContext";
-import { GetContext } from "../../../js/context";
 
-export function Cards({ status }) {
-    const { totalValue } = useContext(StatusContext);
-    const { get } = useContext(GetContext);
+/* 
+<div className="card">
+    <div className="img">
+        <img src="#" />
+        <span className="discount">-10%</span>
+    </div>
+    <div className="information">
+        <div className="category">
+            <span className="text">beauty</span>
+        </div>
+        <div className="info">
+            <h2>Essence Mascara Lash</h2>
+            <div className="quality">
+                <span class="material-symbols-outlined">
+                    star
+                </span>
+                <span className="text">2.6</span>
+                <span className="available">
+                    (99 available)
+                </span>
+            </div>
+            <div className="price">
+                <span className="current">$8.94</span>
+                <span className="old">
+                    <del>$9.99</del>
+                </span>
+            </div>
+            <button className="add-cart">
+                <span class="material-symbols-outlined">
+                    shopping_cart
+                </span>
+                <span className="text">Add</span>
+            </button>
+        </div>
+    </div>
+</div>
+*/
 
+export function Cards() {
     return (
         <div className="cards-div">
             <div className="quant">
-                <span className="text">
-                    {totalValue} products found (page {get.select + 1} of{" "}
-                    {Math.ceil(totalValue / 30)})
-                </span>
+                <span className="text">178 products found (page 1 of 6)</span>
             </div>
-            <div className="cards">
-                {status === "loading" ? (
-                    <Loading />
-                ) : status === "error" ? (
-                    <ErrorDiv />
-                ) : status === "sucess" ? (
-                    <CardItem />
-                ) : null}
-            </div>
+            <div className="cards"></div>
         </div>
     );
 }
