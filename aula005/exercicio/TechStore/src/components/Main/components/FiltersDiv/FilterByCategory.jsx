@@ -12,7 +12,7 @@
 
 export function FilterByCategory() {
     return (
-        <div className="categories">
+        <div className="categories fadeIn">
             <div className="title">
                 <h2>Categories</h2>
                 <span className="clear">Clear</span>
