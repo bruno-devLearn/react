@@ -20,6 +20,7 @@ export function StoreProvider({ children }) {
     const [prices, setPrices] = useState({});
 
     const [assessment, setAssessment] = useState(0);
+    const [item, setItem] = useState("Default");
 
     const filters = {
         selected,
@@ -29,6 +30,8 @@ export function StoreProvider({ children }) {
         setPrices,
         assessment,
         setAssessment,
+        item,
+        setItem,
     };
 
     return (

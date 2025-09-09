@@ -99,7 +99,7 @@ export function FilterBar({ setOpen }) {
                             );
                         }}
                     >
-                        <span className="filter">Default</span>
+                        <span className="filter">{filters.item}</span>
                         <span className="material-symbols-outlined">
                             keyboard_arrow_down
                         </span>

@@ -22,7 +22,7 @@ export function Store() {
     return (
         <>
             <FilterBar setOpen={setOpen} />
-            <FiltersDiv open={open} />
+            <FiltersDiv open={open} setOpen={setOpen} />
             <Cart />
             <Cards />
             <Pages />

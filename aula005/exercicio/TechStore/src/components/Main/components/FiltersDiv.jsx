@@ -3,7 +3,7 @@ import { FilterByOrder } from "./FiltersDiv/FilterByOrder";
 import { FilterByPrice } from "./FiltersDiv/FilterByPrice";
 import "./FiltersDiv/css/filtersDiv.css";
 
-export function FiltersDiv({ open }) {
+export function FiltersDiv({ open, setOpen }) {
     let content;
 
     switch (open) {
@@ -14,7 +14,7 @@ export function FiltersDiv({ open }) {
             content = <FilterByPrice />;
             break;
         case "default":
-            content = <FilterByOrder />;
+            content = <FilterByOrder setOpen={setOpen} />;
             break;
         default:
             content = null;
