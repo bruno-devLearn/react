@@ -43,6 +43,7 @@ main {
     min-width: 320px;
     margin: auto;
     position: relative;
+    height: calc(100vh - 57px);
 }
 
 @media (max-width: 1535px) {

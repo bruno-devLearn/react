@@ -66,8 +66,13 @@ export function StoreProvider({ children }) {
         sort,
     };
 
+    const [status, setStatus] = useState("");
+    const [page, setPage] = useState(0);
+
     return (
-        <StoreContext.Provider value={{ get, filters }}>
+        <StoreContext.Provider
+            value={{ get, filters, status, setStatus, page, setPage }}
+        >
             {children}
         </StoreContext.Provider>
     );

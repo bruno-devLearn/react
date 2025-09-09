@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { StoreContext } from "./storeContext";
 
 export function useGet() {
-    const { get, filters } = useContext(StoreContext);
+    const { get, filters, setStatus } = useContext(StoreContext);
 
     const [urlProducts, setUrlProducts] = useState("");
     const [urlCategories, setUrlCategories] = useState("");
@@ -12,15 +12,7 @@ export function useGet() {
         if (get.url === "/") {
             if (filters.selected.length === 0) {
                 setUrlProducts(`https://dummyjson.com/products?limit=0&skip=0`);
-            } else if (
-                filters.selected.length === 0 ||
-                filters.prices.minUserPrice !== filters.prices.minPrice ||
-                filters.prices.maxUserPrice !== filters.prices.maxPrice ||
-                filters.assessment > 0
-            ) {
-                setUrlProducts(
-                    `https://dummyjson.com/products?limit=0&sortBy=${filters.sort}&order=${filters.order}`
-                );
+                get.setUrls([]);
             } else if (filters.selected.length > 0) {
                 const newUrls = filters.selected.map(
                     (category) =>
@@ -51,6 +43,8 @@ export function useGet() {
 
         async function fetchProducts() {
             try {
+                setStatus("loading");
+
                 let allProducts = [];
 
                 if (get.urls.length > 0) {
@@ -86,6 +80,8 @@ export function useGet() {
                 });
             } catch (error) {
                 console.error("Erro ao buscar produtos:", error);
+            } finally {
+                setStatus("success");
             }
         }
 
