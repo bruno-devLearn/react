@@ -47,6 +47,12 @@ header .header .flex-itens {
     position: relative;
 }
 
+.shopping-cart.disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    background-color: #f0f0f0; /* opcional, visual de desabilitado */
+}
+
 .shopping-cart span {
     font-size: 20px;
 }
