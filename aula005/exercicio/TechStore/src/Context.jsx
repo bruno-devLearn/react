@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { StoreContext } from "./js/storeContext";
 
 export function StoreProvider({ children }) {
     const [url, setUrl] = useState("");
     const [products, setProducts] = useState({});
     const [categories, setCategories] = useState([]);
+    const [urls, setUrls] = useState([]);
 
     const get = {
         url,
@@ -13,6 +14,8 @@ export function StoreProvider({ children }) {
         setProducts,
         categories,
         setCategories,
+        urls,
+        setUrls,
     };
 
     const [selected, setSelected] = useState([]);
@@ -21,6 +24,33 @@ export function StoreProvider({ children }) {
 
     const [assessment, setAssessment] = useState(0);
     const [item, setItem] = useState("Default");
+
+    const [order, setOrder] = useState(null);
+    const [sort, setSort] = useState(null);
+
+    useEffect(() => {
+        switch (item) {
+            case "Default":
+                setOrder("");
+                setSort("");
+                break;
+            case "Lowest Price":
+                setOrder("asc");
+                setSort("price");
+                break;
+            case "Highest Price":
+                setOrder("desc");
+                setSort("price");
+                break;
+            case "Best Rating":
+                setOrder("desc");
+                setSort("rating");
+                break;
+            case "Alphabetical":
+                setOrder("asc");
+                setSort("title");
+        }
+    }, [item, products]);
 
     const filters = {
         selected,
@@ -32,6 +62,8 @@ export function StoreProvider({ children }) {
         setAssessment,
         item,
         setItem,
+        order,
+        sort,
     };
 
     return (
