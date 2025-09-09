@@ -17,8 +17,19 @@ export function StoreProvider({ children }) {
 
     const [selected, setSelected] = useState([]);
     const [_, setRender] = useState(false);
+    const [prices, setPrices] = useState({});
 
-    const filters = { selected, setSelected, setRender };
+    const [assessment, setAssessment] = useState(0);
+
+    const filters = {
+        selected,
+        setSelected,
+        setRender,
+        prices,
+        setPrices,
+        assessment,
+        setAssessment,
+    };
 
     return (
         <StoreContext.Provider value={{ get, filters }}>

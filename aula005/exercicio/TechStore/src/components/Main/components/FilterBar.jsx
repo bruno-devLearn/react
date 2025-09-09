@@ -44,19 +44,45 @@ export function FilterBar({ setOpen }) {
                                     tune
                                 </span>
                                 <span className="text">Filters</span>
-                                <div className="invisible-point"></div>
+                                <div
+                                    className="invisible-point"
+                                    style={{
+                                        display: `${
+                                            filters.prices.minUserPrice !==
+                                                filters.prices.minPrice ||
+                                            filters.prices.maxUserPrice !==
+                                                filters.prices.maxPrice ||
+                                            filters.assessment !== 0
+                                                ? "block"
+                                                : "none"
+                                        }`,
+                                    }}
+                                ></div>
                             </div>
                         </div>
                         <div
                             className="clear-filter"
                             style={{
                                 display: `${
-                                    filters.selected.length > 0
+                                    filters.selected.length > 0 ||
+                                    filters.prices.minUserPrice !==
+                                        filters.prices.minPrice ||
+                                    filters.prices.maxUserPrice !==
+                                        filters.prices.maxPrice ||
+                                    filters.assessment !== 0
                                         ? "flex"
                                         : "none"
                                 }`,
                             }}
-                            onClick={() => filters.setSelected([])}
+                            onClick={() => {
+                                filters.setSelected([]);
+                                filters.setAssessment(0);
+                                filters.setPrices((prev) => ({
+                                    ...prev,
+                                    minUserPrice: filters.prices.minPrice,
+                                    maxUserPrice: filters.prices.maxPrice,
+                                }));
+                            }}
                         >
                             <span className="material-symbols-outlined">
                                 close
