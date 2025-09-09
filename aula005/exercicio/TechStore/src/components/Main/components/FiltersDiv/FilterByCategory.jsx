@@ -25,7 +25,10 @@ export function FilterByCategory() {
                             filters.selected.length > 0 ? "block" : "none"
                         }`,
                     }}
-                    onClick={() => filters.setSelected([])}
+                    onClick={() => {
+                        filters.setSelected([]);
+                        get.setUrls([]);
+                    }}
                 >
                     Clear
                 </span>

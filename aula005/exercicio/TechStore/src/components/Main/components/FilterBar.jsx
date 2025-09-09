@@ -3,7 +3,7 @@ import "../store.css";
 import { StoreContext } from "../../../js/storeContext";
 
 export function FilterBar({ setOpen }) {
-    const { filters } = useContext(StoreContext);
+    const { filters, get } = useContext(StoreContext);
 
     return (
         <div className="filter-bar">
@@ -77,6 +77,7 @@ export function FilterBar({ setOpen }) {
                             onClick={() => {
                                 filters.setSelected([]);
                                 filters.setAssessment(0);
+                                get.setUrls([]);
                                 filters.setPrices((prev) => ({
                                     ...prev,
                                     minUserPrice: filters.prices.minPrice,
