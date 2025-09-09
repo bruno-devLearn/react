@@ -1,23 +1,42 @@
+import { useContext } from "react";
 import "./pages.css";
+import { StoreContext } from "../../js/storeContext";
 
 export function Pages() {
+    const { get, page, setPage } = useContext(StoreContext);
+
     return (
         <div className="pages-div">
             <div className="pages">
                 <span className="back">
-                    <span className="material-symbols-outlined">
+                    <span
+                        className="material-symbols-outlined"
+                        onClick={() =>
+                            page > 0 ? setPage((prev) => prev - 1) : null
+                        }
+                    >
                         arrow_back_ios
                     </span>
                 </span>
-                <span className="page  select">1</span>
-                <span className="page no-select">2</span>
-                <span className="page no-select">3</span>
-                <span className="page no-select">4</span>
-                <span className="page no-select">5</span>
-                <span className="page no-select">6</span>
-                <span className="page no-select">7</span>
+                {[...Array(get.products.index)].map((_, i) => (
+                    <span
+                        className={`page ${page === i ? "select" : null}`}
+                        onClick={() => setPage(i)}
+                        key={i}
+                    >
+                        {i + 1}
+                    </span>
+                ))}
+
                 <span className="next">
-                    <span className="material-symbols-outlined">
+                    <span
+                        className="material-symbols-outlined"
+                        onClick={() =>
+                            page < get.products.index - 1
+                                ? setPage((prev) => prev + 1)
+                                : null
+                        }
+                    >
                         arrow_forward_ios
                     </span>
                 </span>

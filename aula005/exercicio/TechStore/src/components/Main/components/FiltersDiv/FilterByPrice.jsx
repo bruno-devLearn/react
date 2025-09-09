@@ -1,8 +1,13 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { StoreContext } from "../../../../js/storeContext";
 
 export function FilterByPrice() {
     const { filters } = useContext(StoreContext);
+
+    // estados locais para arrastar sem travar
+    const [localMin, setLocalMin] = useState(filters.prices.minUserPrice);
+    const [localMax, setLocalMax] = useState(filters.prices.maxUserPrice);
+    const [localAssessment, setLocalAssessment] = useState(filters.assessment);
 
     return (
         <div
@@ -19,12 +24,12 @@ export function FilterByPrice() {
                         })}
                     </span>
                     <span className="references">
-                        {filters.prices.minUserPrice.toLocaleString("en-US", {
+                        {localMin.toLocaleString("en-US", {
                             style: "currency",
                             currency: "USD",
                         })}
                         -
-                        {filters.prices.maxUserPrice.toLocaleString("en-US", {
+                        {localMax.toLocaleString("en-US", {
                             style: "currency",
                             currency: "USD",
                         })}
@@ -45,8 +50,9 @@ export function FilterByPrice() {
                         min={filters.prices.minPrice}
                         max={filters.prices.maxPrice}
                         step={0.01}
-                        value={filters.prices.minUserPrice}
-                        onChange={(e) => {
+                        value={localMin}
+                        onChange={(e) => setLocalMin(Number(e.target.value))}
+                        onMouseUp={(e) => {
                             const newMin = Number(e.target.value);
                             filters.setPrices((prev) => ({
                                 ...prev,
@@ -66,8 +72,9 @@ export function FilterByPrice() {
                         min={filters.prices.minPrice}
                         max={filters.prices.maxPrice}
                         step={0.01}
-                        value={filters.prices.maxUserPrice}
-                        onChange={(e) => {
+                        value={localMax}
+                        onChange={(e) => setLocalMax(Number(e.target.value))}
+                        onMouseUp={(e) => {
                             const newMax = Number(e.target.value);
                             filters.setPrices((prev) => ({
                                 ...prev,
@@ -86,7 +93,7 @@ export function FilterByPrice() {
                 <h2>Minimum Assessment</h2>
                 <div className="rate-itens">
                     <span className="references">0 ⭐</span>
-                    <span className="references">{filters.assessment} ⭐</span>
+                    <span className="references">{localAssessment} ⭐</span>
                     <span className="references">5 ⭐</span>
                 </div>
                 <div className="slides">
@@ -96,8 +103,13 @@ export function FilterByPrice() {
                         min={0}
                         max={5}
                         step={0.1}
-                        value={filters.assessment}
-                        onChange={(e) => filters.setAssessment(e.target.value)}
+                        value={localAssessment}
+                        onChange={(e) =>
+                            setLocalAssessment(Number(e.target.value))
+                        }
+                        onMouseUp={(e) =>
+                            filters.setAssessment(Number(e.target.value))
+                        }
                     />
                 </div>
             </div>

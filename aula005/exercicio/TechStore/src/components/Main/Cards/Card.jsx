@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import "./cards.css";
+import { StoreContext } from "../../../js/storeContext";
 
 /* 
 <div className="card">
@@ -39,10 +41,15 @@ import "./cards.css";
 */
 
 export function Cards() {
+    const { get, page } = useContext(StoreContext);
+
     return (
         <div className="cards-div">
             <div className="quant">
-                <span className="text">178 products found (page 1 of 6)</span>
+                <span className="text">
+                    {get.products.total} products found (page {page + 1} of{" "}
+                    {get.products.index})
+                </span>
             </div>
             <div className="cards"></div>
         </div>
