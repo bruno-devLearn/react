@@ -1,6 +1,6 @@
 import "../store.css";
 
-export function FilterBar() {
+export function FilterBar({ setOpen }) {
     return (
         <div className="filter-bar">
             <div className="inputFilter">
@@ -12,13 +12,29 @@ export function FilterBar() {
             <div className="filters">
                 <div className="flex-itens">
                     <div className="specific-filters">
-                        <div className="select-category border">
+                        <div
+                            className="select-category border"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setOpen((prev) =>
+                                    prev !== "category" ? "category" : ""
+                                );
+                            }}
+                        >
                             <span className="text">All categories...</span>
                             <span className="material-symbols-outlined">
                                 keyboard_arrow_down
                             </span>
                         </div>
-                        <div className="specific-filter border">
+                        <div
+                            className="specific-filter border"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setOpen((prev) =>
+                                    prev !== "specific" ? "specific" : ""
+                                );
+                            }}
+                        >
                             <div className="filter">
                                 <span className="material-symbols-outlined">
                                     tune
@@ -34,7 +50,15 @@ export function FilterBar() {
                             <span className="text">Clear</span>
                         </div>
                     </div>
-                    <div className="default-filters">
+                    <div
+                        className="default-filters"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setOpen((prev) =>
+                                prev !== "default" ? "default" : ""
+                            );
+                        }}
+                    >
                         <span className="filter">Default</span>
                         <span className="material-symbols-outlined">
                             keyboard_arrow_down
