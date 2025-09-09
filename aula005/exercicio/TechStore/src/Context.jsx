@@ -6,23 +6,20 @@ export function StoreProvider({ children }) {
     const [products, setProducts] = useState({});
     const [categories, setCategories] = useState([]);
 
+    const get = {
+        url,
+        setUrl,
+        products,
+        setProducts,
+        categories,
+        setCategories,
+    };
+
     useEffect(() => {
         console.log(products);
-        console.log(categories);
-    }, [products, categories]);
+    }, [products]);
 
     return (
-        <StoreContext.Provider
-            value={{
-                url,
-                setUrl,
-                products,
-                setProducts,
-                categories,
-                setCategories,
-            }}
-        >
-            {children}
-        </StoreContext.Provider>
+        <StoreContext.Provider value={get}>{children}</StoreContext.Provider>
     );
 }

@@ -2,16 +2,16 @@ import { useContext, useEffect, useState } from "react";
 import { StoreContext } from "./storeContext";
 
 export function useGet() {
-    const { url, setProducts, setCategories } = useContext(StoreContext);
+    const get = useContext(StoreContext); // <- get é o objeto inteiro
     const [urlProducts, setUrlProducts] = useState("");
 
-    const urlCatgories = "https://dummyjson.com/products/category-list";
+    const urlCategories = "https://dummyjson.com/products/category-list";
 
     useEffect(() => {
-        if (url === "/") {
+        if (get.url === "/") {
             setUrlProducts("https://dummyjson.com/products?limit=30&skip=0");
         }
-    }, [url]);
+    }, [get.url]);
 
     useEffect(() => {
         if (!urlProducts) return;
@@ -19,14 +19,11 @@ export function useGet() {
         async function fetchProducts() {
             try {
                 const response = await fetch(urlProducts);
-
-                if (!response.ok) {
+                if (!response.ok)
                     throw new Error("Erro na requisição: " + response.status);
-                }
-
                 const json = await response.json();
 
-                setProducts({
+                get.setProducts({
                     products: json.products,
                     total: json.total,
                     index: Math.ceil(json.total / 30),
@@ -36,26 +33,21 @@ export function useGet() {
             }
         }
 
-        fetchProducts();
-
-        if (!urlCatgories) return;
-
         async function fetchCategories() {
             try {
-                const response = await fetch(urlCatgories);
-
-                if (!response.ok) {
+                const response = await fetch(urlCategories);
+                if (!response.ok)
                     throw new Error("Erro na requisição: " + response.status);
-                }
-
                 const json = await response.json();
 
-                setCategories(json);
+                get.setCategories(json);
             } catch (error) {
-                console.error("Erro ao buscar produtos:", error);
+                console.error("Erro ao buscar categorias:", error);
             }
         }
 
+        fetchProducts();
         fetchCategories();
-    }, [urlProducts, setProducts, setCategories]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [urlProducts, get.setProducts, get.setCategories]);
 }

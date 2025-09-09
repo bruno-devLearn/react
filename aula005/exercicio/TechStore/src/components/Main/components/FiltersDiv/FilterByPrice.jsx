@@ -1,6 +1,9 @@
 export function FilterByPrice() {
     return (
-        <div className="price-filters fadeIn">
+        <div
+            className="price-filters fadeIn"
+            onClick={(e) => e.stopPropagation()}
+        >
             <div className="price">
                 <h2>Price Range</h2>
                 <div className="price-itens">

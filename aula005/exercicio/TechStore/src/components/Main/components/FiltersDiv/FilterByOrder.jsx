@@ -2,7 +2,7 @@
 
 export function FilterByOrder() {
     return (
-        <div className="order-div fadeIn">
+        <div className="order-div fadeIn" onClick={(e) => e.stopPropagation()}>
             <div className="select-item">
                 <span className="text">Default</span>
             </div>
