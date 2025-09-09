@@ -2,16 +2,19 @@ import { useContext, useEffect, useState } from "react";
 import { StoreContext } from "./storeContext";
 
 export function useGet() {
-    const { url, setProducts, setCategories } = useContext(StoreContext);
-    const [urlProducts, setUrlProducts] = useState("");
+    const { get, filters } = useContext(StoreContext);
 
-    const urlCatgories = "https://dummyjson.com/products/category-list";
+    const [urlProducts, setUrlProducts] = useState("");
+    const [urlCategories, setUrlCategories] = useState("");
+    const [urlPrices, setUrlPrices] = useState("");
 
     useEffect(() => {
-        if (url === "/") {
+        if (get.url === "/") {
             setUrlProducts("https://dummyjson.com/products?limit=30&skip=0");
+            setUrlCategories("https://dummyjson.com/products/category-list");
+            setUrlPrices("https://dummyjson.com/products?limit=0&select=price");
         }
-    }, [url]);
+    }, [get.url]);
 
     useEffect(() => {
         if (!urlProducts) return;
@@ -19,14 +22,11 @@ export function useGet() {
         async function fetchProducts() {
             try {
                 const response = await fetch(urlProducts);
-
-                if (!response.ok) {
+                if (!response.ok)
                     throw new Error("Erro na requisição: " + response.status);
-                }
-
                 const json = await response.json();
 
-                setProducts({
+                get.setProducts({
                     products: json.products,
                     total: json.total,
                     index: Math.ceil(json.total / 30),
@@ -37,25 +37,51 @@ export function useGet() {
         }
 
         fetchProducts();
-
-        if (!urlCatgories) return;
+        if (!urlCategories) return;
 
         async function fetchCategories() {
             try {
-                const response = await fetch(urlCatgories);
-
-                if (!response.ok) {
+                const response = await fetch(urlCategories);
+                if (!response.ok)
                     throw new Error("Erro na requisição: " + response.status);
-                }
-
                 const json = await response.json();
 
-                setCategories(json);
+                get.setCategories(json);
             } catch (error) {
-                console.error("Erro ao buscar produtos:", error);
+                console.error("Erro ao buscar categorias:", error);
             }
         }
 
         fetchCategories();
-    }, [urlProducts, setProducts, setCategories]);
+        if (!urlPrices) return;
+
+        async function fetchPrices() {
+            try {
+                const response = await fetch(urlPrices);
+
+                if (!response.ok)
+                    throw new Error("Erro na requisição: " + response.status);
+
+                const json = await response.json();
+
+                // Para min e max precisamos os números crus
+                const numericPrices = json.products.map((p) => p.price);
+
+                const minPrice = Math.min(...numericPrices);
+                const maxPrice = Math.max(...numericPrices);
+
+                filters.setPrices({
+                    maxPrice: maxPrice,
+                    minPrice: minPrice,
+                    minUserPrice: minPrice,
+                    maxUserPrice: maxPrice,
+                });
+            } catch (error) {
+                console.error("Erro ao buscar preços:", error);
+            }
+        }
+
+        fetchPrices();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [urlProducts, get.setProducts, get.setCategories]);
 }

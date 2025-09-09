@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import "../store.css";
+import { StoreContext } from "../../../js/storeContext";
 
 export function FilterBar({ setOpen }) {
+    const { filters } = useContext(StoreContext);
+
     return (
         <div className="filter-bar">
             <div className="inputFilter">
@@ -40,10 +44,46 @@ export function FilterBar({ setOpen }) {
                                     tune
                                 </span>
                                 <span className="text">Filters</span>
-                                <div className="invisible-point"></div>
+                                <div
+                                    className="invisible-point"
+                                    style={{
+                                        display: `${
+                                            filters.prices.minUserPrice !==
+                                                filters.prices.minPrice ||
+                                            filters.prices.maxUserPrice !==
+                                                filters.prices.maxPrice ||
+                                            filters.assessment !== 0
+                                                ? "block"
+                                                : "none"
+                                        }`,
+                                    }}
+                                ></div>
                             </div>
                         </div>
-                        <div className="clear-filter">
+                        <div
+                            className="clear-filter"
+                            style={{
+                                display: `${
+                                    filters.selected.length > 0 ||
+                                    filters.prices.minUserPrice !==
+                                        filters.prices.minPrice ||
+                                    filters.prices.maxUserPrice !==
+                                        filters.prices.maxPrice ||
+                                    filters.assessment !== 0
+                                        ? "flex"
+                                        : "none"
+                                }`,
+                            }}
+                            onClick={() => {
+                                filters.setSelected([]);
+                                filters.setAssessment(0);
+                                filters.setPrices((prev) => ({
+                                    ...prev,
+                                    minUserPrice: filters.prices.minPrice,
+                                    maxUserPrice: filters.prices.maxPrice,
+                                }));
+                            }}
+                        >
                             <span className="material-symbols-outlined">
                                 close
                             </span>
@@ -59,16 +99,45 @@ export function FilterBar({ setOpen }) {
                             );
                         }}
                     >
-                        <span className="filter">Default</span>
+                        <span className="filter">{filters.item}</span>
                         <span className="material-symbols-outlined">
                             keyboard_arrow_down
                         </span>
                     </div>
                 </div>
             </div>
-            <div className="active-filters">
+            <div
+                className="active-filters"
+                style={{
+                    display: `${
+                        filters.selected.length > 0 ? "block" : "none"
+                    }`,
+                }}
+            >
                 <div className="filters">
                     <span className="active">Active Filters:</span>
+                    {filters.selected.map((selected) => {
+                        return (
+                            <div className="filter" key={crypto.randomUUID()}>
+                                <div className="text">
+                                    {selected}
+
+                                    <span
+                                        className="material-symbols-outlined"
+                                        onClick={() => {
+                                            filters.setSelected((select) =>
+                                                select.filter(
+                                                    (item) => item !== selected
+                                                )
+                                            );
+                                        }}
+                                    >
+                                        close
+                                    </span>
+                                </div>
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         </div>
