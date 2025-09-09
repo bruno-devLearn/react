@@ -5,16 +5,17 @@ import { useContext, useEffect } from "react";
 import { StoreContext } from "./js/storeContext";
 
 function App() {
-    const { setUrl } = useContext(StoreContext);
+    const { get } = useContext(StoreContext);
     const location = useLocation();
 
     useEffect(() => {
         if (location.pathname === "/") {
-            setUrl(location.pathname);
+            get.setUrl(location.pathname);
         } else if (location.pathname === "/item") {
-            setUrl(location.pathname);
+            get.setUrl(location.pathname);
         }
-    }, [location, setUrl]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [location, get.setUrl]);
 
     useStart();
 

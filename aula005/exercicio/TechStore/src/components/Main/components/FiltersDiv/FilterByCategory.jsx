@@ -1,29 +1,34 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { StoreContext } from "../../../../js/storeContext";
 
-export function FilterByCategory({ inputRef }) {
-    const get = useContext(StoreContext);
-    const [_, setRender] = useState(false);
+export function FilterByCategory() {
+    const { get, filters } = useContext(StoreContext);
 
-    useEffect(() => {
-        if (!inputRef.current || Object.keys(inputRef.current).length === 0) {
-            inputRef.current = {};
-            get.categories.forEach((category) => {
-                inputRef.current[category] = false;
-            });
-        }
-    }, [get.categories, inputRef]);
+    function removeCategory(category) {
+        filters.setSelected((selected) =>
+            selected.filter((select) => select !== category)
+        );
+    }
 
-    function toggleCategory(category) {
-        inputRef.current[category] = !inputRef.current[category];
-        setRender((prev) => !prev);
+    function addCategory(category) {
+        filters.setSelected((prev) => [...prev, category]);
     }
 
     return (
         <div className="categories fadeIn" onClick={(e) => e.stopPropagation()}>
             <div className="title">
                 <h2>Categories</h2>
-                <span className="clear">Clear</span>
+                <span
+                    className="clear"
+                    style={{
+                        display: `${
+                            filters.selected.length > 0 ? "block" : "none"
+                        }`,
+                    }}
+                    onClick={() => filters.setSelected([])}
+                >
+                    Clear
+                </span>
             </div>
             <div className="scroll">
                 {get.categories.map((category) => (
@@ -31,8 +36,17 @@ export function FilterByCategory({ inputRef }) {
                         <label className="checkbox">
                             <input
                                 type="checkbox"
-                                checked={inputRef.current[category] ?? false} // garante true/false
-                                onChange={() => toggleCategory(category)}
+                                checked={
+                                    filters.selected.includes(category) === true
+                                        ? true
+                                        : false
+                                }
+                                onChange={() => {
+                                    filters.selected.includes(category) !==
+                                    false
+                                        ? removeCategory(category)
+                                        : addCategory(category);
+                                }}
                             />
 
                             <span className="material-symbols-outlined">

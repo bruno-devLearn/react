@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { StoreContext } from "./js/storeContext";
 
 export function StoreProvider({ children }) {
@@ -15,11 +15,14 @@ export function StoreProvider({ children }) {
         setCategories,
     };
 
-    useEffect(() => {
-        console.log(products);
-    }, [products]);
+    const [selected, setSelected] = useState([]);
+    const [_, setRender] = useState(false);
+
+    const filters = { selected, setSelected, setRender };
 
     return (
-        <StoreContext.Provider value={get}>{children}</StoreContext.Provider>
+        <StoreContext.Provider value={{ get, filters }}>
+            {children}
+        </StoreContext.Provider>
     );
 }

@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import "../store.css";
+import { StoreContext } from "../../../js/storeContext";
 
 export function FilterBar({ setOpen }) {
+    const { filters } = useContext(StoreContext);
+
     return (
         <div className="filter-bar">
             <div className="inputFilter">
@@ -43,7 +47,17 @@ export function FilterBar({ setOpen }) {
                                 <div className="invisible-point"></div>
                             </div>
                         </div>
-                        <div className="clear-filter">
+                        <div
+                            className="clear-filter"
+                            style={{
+                                display: `${
+                                    filters.selected.length > 0
+                                        ? "flex"
+                                        : "none"
+                                }`,
+                            }}
+                            onClick={() => filters.setSelected([])}
+                        >
                             <span className="material-symbols-outlined">
                                 close
                             </span>
@@ -66,9 +80,38 @@ export function FilterBar({ setOpen }) {
                     </div>
                 </div>
             </div>
-            <div className="active-filters">
+            <div
+                className="active-filters"
+                style={{
+                    display: `${
+                        filters.selected.length > 0 ? "block" : "none"
+                    }`,
+                }}
+            >
                 <div className="filters">
                     <span className="active">Active Filters:</span>
+                    {filters.selected.map((selected) => {
+                        return (
+                            <div className="filter" key={crypto.randomUUID()}>
+                                <div className="text">
+                                    {selected}
+
+                                    <span
+                                        className="material-symbols-outlined"
+                                        onClick={() => {
+                                            filters.setSelected((select) =>
+                                                select.filter(
+                                                    (item) => item !== selected
+                                                )
+                                            );
+                                        }}
+                                    >
+                                        close
+                                    </span>
+                                </div>
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         </div>

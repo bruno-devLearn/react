@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { StoreContext } from "./storeContext";
 
 export function useGet() {
-    const get = useContext(StoreContext); // <- get é o objeto inteiro
+    const { get } = useContext(StoreContext); // <- get é o objeto inteiro
     const [urlProducts, setUrlProducts] = useState("");
 
     const urlCategories = "https://dummyjson.com/products/category-list";
