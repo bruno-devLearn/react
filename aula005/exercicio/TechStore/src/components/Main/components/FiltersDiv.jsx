@@ -1,27 +1,24 @@
-import "./css/filtersDiv.css";
+import { FilterByCategory } from "./FiltersDiv/FilterByCategory";
+import { FilterByOrder } from "./FiltersDiv/FilterByOrder";
+import { FilterByPrice } from "./FiltersDiv/FilterByPrice";
+import "./FiltersDiv/css/filtersDiv.css";
 
-/* 
-<div className="select">
-    <label className="checkbox">
-        <input type="checkbox" id="" />
-        <span className="material-symbols-outlined">
-            check
-        </span>
-        <span className="text">beauty</span>
-    </label>
-</div>
-*/
+export function FiltersDiv({ open }) {
+    let content;
 
-export function FiltersDiv() {
-    return (
-        <>
-            <div className="categorys">
-                <div className="title">
-                    <h2>Categories</h2>
-                    <span className="clear">Clear</span>
-                </div>
-                <div className="scroll"></div>
-            </div>
-        </>
-    );
+    switch (open) {
+        case "category":
+            content = <FilterByCategory />;
+            break;
+        case "specific":
+            content = <FilterByPrice />;
+            break;
+        case "default":
+            content = <FilterByOrder />;
+            break;
+        default:
+            content = null;
+    }
+
+    return <>{content}</>;
 }
