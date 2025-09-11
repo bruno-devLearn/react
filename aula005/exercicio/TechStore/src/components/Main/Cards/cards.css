@@ -7,7 +7,7 @@ a {
     overflow-y: auto; /* scroll só aparece se precisar */
     overflow-x: hidden;
     display: grid;
-    height: calc(100vh - 352px);
+    height: calc(100vh - 321px);
     grid-template-columns: repeat(2, 1fr); /* padrão: 2 colunas */
     gap: 11px; /* reduzido de 0.75rem (~12px) */
     padding-bottom: 1.5rem; /* pb-6 */
@@ -239,5 +239,9 @@ a {
 
     .card .information {
         padding: 10.5px 10.5px 21px 10.5px;
+    }
+
+    .cards {
+        height: calc(100vh - 354px);
     }
 }

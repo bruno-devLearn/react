@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { StoreContext } from "./storeContext";
+import { sortProducts } from "./sort";
 
 export function useGet() {
     const { get, filters, setStatus } = useContext(StoreContext);
@@ -11,7 +12,9 @@ export function useGet() {
     useEffect(() => {
         if (get.url === "/") {
             if (filters.selected.length === 0) {
-                setUrlProducts(`https://dummyjson.com/products?limit=0&skip=0`);
+                setUrlProducts(
+                    `https://dummyjson.com/products?limit=0&skip=0&sortBy=${filters.sort}&order=${filters.order}`
+                );
                 get.setUrls([]);
             } else if (filters.selected.length > 0) {
                 const newUrls = filters.selected.map(
@@ -53,7 +56,15 @@ export function useGet() {
                         fetch(url).then((res) => res.json())
                     );
                     const results = await Promise.all(promises);
-                    allProducts = results.flatMap((result) => result.products);
+                    const products = results.flatMap(
+                        (result) => result.products
+                    );
+
+                    allProducts = sortProducts(
+                        products,
+                        filters.sort,
+                        filters.order
+                    );
                 } else if (urlProducts) {
                     // apenas a URL padrão
                     const response = await fetch(urlProducts);

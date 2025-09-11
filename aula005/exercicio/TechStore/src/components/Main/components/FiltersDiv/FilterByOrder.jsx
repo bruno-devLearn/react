@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { StoreContext } from "../../../../js/storeContext";
 
 export function FilterByOrder({ setOpen }) {
-    const { filters } = useContext(StoreContext);
+    const { filters, setPage } = useContext(StoreContext);
 
     return (
         <div className="order-div fadeIn" onClick={(e) => e.stopPropagation()}>
@@ -13,6 +13,7 @@ export function FilterByOrder({ setOpen }) {
                         ? filters.setItem("Default")
                         : null;
                     setOpen("");
+                    setPage(0);
                 }}
             >
                 <span className="text">Default</span>
@@ -27,6 +28,7 @@ export function FilterByOrder({ setOpen }) {
                         ? filters.setItem("Lowest Price")
                         : null;
                     setOpen("");
+                    setPage(0);
                 }}
             >
                 <span className="text">Lowest Price</span>
@@ -41,6 +43,7 @@ export function FilterByOrder({ setOpen }) {
                         ? filters.setItem("Highest Price")
                         : null;
                     setOpen("");
+                    setPage(0);
                 }}
             >
                 <span className="text">Highest Price</span>
@@ -55,6 +58,7 @@ export function FilterByOrder({ setOpen }) {
                         ? filters.setItem("Best Rating")
                         : null;
                     setOpen("");
+                    setPage(0);
                 }}
             >
                 <span className="text">Best Rating</span>
@@ -69,6 +73,7 @@ export function FilterByOrder({ setOpen }) {
                         ? filters.setItem("Alphabetical")
                         : null;
                     setOpen("");
+                    setPage(0);
                 }}
             >
                 <span className="text">Alphabetical</span>
