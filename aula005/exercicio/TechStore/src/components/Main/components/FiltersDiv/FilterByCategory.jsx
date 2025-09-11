@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { StoreContext } from "../../../../js/storeContext";
 
 export function FilterByCategory() {
-    const { get, filters } = useContext(StoreContext);
+    const { get, filters, search } = useContext(StoreContext);
 
     function removeCategory(category) {
         filters.setSelected((selected) =>
@@ -49,6 +49,9 @@ export function FilterByCategory() {
                                     false
                                         ? removeCategory(category)
                                         : addCategory(category);
+
+                                    search.setInputSearch(""); // limpa query
+                                    search.setInputSearchRaw(""); // limpa input visível
                                 }}
                             />
 

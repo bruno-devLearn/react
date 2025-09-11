@@ -3,14 +3,35 @@ import "../store.css";
 import { StoreContext } from "../../../js/storeContext";
 
 export function FilterBar({ setOpen }) {
-    const { filters, get } = useContext(StoreContext);
+    const { filters, get, search } = useContext(StoreContext);
 
     return (
         <div className="filter-bar">
             <div className="inputFilter">
                 <div className="input">
                     <span className="material-symbols-outlined">search</span>
-                    <input type="text" placeholder="Search Products..." />
+                    <input
+                        type="text"
+                        placeholder="Search Products..."
+                        value={search.inputSearchRaw} // só exibe o que o usuário digitou
+                        onInput={(e) => {
+                            const raw = e.target.value;
+                            search.setInputSearchRaw(raw); // atualiza o input
+                            const query = raw
+                                .toLowerCase()
+                                .trim()
+                                .replace(/\s+/g, "-");
+                            search.setInputSearch(query); // só atualiza a query se for pra buscar
+                            filters.setSelected([]);
+                            filters.setAssessment(0);
+                            get.setUrls([]);
+                            filters.setPrices((prev) => ({
+                                ...prev,
+                                minUserPrice: filters.prices.minPrice,
+                                maxUserPrice: filters.prices.maxPrice,
+                            }));
+                        }}
+                    />
                 </div>
             </div>
             <div className="filters">
