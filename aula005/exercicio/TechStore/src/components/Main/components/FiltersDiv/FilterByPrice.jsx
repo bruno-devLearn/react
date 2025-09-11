@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { StoreContext } from "../../../../js/storeContext";
 
 export function FilterByPrice() {
-    const { filters } = useContext(StoreContext);
+    const { filters, search } = useContext(StoreContext);
 
     // estados locais para arrastar sem travar
     const [localMin, setLocalMin] = useState(filters.prices.minUserPrice);
@@ -51,7 +51,11 @@ export function FilterByPrice() {
                         max={filters.prices.maxPrice}
                         step={0.01}
                         value={localMin}
-                        onChange={(e) => setLocalMin(Number(e.target.value))}
+                        onChange={(e) => {
+                            setLocalMin(Number(e.target.value));
+                            search.setInputSearch("");
+                            search.setInputSearchRaw("");
+                        }}
                         onMouseUp={(e) => {
                             const newMin = Number(e.target.value);
                             filters.setPrices((prev) => ({
@@ -73,7 +77,11 @@ export function FilterByPrice() {
                         max={filters.prices.maxPrice}
                         step={0.01}
                         value={localMax}
-                        onChange={(e) => setLocalMax(Number(e.target.value))}
+                        onChange={(e) => {
+                            setLocalMax(Number(e.target.value));
+                            search.setInputSearch("");
+                            search.setInputSearchRaw("");
+                        }}
                         onMouseUp={(e) => {
                             const newMax = Number(e.target.value);
                             filters.setPrices((prev) => ({
@@ -104,9 +112,11 @@ export function FilterByPrice() {
                         max={5}
                         step={0.1}
                         value={localAssessment}
-                        onChange={(e) =>
-                            setLocalAssessment(Number(e.target.value))
-                        }
+                        onChange={(e) => {
+                            setLocalAssessment(Number(e.target.value));
+                            search.setInputSearch("");
+                            search.setInputSearchRaw("");
+                        }}
                         onMouseUp={(e) =>
                             filters.setAssessment(Number(e.target.value))
                         }

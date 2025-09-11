@@ -36,8 +36,10 @@ export function Cards() {
         <div className="cards-div">
             <div className="quant">
                 <span className="text">
-                    {get.products.total} products found (page {page + 1} of{" "}
-                    {get.products.index})
+                    {get.products.total} products found{" "}
+                    {get.products.index > 1
+                        ? `(page ${page + 1} of ${get.products.index})`
+                        : null}
                 </span>
             </div>
             <div

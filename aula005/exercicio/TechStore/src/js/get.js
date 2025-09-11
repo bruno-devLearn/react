@@ -3,7 +3,7 @@ import { StoreContext } from "./storeContext";
 import { sortProducts } from "./sort";
 
 export function useGet() {
-    const { get, filters, setStatus } = useContext(StoreContext);
+    const { get, filters, setStatus, search } = useContext(StoreContext);
 
     const [urlProducts, setUrlProducts] = useState("");
     const [urlCategories, setUrlCategories] = useState("");
@@ -11,22 +11,35 @@ export function useGet() {
 
     useEffect(() => {
         if (get.url === "/") {
-            if (filters.selected.length === 0) {
+            if (filters.selected.length > 0) {
+                // filtros de categoria têm prioridade absoluta
+                const newUrls = filters.selected.map(
+                    (category) =>
+                        `https://dummyjson.com/products/category/${category}?sortBy=${filters.sort}&order=${filters.order}`
+                );
+                get.setUrls(newUrls);
+
+                // limpa input quando há categoria
+                search.setInputSearch("");
+                search.setInputSearchRaw("");
+            } else if (search.inputSearch !== "") {
+                // sem categoria, faz busca pelo input
+                get.setUrls([]);
+                setUrlProducts(
+                    `https://dummyjson.com/products/search?q=${search.inputSearch}&sortBy=${filters.sort}&order=${filters.order}`
+                );
+            } else {
+                // sem categoria e sem busca, URL padrão
                 setUrlProducts(
                     `https://dummyjson.com/products?limit=0&skip=0&sortBy=${filters.sort}&order=${filters.order}`
                 );
                 get.setUrls([]);
-            } else if (filters.selected.length > 0) {
-                const newUrls = filters.selected.map(
-                    (category) =>
-                        `https://dummyjson.com/products/category/${category}`
-                );
-                get.setUrls(newUrls);
             }
 
             setUrlCategories("https://dummyjson.com/products/category-list");
             setUrlPrices("https://dummyjson.com/products?limit=0&select=price");
         }
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [
         get.url,
@@ -39,6 +52,8 @@ export function useGet() {
         filters.assessment,
         filters.sort,
         filters.order,
+        search.inputSearch,
+        urlProducts,
     ]);
 
     useEffect(() => {

@@ -7,7 +7,7 @@ import { FilterBar } from "./components/FilterBar";
 import { FiltersDiv } from "./components/FiltersDiv";
 import { Pages } from "./Pages";
 import { StoreContext } from "../../js/storeContext";
-import { Loading } from "./statusComponents/status";
+import { Loading, NotFound } from "./statusComponents/status";
 
 export function Store() {
     const { status, get } = useContext(StoreContext);
@@ -30,11 +30,13 @@ export function Store() {
             <Cart />
             {status === "loading" ? (
                 <Loading />
-            ) : status === "success" ? (
+            ) : status === "success" && get.products.total > 0 ? (
                 <>
                     <Cards />
                     {get.products.index > 1 ? <Pages /> : null}
                 </>
+            ) : status === "success" && get.products.total === 0 ? (
+                <NotFound />
             ) : null}
         </>
     );

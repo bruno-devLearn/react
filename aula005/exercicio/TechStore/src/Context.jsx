@@ -66,12 +66,22 @@ export function StoreProvider({ children }) {
         sort,
     };
 
+    const [inputSearch, setInputSearch] = useState("");
+    const [inputSearchRaw, setInputSearchRaw] = useState("");
+
+    const search = {
+        inputSearch,
+        setInputSearch,
+        inputSearchRaw,
+        setInputSearchRaw,
+    };
+
     const [status, setStatus] = useState("");
     const [page, setPage] = useState(0);
 
     return (
         <StoreContext.Provider
-            value={{ get, filters, status, setStatus, page, setPage }}
+            value={{ get, filters, status, setStatus, page, setPage, search }}
         >
             {children}
         </StoreContext.Provider>
