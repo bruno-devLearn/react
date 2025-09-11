@@ -25,7 +25,14 @@ export function FilterBar({ setOpen }) {
                                 );
                             }}
                         >
-                            <span className="text">All categories...</span>
+                            <span className="text">
+                                {filters.selected.length === 0
+                                    ? "All categories..."
+                                    : filters.selected.length === 1
+                                    ? filters.selected[0]
+                                    : `${filters.selected.length} Categories`}
+                            </span>
+
                             <span className="material-symbols-outlined">
                                 keyboard_arrow_down
                             </span>
@@ -114,33 +121,7 @@ export function FilterBar({ setOpen }) {
                         filters.selected.length > 0 ? "block" : "none"
                     }`,
                 }}
-            >
-                <div className="filters">
-                    <span className="active">Active Filters:</span>
-                    {filters.selected.map((selected) => {
-                        return (
-                            <div className="filter" key={crypto.randomUUID()}>
-                                <div className="text">
-                                    {selected}
-
-                                    <span
-                                        className="material-symbols-outlined"
-                                        onClick={() => {
-                                            filters.setSelected((select) =>
-                                                select.filter(
-                                                    (item) => item !== selected
-                                                )
-                                            );
-                                        }}
-                                    >
-                                        close
-                                    </span>
-                                </div>
-                            </div>
-                        );
-                    })}
-                </div>
-            </div>
+            ></div>
         </div>
     );
 }
