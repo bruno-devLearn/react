@@ -1,89 +1,172 @@
+import { useContext } from "react";
 import "./item.css";
+import { StoreContext } from "../../../js/storeContext";
+import { Link } from "react-router";
+import { ItemInformations } from "./ItemInformation";
 
 export function Item() {
+    const { search, get } = useContext(StoreContext);
+
+    const item = get.products.products?.[0];
+
     return (
-        <div className="item-div">
-            <div className="back">
-                <button>
-                    <span className="material-symbols-outlined">
-                        arrow_back
-                    </span>
-                    <span className="text">return to the store</span>
-                </button>
-            </div>
-            <div className="item-display">
-                <div className="item">
-                    <div className="img">
-                        <img src="#" />
-                    </div>
-                    <div className="information">
-                        <div className="category">
-                            <span className="text">Beauty</span>
-                        </div>
-                        <div className="infos">
-                            <h2>Essence Mascara Lash Princess</h2>
-                            <div className="rating">
-                                <span className="rate">
+        <>
+            {item ? (
+                <>
+                    <div className="item-div">
+                        <div className="back">
+                            <Link
+                                to={"/"}
+                                onClick={() => {
+                                    search.setInputSearch("");
+                                    search.setInputSearchRaw("");
+                                }}
+                            >
+                                <button>
                                     <span className="material-symbols-outlined">
-                                        star
+                                        arrow_back
                                     </span>
-                                    2.6
-                                    <span className="num-reviews">
-                                        (3 reviews)
+                                    <span className="text">
+                                        return to the store
                                     </span>
-                                </span>
-                            </div>
-                            <div className="prices">
-                                <span className="current">$8.94</span>
-                                <del className="old">$9.99</del>
-                                <div className="discount">
-                                    <span>-10% OFF</span>
-                                </div>
-                            </div>
-                            <div className="available">
-                                <span className="text">availability:</span>
-                                <span className="quant">99 in stock</span>
-                            </div>
-                            <div className="cont">
-                                <span className="text">Amount:</span>
-                                <div className="buttons">
-                                    <button className="decreased">-</button>
-                                    <span className="value">1</span>
-                                    <button className="increase">+</button>
-                                </div>
-                            </div>
+                                </button>
+                            </Link>
                         </div>
-                        <button className="add">
-                            <span className="material-symbols-outlined">
-                                shopping_cart
-                            </span>
-                            Add to Cart
-                        </button>
-                        <div className="characteristics">
-                            <div className="left">
-                                <span className="brand light">
-                                    Brand: <span className="dark">Essence</span>
-                                </span>
-                                <span className="weight light">
-                                    Weight: <span className="dark">4kg</span>
-                                </span>
-                            </div>
-                            <div className="right">
-                                <span className="sku light">
-                                    SKU:{" "}
-                                    <span className="dark">
-                                        BEA-ESS-ESS-001
-                                    </span>
-                                </span>
-                                <span className="status light">
-                                    Status:{" "}
-                                    <span className="dark">In Stock</span>
-                                </span>
+                        <div className="item-display">
+                            <div className="item">
+                                <div className="img">
+                                    <img src={item.thumbnail} />
+                                </div>
+                                <div className="information">
+                                    <div className="category">
+                                        <span className="text">
+                                            {item.category}
+                                        </span>
+                                    </div>
+                                    <div className="infos">
+                                        <h2>{item.title}</h2>
+                                        <div className="rating">
+                                            <span className="rate">
+                                                <span className="material-symbols-outlined">
+                                                    star
+                                                </span>
+                                                {Math.floor(item.rating * 10) /
+                                                    10}
+                                                <span className="num-reviews">
+                                                    ({item.reviews.length}{" "}
+                                                    available)
+                                                </span>
+                                            </span>
+                                        </div>
+                                        <div className="prices">
+                                            <span className="current">
+                                                {(() => {
+                                                    const oldPrice = item.price;
+                                                    const discountValue =
+                                                        (oldPrice / 100) *
+                                                        item.discountPercentage;
+                                                    const price =
+                                                        oldPrice -
+                                                        discountValue;
+
+                                                    return price.toLocaleString(
+                                                        "en-US",
+                                                        {
+                                                            style: "currency",
+                                                            currency: "USD",
+                                                            minimumFractionDigits: 2,
+                                                            maximumFractionDigits: 2,
+                                                        }
+                                                    );
+                                                })()}
+                                            </span>
+                                            <del className="old">
+                                                {item.price}
+                                            </del>
+                                            <div className="discount">
+                                                {Math.ceil(
+                                                    item.discountPercentage
+                                                ) > 0 ? (
+                                                    <span>
+                                                        -
+                                                        {Math.ceil(
+                                                            item.discountPercentage
+                                                        )}
+                                                        % OFF
+                                                    </span>
+                                                ) : null}
+                                            </div>
+                                        </div>
+                                        <div className="available">
+                                            <span className="text">
+                                                availability:
+                                            </span>
+                                            <span className="quant">
+                                                {item.availabilityStatus ===
+                                                "Out of Stock"
+                                                    ? item.availabilityStatus
+                                                    : `${item.stock} in stock`}
+                                            </span>
+                                        </div>
+                                        <div className="cont">
+                                            <span className="text">
+                                                Amount:
+                                            </span>
+                                            <div className="buttons">
+                                                <button className="decreased">
+                                                    -
+                                                </button>
+                                                <span className="value">1</span>
+                                                <button className="increase">
+                                                    +
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button className="add">
+                                        <span className="material-symbols-outlined">
+                                            shopping_cart
+                                        </span>
+                                        Add to Cart
+                                    </button>
+                                    <div className="characteristics">
+                                        <div className="left">
+                                            <span className="brand light">
+                                                Brand:{" "}
+                                                <span className="dark">
+                                                    {item.brand}
+                                                </span>
+                                            </span>
+                                            <span className="weight light">
+                                                Weight:{" "}
+                                                <span className="dark">
+                                                    {item.weight}kg
+                                                </span>
+                                            </span>
+                                        </div>
+                                        <div className="right">
+                                            <span className="sku light">
+                                                SKU:{" "}
+                                                <span className="dark">
+                                                    {item.sku}
+                                                </span>
+                                            </span>
+                                            <span className="status light">
+                                                Status:{" "}
+                                                <span className="dark">
+                                                    {item.availabilityStatus}
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
+
+                    <ItemInformations item={item} />
+                </>
+            ) : null}
+        </>
     );
 }

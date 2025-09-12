@@ -57,6 +57,13 @@ export function Cards() {
                         <NavLink
                             to={`/item/${slugify(item.title)}`}
                             className="card"
+                            onClick={() => {
+                                get.setProducts({
+                                    products: [],
+                                    total: 0,
+                                    index: 0,
+                                });
+                            }}
                             key={item.id}
                         >
                             <div className="card" key={crypto.randomUUID()}>
