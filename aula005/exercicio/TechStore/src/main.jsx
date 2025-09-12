@@ -13,7 +13,7 @@ ReactDOM.createRoot(root).render(
             <Routes>
                 <Route path="/" element={<App />}>
                     <Route index element={<Store />} />
-                    <Route path="item" element={<Item />} />
+                    <Route path="item/:slug" element={<Item />} />
                 </Route>
             </Routes>
         </BrowserRouter>

@@ -1,35 +1,41 @@
 import { useContext, useEffect, useState } from "react";
 import { StoreContext } from "./storeContext";
 import { sortProducts } from "./sort";
+import { useNavigate, useParams } from "react-router";
 
 export function useGet() {
     const { get, filters, setStatus, search } = useContext(StoreContext);
+    const { slug } = useParams();
+    const navigate = useNavigate();
 
     const [urlProducts, setUrlProducts] = useState("");
     const [urlCategories, setUrlCategories] = useState("");
     const [urlPrices, setUrlPrices] = useState("");
 
+    function slugify(title) {
+        return title
+            .toLowerCase()
+            .trim()
+            .replace(/\s+/g, "-")
+            .replace(/[^a-z0-9-]/g, "");
+    }
+
     useEffect(() => {
         if (get.url === "/") {
             if (filters.selected.length > 0) {
-                // filtros de categoria têm prioridade absoluta
                 const newUrls = filters.selected.map(
                     (category) =>
                         `https://dummyjson.com/products/category/${category}?sortBy=${filters.sort}&order=${filters.order}`
                 );
                 get.setUrls(newUrls);
-
-                // limpa input quando há categoria
                 search.setInputSearch("");
                 search.setInputSearchRaw("");
             } else if (search.inputSearch !== "") {
-                // sem categoria, faz busca pelo input
                 get.setUrls([]);
                 setUrlProducts(
-                    `https://dummyjson.com/products/search?q=${search.inputSearch}&sortBy=${filters.sort}&order=${filters.order}`
+                    `https://dummyjson.com/products/search?q=${search.inputSearch}&sortBy=${filters.sort}&order=${filters.order}&limit=0&skip=0`
                 );
             } else {
-                // sem categoria e sem busca, URL padrão
                 setUrlProducts(
                     `https://dummyjson.com/products?limit=0&skip=0&sortBy=${filters.sort}&order=${filters.order}`
                 );
@@ -38,6 +44,15 @@ export function useGet() {
 
             setUrlCategories("https://dummyjson.com/products/category-list");
             setUrlPrices("https://dummyjson.com/products?limit=0&select=price");
+        } else if (get.url === "/item") {
+            // limpa visualmente enquanto busca
+            get.setProducts({
+                products: [],
+                total: 0,
+                index: 0,
+            });
+            // continue usando search (texto) ou troque para id se preferir
+            setUrlProducts(`https://dummyjson.com/products/search?q=${slug}`);
         }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -53,7 +68,7 @@ export function useGet() {
         filters.sort,
         filters.order,
         search.inputSearch,
-        urlProducts,
+        slug,
     ]);
 
     useEffect(() => {
@@ -66,7 +81,6 @@ export function useGet() {
                 let allProducts = [];
 
                 if (get.urls.length > 0) {
-                    // várias categorias selecionadas
                     const promises = get.urls.map((url) =>
                         fetch(url).then((res) => res.json())
                     );
@@ -74,30 +88,60 @@ export function useGet() {
                     const products = results.flatMap(
                         (result) => result.products
                     );
-
                     allProducts = sortProducts(
                         products,
                         filters.sort,
                         filters.order
                     );
-                } else if (urlProducts) {
-                    // apenas a URL padrão
+                } else {
                     const response = await fetch(urlProducts);
                     if (!response.ok)
                         throw new Error(
                             "Erro na requisição: " + response.status
                         );
                     const json = await response.json();
-                    allProducts = json.products;
+                    allProducts = json.products || [];
+
+                    // se a resposta for um único objeto (quando pesquisar por id), normalize:
+                    if (!Array.isArray(allProducts) && json.id) {
+                        allProducts = [json];
+                    }
                 }
 
-                // aplica os filtros
-                const filtrados = allProducts.filter(
-                    (p) =>
-                        p.price >= filters.prices.minUserPrice &&
-                        p.price <= filters.prices.maxUserPrice &&
-                        p.rating >= filters.assessment
-                );
+                // Se estamos em /item, aplicamos filtro exato por slug (garante 0 ou 1 resultado)
+                let filtrados;
+                if (get.url === "/item" && slug) {
+                    filtrados = allProducts.filter(
+                        (p) => slugify(p.title) === slug
+                    );
+                } else {
+                    filtrados = allProducts.filter(
+                        (p) =>
+                            p.price >= filters.prices.minUserPrice &&
+                            p.price <= filters.prices.maxUserPrice &&
+                            p.rating >= filters.assessment
+                    );
+                }
+
+                // DECISÃO DE REDIRECT AQUI: evita race conditions
+                if (get.url === "/item" && slug) {
+                    if (filtrados.length === 0) {
+                        search.setInputSearch(slug);
+                        search.setInputSearchRaw(slug);
+                        setStatus("");
+                        navigate("/");
+                        return;
+                    }
+                    if (filtrados.length > 1) {
+                        // busca muito genérica -> volta pra /
+                        search.setInputSearch(slug);
+                        search.setInputSearchRaw(slug);
+                        setStatus("success");
+                        navigate("/");
+                        return;
+                    }
+                    // se chegou aqui, filtrados.length === 1 -> mostra o item
+                }
 
                 get.setProducts({
                     products: filtrados,
@@ -112,38 +156,31 @@ export function useGet() {
         }
 
         fetchProducts();
-        if (!urlCategories) return;
 
+        if (!urlCategories) return;
         async function fetchCategories() {
             try {
                 const response = await fetch(urlCategories);
                 if (!response.ok)
                     throw new Error("Erro na requisição: " + response.status);
                 const json = await response.json();
-
                 get.setCategories(json);
             } catch (error) {
                 console.error("Erro ao buscar categorias:", error);
             }
         }
-
         fetchCategories();
-        if (!urlPrices) return;
 
+        if (!urlPrices) return;
         async function fetchPrices() {
             try {
                 const response = await fetch(urlPrices);
-
                 if (!response.ok)
                     throw new Error("Erro na requisição: " + response.status);
-
                 const json = await response.json();
-
                 const numericPrices = json.products.map((p) => p.price);
-
                 const minPrice = Math.min(...numericPrices);
                 const maxPrice = Math.max(...numericPrices);
-
                 filters.setPrices((prev) => ({
                     maxPrice: maxPrice,
                     minPrice: minPrice,
@@ -154,8 +191,8 @@ export function useGet() {
                 console.error("Erro ao buscar preços:", error);
             }
         }
-
         fetchPrices();
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [
         urlProducts,
@@ -168,5 +205,6 @@ export function useGet() {
         filters.prices.maxUserPrice,
         filters.assessment,
         get.urls,
+        // removi get.products aqui de propósito pra não depender do estado antigo
     ]);
 }
