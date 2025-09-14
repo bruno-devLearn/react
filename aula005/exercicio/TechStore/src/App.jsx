@@ -3,7 +3,7 @@ import { Header } from "./components/Header/Header";
 import { useStart } from "./js/start";
 import { useContext, useEffect } from "react";
 import { StoreContext } from "./js/storeContext";
-import { Loading } from "./components/Main/statusComponents/status";
+import { ErrorDiv, Loading } from "./components/Main/statusComponents/status";
 
 function App() {
     const { get, status } = useContext(StoreContext); // pegando status
@@ -27,6 +27,11 @@ function App() {
                 {status === "loading" &&
                 location.pathname.startsWith("/item") ? (
                     <Loading />
+                ) : status === "success" &&
+                  location.pathname.startsWith("/item") ? (
+                    <Outlet />
+                ) : status === "error" ? (
+                    <ErrorDiv />
                 ) : (
                     <Outlet />
                 )}

@@ -3,9 +3,11 @@ import "./item.css";
 import { StoreContext } from "../../../js/storeContext";
 import { Link } from "react-router";
 import { ItemInformations } from "./ItemInformation";
+import { setData } from "../../../js/localStore";
+import { Cart } from "../../cart/Cart";
 
 export function Item() {
-    const { search, get } = useContext(StoreContext);
+    const { search, get, cart } = useContext(StoreContext);
 
     const item = get.products.products?.[0];
 
@@ -123,7 +125,27 @@ export function Item() {
                                             </div>
                                         </div>
                                     </div>
-                                    <button className="add">
+                                    <button
+                                        className="add"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            e.stopPropagation();
+
+                                            const exists =
+                                                get.cartProducts.some(
+                                                    (p) => p.item === item.id
+                                                );
+
+                                            if (!exists) {
+                                                const updated = [
+                                                    ...get.cartProducts,
+                                                    { item: item.id },
+                                                ];
+                                                get.setCartProducts(updated);
+                                                setData("products", updated);
+                                            }
+                                        }}
+                                    >
                                         <span className="material-symbols-outlined">
                                             shopping_cart
                                         </span>
@@ -165,6 +187,7 @@ export function Item() {
                     </div>
 
                     <ItemInformations item={item} />
+                    {cart.cartOpen === true ? <Cart /> : null}
                 </>
             ) : null}
         </>
