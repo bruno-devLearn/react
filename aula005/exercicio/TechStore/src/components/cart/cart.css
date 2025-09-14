@@ -1,3 +1,29 @@
+.cart.open {
+    animation: open 1s;
+}
+
+@keyframes open {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes close {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
 .background {
     background-color: rgba(0, 0, 0, 0.5);
     position: fixed;
@@ -5,21 +31,34 @@
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 9;
+    z-index: 9999;
     transition: all 0.3s;
-    display: none;
 }
 
 .cart {
     background-color: var(--white);
-    z-index: 99;
+    z-index: 999999;
     position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
     width: 336px;
     transition: all 0.3s;
-    display: none;
+}
+
+.cart.open {
+    animation: open 0.3s;
+}
+
+@keyframes open {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 .cart .title {
@@ -81,7 +120,7 @@
     margin-bottom: 28px;
 }
 
-.cart-item .itens .item {
+.cart-item__item {
     padding: 10.5px;
     display: flex;
     gap: 6px;
@@ -89,38 +128,51 @@
     border-radius: 6.75px;
 }
 
-.cart-item .itens .item .characteristics {
-    width: 100%;
-}
-
-.cart-item .itens .item img {
+.cart-item__img img {
     width: 56px;
     height: 56px;
 }
 
-.cart-item .itens .item h3 {
-    font-size: 12.25px;
-    color: var(--title-color);
+.cart-item__characteristics {
+    width: 100%;
 }
 
-.cart-item .itens .item span {
-    font-size: 12.25px;
-    color: var(--text-color);
-}
-
-.cart-item .itens .item .actions {
+.cart-item__actions {
     display: flex;
     justify-content: space-between;
     margin-top: 7px;
     width: 100%;
 }
 
-.cart-item .itens .item .actions .count {
+.cart-item__count {
     display: flex;
     gap: 7px;
 }
 
-.cart-item .itens .item .actions .count button {
+.cart-item__delete {
+    color: var(--remove-color);
+    font-size: 12.25px;
+    border-radius: 6.75px;
+    padding: 0 10.5px;
+    background-color: var(--white);
+    transition: all 0.3s;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cart-item__item h3 {
+    font-size: 12.25px;
+    color: var(--title-color);
+}
+
+.cart-item__item span {
+    font-size: 12.25px;
+    color: var(--text-color);
+}
+
+.cart-item__item .cart-item__actions button {
     border: 1px solid var(--border-color);
     border-radius: 6.75px;
     width: 21px;
@@ -135,11 +187,11 @@
     color: var(--title-color);
 }
 
-.cart-item .itens .item .actions .count button:hover {
+.cart-item__item .cart-item__actions button:hover {
     background-color: var(--hover-bg);
 }
 
-.cart-item .itens .item .actions .count span {
+.cart-item__item .cart-item__actions span {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -147,20 +199,7 @@
     color: var(--title-color);
 }
 
-.cart-item .itens .item .actions .delete {
-    color: var(--remove-color);
-    font-size: 12.25px;
-    border-radius: 6.75px;
-    padding: 0 10.5px;
-    background-color: var(--white);
-    transition: all 0.3s;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.cart-item .itens .item .actions .delete:hover {
+.cart-item__item .cart-item__actions .delete:hover {
     background-color: var(--hover-bg);
 }
 

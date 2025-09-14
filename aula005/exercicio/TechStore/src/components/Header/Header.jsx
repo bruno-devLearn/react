@@ -1,8 +1,12 @@
 import "./header.css";
 import "../../css/index.css";
 import { Link } from "react-router";
+import { useContext } from "react";
+import { StoreContext } from "../../js/storeContext";
 
 export function Header() {
+    const { cart } = useContext(StoreContext);
+
     return (
         <header>
             <div className="header">
@@ -15,7 +19,13 @@ export function Header() {
                             <h1>TechStore</h1>
                         </Link>
                     </div>
-                    <div className="shopping-cart">
+                    <div
+                        className="shopping-cart"
+                        onClick={() => {
+                            cart.setCartOpen(true);
+                            cart.setCartAnimation("open");
+                        }}
+                    >
                         <span className="material-symbols-outlined">
                             shopping_cart
                         </span>
