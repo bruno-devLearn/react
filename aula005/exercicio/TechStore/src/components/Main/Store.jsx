@@ -7,10 +7,10 @@ import { FilterBar } from "./components/FilterBar";
 import { FiltersDiv } from "./components/FiltersDiv";
 import { Pages } from "./Pages";
 import { StoreContext } from "../../js/storeContext";
-import { Loading, NotFound } from "./statusComponents/status";
+import { ErrorDiv, Loading, NotFound } from "./statusComponents/status";
 
 export function Store() {
-    const { status, get } = useContext(StoreContext);
+    const { status, get, cart } = useContext(StoreContext);
 
     const [open, setOpen] = useState("");
 
@@ -27,7 +27,7 @@ export function Store() {
         <>
             <FilterBar setOpen={setOpen} />
             <FiltersDiv open={open} setOpen={setOpen} />
-            <Cart />
+            {cart.cartOpen === true ? <Cart /> : null}
             {status === "loading" ? (
                 <Loading />
             ) : status === "success" && get.products.total > 0 ? (
@@ -37,6 +37,8 @@ export function Store() {
                 </>
             ) : status === "success" && get.products.total === 0 ? (
                 <NotFound />
+            ) : status === "error" ? (
+                <ErrorDiv />
             ) : null}
         </>
     );

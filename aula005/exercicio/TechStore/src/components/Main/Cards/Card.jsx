@@ -1,10 +1,18 @@
 import { StoreContext } from "../../../js/storeContext";
 import { NavLink } from "react-router";
-import { useContext } from "react";
+import { useContext, useRef, useEffect } from "react";
 import "./cards.css";
+import { setData } from "../../../js/localStore";
 
 export function Cards() {
     const { get, page } = useContext(StoreContext);
+    const cardsRef = useRef(null);
+
+    useEffect(() => {
+        if (cardsRef.current) {
+            cardsRef.current.scrollTop = 0;
+        }
+    }, [page]);
 
     const currentItems = {
         products: () => {
@@ -44,6 +52,7 @@ export function Cards() {
             </div>
             <div
                 className="cards"
+                ref={cardsRef}
                 style={{
                     height: `${
                         get.products.index < 2
@@ -133,7 +142,33 @@ export function Cards() {
                                                 </del>
                                             </span>
                                         </div>
-                                        <button className="add-cart">
+                                        <button
+                                            className="add-cart"
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                e.stopPropagation();
+
+                                                const exists =
+                                                    get.cartProducts.some(
+                                                        (p) =>
+                                                            p.item === item.id
+                                                    );
+
+                                                if (!exists) {
+                                                    const updated = [
+                                                        ...get.cartProducts,
+                                                        { item: item.id },
+                                                    ];
+                                                    get.setCartProducts(
+                                                        updated
+                                                    );
+                                                    setData(
+                                                        "products",
+                                                        updated
+                                                    );
+                                                }
+                                            }}
+                                        >
                                             <span className="material-symbols-outlined">
                                                 shopping_cart
                                             </span>

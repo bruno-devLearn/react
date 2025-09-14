@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { StoreContext } from "./js/storeContext";
+import { getData } from "./js/localStore";
 
 export function StoreProvider({ children }) {
     const [url, setUrl] = useState("");
     const [products, setProducts] = useState({});
     const [categories, setCategories] = useState([]);
     const [urls, setUrls] = useState([]);
+    const [cartProducts, setCartProducts] = useState(getData("products"));
 
     const get = {
         url,
@@ -16,6 +18,8 @@ export function StoreProvider({ children }) {
         setCategories,
         urls,
         setUrls,
+        cartProducts,
+        setCartProducts,
     };
 
     const [selected, setSelected] = useState([]);
@@ -79,9 +83,35 @@ export function StoreProvider({ children }) {
     const [status, setStatus] = useState("");
     const [page, setPage] = useState(0);
 
+    const [cartOpen, setCartOpen] = useState(false);
+    const [cartAnimation, setCartAnimation] = useState("");
+    const [shopping, setShopping] = useState([]);
+
+    const cart = {
+        cartOpen,
+        setCartOpen,
+        cartAnimation,
+        setCartAnimation,
+        shopping,
+        setShopping,
+    };
+
+    const [again, setAgain] = useState(false);
+
     return (
         <StoreContext.Provider
-            value={{ get, filters, status, setStatus, page, setPage, search }}
+            value={{
+                get,
+                filters,
+                status,
+                setStatus,
+                page,
+                setPage,
+                search,
+                cart,
+                again,
+                setAgain,
+            }}
         >
             {children}
         </StoreContext.Provider>
