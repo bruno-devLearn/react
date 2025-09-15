@@ -1,6 +1,5 @@
 import { Calculations } from "./components/Calculations";
 import { Empty } from "./components/Empty";
-// TODO: criar componente do historico de contas
 
 export function History() {
     return (

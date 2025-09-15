@@ -265,18 +265,18 @@ main {
     padding-bottom: 10px;
 }
 
-.calculations .calc-div .calc {
-    font-size: 14px;
-    line-height: 20px;
-    font-weight: 400;
-    color: var(--text-main);
-}
-
+.calculations .calc-div .calc,
 .calculations .calc-div .result {
     font-size: 14px;
     line-height: 20px;
-    font-weight: 600;
-    color: var(--neutral-900);
+    font-weight: 400; /* ou 600 para .result */
+    color: var(--text-main); /* ou var(--neutral-900) para .result */
+    max-width: 48%;
+    display: inline-block;
+    overflow-x: auto;
+    white-space: nowrap;
+    text-overflow: unset;
+    /* Remove ellipsis se quiser mostrar tudo com scroll */
 }
 
 /* RESPONSIVIDADE AJUSTADA */
@@ -389,4 +389,20 @@ main {
         padding-left: 2px;
         padding-right: 2px;
     }
+}
+
+/* Ativo pelo teclado */
+.grid div.active,
+.grid div.clear.active {
+    background: var(--danger-700);
+}
+.grid div.operation.active {
+    color: var(--primary-500);
+    background-color: var(--primary-200);
+}
+.grid div.number.active {
+    background: var(--primary-400);
+}
+.grid div.equal.active {
+    background: var(--primary-700);
 }
