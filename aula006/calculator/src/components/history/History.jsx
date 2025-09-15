@@ -1,3 +1,4 @@
+import { Calculations } from "./components/Calculations";
 import { Empty } from "./components/Empty";
 // TODO: criar componente do historico de contas
 
@@ -8,7 +9,7 @@ export function History() {
                 <h2>Historico de Cálculos</h2>
             </div>
             <div className="content">
-                <Empty />
+                <Calculations />
             </div>
             <div className="clear-div">
                 <button className="clear">Limpar Historico</button>

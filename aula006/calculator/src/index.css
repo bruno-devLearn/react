@@ -3,16 +3,34 @@
 
 :root {
     --white: #fff;
+    --neutral-50: #fafafb;
+    --neutral-100: #f3f4f6ff;
     --neutral-200: #f3f4f6ff;
+    --neutral-900: #171a1fff;
     --danger-500: #de3b40ff;
+    --danger-600: #c12126ff;
+    --danger-700: #aa1d22ff;
     --primary-500: #636ae8ff;
+    --primary-600: #4850e4ff;
+    --primary-700: #2c35e0ff;
+    --primary-100: #cbcbcb;
+    --primary-200: #b9b9b9;
+    --primary-300: #b8becaff;
+    --primary-400: #8791a5ff;
+    --text-main: #565d6dff;
+    --text-dark: #323742ff;
+    --shadow-1: 0px 0px 1px #171a1f12, 0px 0px 2px #171a1f1f;
+    --border-radius-main: 10px;
+    --border-radius-small: 6px;
+    --font-main: "Archivo", sans-serif;
+    --font-secondary: "Inter", sans-serif;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Archivo", sans-serif;
+    font-family: var(--font-main);
 }
 
 #root {
@@ -31,8 +49,8 @@ main {
 }
 
 .calculator {
-    border-radius: 10px;
-    box-shadow: 0px 0px 1px #171a1f12, 0px 0px 2px #171a1f1f;
+    border-radius: var(--border-radius-main);
+    box-shadow: var(--shadow-1);
     width: 601px;
     height: 588px;
     padding: 16px;
@@ -43,8 +61,8 @@ main {
 
 .display {
     background-color: var(--neutral-200);
-    border-radius: 10px;
-    box-shadow: 0px 0px 1px #171a1f12, 0px 0px 2px #171a1f1f;
+    border-radius: var(--border-radius-main);
+    box-shadow: var(--shadow-1);
     width: 569px;
     height: 116px;
     padding: 16px;
@@ -57,7 +75,7 @@ main {
     font-size: 20px;
     line-height: 28px;
     font-weight: 400;
-    color: #565d6dff;
+    color: var(--text-main);
     text-align: end;
     width: 100%;
 }
@@ -80,7 +98,7 @@ main {
     line-height: 30px;
     font-weight: 600;
     border: none;
-    border-radius: 6px;
+    border-radius: var(--border-radius-small);
     opacity: 1;
     transition: all 0.3s;
 }
@@ -91,10 +109,10 @@ main {
 }
 
 .grid div.clear:hover {
-    background: #c12126ff;
+    background: var(--danger-600);
 }
 .grid div.clear:active {
-    background: #aa1d22ff;
+    background: var(--danger-700);
 }
 
 .grid div.operation {
@@ -104,24 +122,24 @@ main {
 }
 
 .grid div.operation:hover {
-    background-color: #cbcbcb;
+    background-color: var(--primary-100);
 }
 /* Pressed */
 .grid div.operation:hover:active {
-    color: #636ae8ff;
-    background-color: #b9b9b9;
+    color: var(--primary-500);
+    background-color: var(--primary-200);
 }
 
 .grid div.number {
-    background: #f3f4f6ff;
-    color: #323742ff;
+    background: var(--neutral-100);
+    color: var(--text-dark);
 }
 
 .grid div.number:hover {
-    background: #b8becaff;
+    background: var(--primary-300);
 }
 .grid div.number:hover:active {
-    background: #8791a5ff;
+    background: var(--primary-400);
 }
 
 .grid div.equal {
@@ -133,11 +151,11 @@ main {
 }
 
 .grid div.equal:hover {
-    background: #4850e4ff;
+    background: var(--primary-600);
 }
 
 .grid div.equal:hover:active {
-    background: #2c35e0ff;
+    background: var(--primary-700);
 }
 
 .grid div.zero {
@@ -152,14 +170,14 @@ main {
 }
 
 .history {
-    background-color: #fafafb;
+    background-color: var(--neutral-50);
     width: 400px;
     padding: 16px 17px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    font-family: "Inter";
+    font-family: var(--font-secondary);
 }
 
 .history .title {
@@ -174,12 +192,12 @@ main {
     font-size: 18px;
     line-height: 28px;
     font-weight: 600;
-    color: #171a1fff; /* neutral-900 */
+    color: var(--neutral-900);
 }
 
 .history .content {
-    border-top: 1px solid #f3f4f6ff;
-    border-bottom: 1px solid #f3f4f6ff;
+    border-top: 1px solid var(--neutral-100);
+    border-bottom: 1px solid var(--neutral-100);
     width: 100%;
     height: 100%;
     display: flex;
@@ -191,7 +209,7 @@ main {
     font-size: 14px;
     line-height: 20px;
     font-weight: 400;
-    color: #171a1fff;
+    color: var(--neutral-900);
     font-style: italic;
 }
 
@@ -215,20 +233,160 @@ main {
     font-weight: 500;
     color: var(--danger-500);
     background-color: var(--white);
-    border-radius: 6px;
+    border-radius: var(--border-radius-small);
     border: 1px solid var(--danger-500);
     cursor: pointer;
     transition: all 0.3s;
 }
 
 .history .clear-div .clear:hover {
-    background-color: #cbcbcb;
+    background-color: var(--primary-100);
 }
-/* Pressed */
 .history .clear-div .clear:hover:active {
-    background-color: #b9b9b9;
+    background-color: var(--primary-200);
 }
 /* Disabled */
 .history .clear-div .clear:disabled {
     opacity: 0.4;
+}
+
+.calculations {
+    height: 100%;
+    width: 100%;
+    max-height: 420.717px;
+    overflow-y: scroll;
+}
+
+.calculations .calc-div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--primary-200);
+    padding-bottom: 10px;
+}
+
+.calculations .calc-div .calc {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    color: var(--text-main);
+}
+
+.calculations .calc-div .result {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+    color: var(--neutral-900);
+}
+
+/* RESPONSIVIDADE AJUSTADA */
+@media (max-width: 1030px) {
+    main {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 16px;
+        min-height: 100vh;
+        padding: 16px 0;
+    }
+    .calculator,
+    .history {
+        margin: 0;
+    }
+    .calculator {
+        width: 60vw;
+        max-width: 601px;
+        min-width: 320px;
+        height: auto;
+    }
+    .display {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+    }
+    .grid {
+        width: 100%;
+        max-width: 100%;
+    }
+    .grid div,
+    .grid div.equal,
+    .grid div.zero {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+    }
+    .history {
+        width: 35vw;
+        max-width: 400px;
+        min-width: 220px;
+    }
+}
+
+@media (max-width: 600px) {
+    main {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+        min-height: 100vh;
+        padding: 8px 0;
+    }
+    .calculator,
+    .history {
+        width: 100%;
+        max-width: 100vw;
+        min-width: 0;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .calculator {
+        padding: 8px 4px;
+    }
+    .display {
+        width: 100%;
+        min-width: 0;
+        max-width: 100vw;
+        padding: 8px 4px;
+        height: 64px;
+    }
+    .grid {
+        gap: 4px;
+        width: 100%;
+        max-width: 100vw;
+    }
+    .grid div,
+    .grid div.equal,
+    .grid div.zero {
+        width: 100%;
+        min-width: 0;
+        max-width: 100vw;
+        height: 40px;
+        font-size: 15px;
+    }
+    .history {
+        padding: 8px 4px;
+        min-width: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .history .title {
+        height: 36px;
+    }
+    .calculations {
+        max-height: 120px;
+    }
+}
+
+/* Pequenos ajustes para evitar overflow e manter espaçamento */
+@media (max-width: 400px) {
+    .calculator,
+    .history {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .display {
+        padding-left: 2px;
+        padding-right: 2px;
+    }
 }
