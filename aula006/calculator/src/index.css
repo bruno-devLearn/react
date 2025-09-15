@@ -1,0 +1,392 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+:root {
+    --white: #fff;
+    --neutral-50: #fafafb;
+    --neutral-100: #f3f4f6ff;
+    --neutral-200: #f3f4f6ff;
+    --neutral-900: #171a1fff;
+    --danger-500: #de3b40ff;
+    --danger-600: #c12126ff;
+    --danger-700: #aa1d22ff;
+    --primary-500: #636ae8ff;
+    --primary-600: #4850e4ff;
+    --primary-700: #2c35e0ff;
+    --primary-100: #cbcbcb;
+    --primary-200: #b9b9b9;
+    --primary-300: #b8becaff;
+    --primary-400: #8791a5ff;
+    --text-main: #565d6dff;
+    --text-dark: #323742ff;
+    --shadow-1: 0px 0px 1px #171a1f12, 0px 0px 2px #171a1f1f;
+    --border-radius-main: 10px;
+    --border-radius-small: 6px;
+    --font-main: "Archivo", sans-serif;
+    --font-secondary: "Inter", sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-main);
+}
+
+#root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+main {
+    background-color: var(--white);
+    display: flex;
+    gap: 23px;
+    justify-content: center;
+}
+
+.calculator {
+    border-radius: var(--border-radius-main);
+    box-shadow: var(--shadow-1);
+    width: 601px;
+    height: 588px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.display {
+    background-color: var(--neutral-200);
+    border-radius: var(--border-radius-main);
+    box-shadow: var(--shadow-1);
+    width: 569px;
+    height: 116px;
+    padding: 16px;
+}
+
+.display input {
+    background: transparent;
+    outline: none;
+    border: none;
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 400;
+    color: var(--text-main);
+    text-align: end;
+    width: 100%;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 8px;
+}
+
+.grid div {
+    width: 136.078125px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--border-radius-small);
+    opacity: 1;
+    transition: all 0.3s;
+}
+
+.grid div.clear {
+    color: var(--white);
+    background-color: var(--danger-500);
+}
+
+.grid div.clear:hover {
+    background: var(--danger-600);
+}
+.grid div.clear:active {
+    background: var(--danger-700);
+}
+
+.grid div.operation {
+    color: var(--primary-500);
+    background-color: var(--white);
+    border: 1px solid var(--primary-500);
+}
+
+.grid div.operation:hover {
+    background-color: var(--primary-100);
+}
+/* Pressed */
+.grid div.operation:hover:active {
+    color: var(--primary-500);
+    background-color: var(--primary-200);
+}
+
+.grid div.number {
+    background: var(--neutral-100);
+    color: var(--text-dark);
+}
+
+.grid div.number:hover {
+    background: var(--primary-300);
+}
+.grid div.number:hover:active {
+    background: var(--primary-400);
+}
+
+.grid div.equal {
+    grid-column: span 2 / span 2;
+    grid-row-start: 5;
+    width: 280.15625px;
+    background-color: var(--primary-500);
+    color: var(--white);
+}
+
+.grid div.equal:hover {
+    background: var(--primary-600);
+}
+
+.grid div.equal:hover:active {
+    background: var(--primary-700);
+}
+
+.grid div.zero {
+    grid-column: span 2 / span 2;
+    grid-column-start: 3;
+    grid-row-start: 5;
+    width: 280.15625px;
+}
+
+.grid div.point {
+    grid-row-start: 6;
+}
+
+.history {
+    background-color: var(--neutral-50);
+    width: 400px;
+    padding: 16px 17px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-secondary);
+}
+
+.history .title {
+    width: 100%;
+    height: 61px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.history .title h2 {
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 600;
+    color: var(--neutral-900);
+}
+
+.history .content {
+    border-top: 1px solid var(--neutral-100);
+    border-bottom: 1px solid var(--neutral-100);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.history .content .empty span {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    color: var(--neutral-900);
+    font-style: italic;
+}
+
+.history .clear-div {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 100%;
+    height: 69px;
+}
+
+.history .clear-div .clear {
+    width: 135.9375px;
+    height: 36px;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 500;
+    color: var(--danger-500);
+    background-color: var(--white);
+    border-radius: var(--border-radius-small);
+    border: 1px solid var(--danger-500);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.history .clear-div .clear:hover {
+    background-color: var(--primary-100);
+}
+.history .clear-div .clear:hover:active {
+    background-color: var(--primary-200);
+}
+/* Disabled */
+.history .clear-div .clear:disabled {
+    opacity: 0.4;
+}
+
+.calculations {
+    height: 100%;
+    width: 100%;
+    max-height: 420.717px;
+    overflow-y: scroll;
+}
+
+.calculations .calc-div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--primary-200);
+    padding-bottom: 10px;
+}
+
+.calculations .calc-div .calc {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    color: var(--text-main);
+}
+
+.calculations .calc-div .result {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+    color: var(--neutral-900);
+}
+
+/* RESPONSIVIDADE AJUSTADA */
+@media (max-width: 1030px) {
+    main {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 16px;
+        min-height: 100vh;
+        padding: 16px 0;
+    }
+    .calculator,
+    .history {
+        margin: 0;
+    }
+    .calculator {
+        width: 60vw;
+        max-width: 601px;
+        min-width: 320px;
+        height: auto;
+    }
+    .display {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+    }
+    .grid {
+        width: 100%;
+        max-width: 100%;
+    }
+    .grid div,
+    .grid div.equal,
+    .grid div.zero {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+    }
+    .history {
+        width: 35vw;
+        max-width: 400px;
+        min-width: 220px;
+    }
+}
+
+@media (max-width: 600px) {
+    main {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+        min-height: 100vh;
+        padding: 8px 0;
+    }
+    .calculator,
+    .history {
+        width: 100%;
+        max-width: 100vw;
+        min-width: 0;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .calculator {
+        padding: 8px 4px;
+    }
+    .display {
+        width: 100%;
+        min-width: 0;
+        max-width: 100vw;
+        padding: 8px 4px;
+        height: 64px;
+    }
+    .grid {
+        gap: 4px;
+        width: 100%;
+        max-width: 100vw;
+    }
+    .grid div,
+    .grid div.equal,
+    .grid div.zero {
+        width: 100%;
+        min-width: 0;
+        max-width: 100vw;
+        height: 40px;
+        font-size: 15px;
+    }
+    .history {
+        padding: 8px 4px;
+        min-width: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .history .title {
+        height: 36px;
+    }
+    .calculations {
+        max-height: 120px;
+    }
+}
+
+/* Pequenos ajustes para evitar overflow e manter espaçamento */
+@media (max-width: 400px) {
+    .calculator,
+    .history {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .display {
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+}

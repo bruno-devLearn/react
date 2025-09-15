@@ -1,5 +1,14 @@
+import { Calculator } from "./components/calculator/Calculator";
+import { History } from "./components/history/History";
+import "./index.css";
+
 function App() {
-    return <></>;
+    return (
+        <main>
+            <Calculator />
+            <History />
+        </main>
+    );
 }
 
 export default App;
