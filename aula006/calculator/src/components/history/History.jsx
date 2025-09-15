@@ -4,9 +4,15 @@ import { Empty } from "./components/Empty";
 export function History() {
     return (
         <div className="history">
-            <h2>Historico de Cálculos</h2>
-            <Empty />
-            <button className="clear">Limpar Historico</button>
+            <div className="title">
+                <h2>Historico de Cálculos</h2>
+            </div>
+            <div className="content">
+                <Empty />
+            </div>
+            <div className="clear-div">
+                <button className="clear">Limpar Historico</button>
+            </div>
         </div>
     );
 }

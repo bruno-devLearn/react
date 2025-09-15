@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 :root {
     --white: #fff;
@@ -14,14 +15,19 @@
     font-family: "Archivo", sans-serif;
 }
 
-main {
-    background-color: var(--white);
+#root {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100vw;
     height: 100vh;
+}
+
+main {
+    background-color: var(--white);
+    display: flex;
     gap: 23px;
+    justify-content: center;
 }
 
 .calculator {
@@ -143,4 +149,86 @@ main {
 
 .grid div.point {
     grid-row-start: 6;
+}
+
+.history {
+    background-color: #fafafb;
+    width: 400px;
+    padding: 16px 17px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "Inter";
+}
+
+.history .title {
+    width: 100%;
+    height: 61px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.history .title h2 {
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 600;
+    color: #171a1fff; /* neutral-900 */
+}
+
+.history .content {
+    border-top: 1px solid #f3f4f6ff;
+    border-bottom: 1px solid #f3f4f6ff;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.history .content .empty span {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    color: #171a1fff;
+    font-style: italic;
+}
+
+.history .clear-div {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 100%;
+    height: 69px;
+}
+
+.history .clear-div .clear {
+    width: 135.9375px;
+    height: 36px;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 500;
+    color: var(--danger-500);
+    background-color: var(--white);
+    border-radius: 6px;
+    border: 1px solid var(--danger-500);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.history .clear-div .clear:hover {
+    background-color: #cbcbcb;
+}
+/* Pressed */
+.history .clear-div .clear:hover:active {
+    background-color: #b9b9b9;
+}
+/* Disabled */
+.history .clear-div .clear:disabled {
+    opacity: 0.4;
 }
