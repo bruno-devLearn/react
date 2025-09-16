@@ -1,5 +1,3 @@
-digitar no input; aceita so nums; digita com teclado;
-
 ao apertar no = transforma oq ta no input em num, e manda pro historico um obj com calc e result;
 
 limpar o historico, limpa o array;
@@ -18,10 +16,3 @@ caso resultado > 16 DIGITOS ? return transforma em potencia (
         numero = mantissaDecimal + "e+" + expoente
     }
 )
-
-ao usar o teclado os efeitos de pressionado acontecem
-
-caso resultado = infinity return "infinito"; caso retorne resultado diferentes de numero como NaN retorn "numero invalido"
-
-
-

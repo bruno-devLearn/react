@@ -2,8 +2,7 @@ import { useEffect, useRef } from "react";
 import { useStore } from "../../../js/Store";
 
 export function Display() {
-    const inputValue = useStore((state) => state.inputValue);
-    const changeInputValue = useStore((state) => state.changeInputValue);
+    const { inputValue, changeInputValue, calculateValue } = useStore();
     const inputRef = useRef(null);
 
     useEffect(() => {
@@ -15,9 +14,25 @@ export function Display() {
         const handleKeyDown = (e) => {
             const allowedKeys = "0123456789+-*/,";
             const specialKeys = ["Backspace", "Delete", "Enter", "="];
+            const lastChar = inputValue[inputValue.length - 1];
+            //todo: colocar lastChar se for uma operação como um estado
 
             if (allowedKeys.includes(e.key)) {
-                changeInputValue(inputValue + e.key);
+                if (
+                    (lastChar === "+" ||
+                        lastChar === "-" ||
+                        lastChar === "/" ||
+                        lastChar === "*") &&
+                    (e.key === "+" ||
+                        e.key === "-" ||
+                        e.key === "/" ||
+                        e.key === "*")
+                ) {
+                    changeInputValue(inputValue.slice(0, -1) + e.key);
+                } else {
+                    changeInputValue(inputValue + e.key);
+                }
+
                 e.preventDefault();
             } else if (specialKeys.includes(e.key)) {
                 if (e.key === "Backspace") {
@@ -27,7 +42,27 @@ export function Display() {
                     changeInputValue(""); // limpa tudo
                     e.preventDefault();
                 } else if (e.key === "Enter" || e.key === "=") {
-                    console.log("Enter pressionado"); // ou processa a conta
+                    let value;
+
+                    if (
+                        inputValue === "/" ||
+                        inputValue === "*" ||
+                        inputValue === "-" ||
+                        inputValue === "+" ||
+                        inputValue === "" ||
+                        lastChar === "+" ||
+                        lastChar === "-" ||
+                        lastChar === "/" ||
+                        lastChar === "*"
+                    ) {
+                        return;
+                    } else if (inputValue === ",") {
+                        value = calculateValue(inputValue + "0");
+                    } else {
+                        value = calculateValue(inputValue);
+                    }
+
+                    changeInputValue(value);
                     e.preventDefault();
                 }
             }
@@ -35,7 +70,7 @@ export function Display() {
 
         document.addEventListener("keydown", handleKeyDown);
         return () => document.removeEventListener("keydown", handleKeyDown);
-    }, [changeInputValue, inputValue]);
+    }, [changeInputValue, inputValue, calculateValue]);
 
     return (
         <div className="display">
@@ -44,8 +79,8 @@ export function Display() {
                 type="text"
                 value={inputValue}
                 onChange={(e) => {
-                    // só deixa números e operadores
-                    const val = e.target.value.replace(/[^0-9=+\-*/]/g, "");
+                    // só deixa números e operadores, sem "="
+                    const val = e.target.value.replace(/[^0-9+\-*/,]/g, "");
                     changeInputValue(val);
                 }}
             />
