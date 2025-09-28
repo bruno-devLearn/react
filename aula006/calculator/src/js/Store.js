@@ -2,23 +2,19 @@ import { create } from "zustand";
 
 export const useStore = create((set) => ({
     inputValue: "",
+    history: [],
     changeInputValue: (value) => formated(value, set),
-    calculateValue: (value) => calculate(value),
+    calculateValue: (value) => calculate(value, set),
+    clearHistory: () => set({ history: [] }),
 }));
 
 function formated(value, set) {
-    if (
-        value === "número inválido" ||
-        value === "número infinito" ||
-        value === "número muito grande"
-    ) {
-        set({ inputValue: "" });
-    } else if (String(value).length < 47) {
+    if (String(value).length < 47) {
         set({ inputValue: String(value) });
     }
 }
 
-function calculate(value) {
+function calculate(value, set) {
     const sanitized = value
         .replace(/(\d)\.(?=(\d{3})+(\D|$))/g, "$1") // remove pontos que são separadores de milhar
         .replace(/,/g, ".") // vírgula → ponto decimal
@@ -44,5 +40,9 @@ function calculate(value) {
         return "número muito grande";
     }
 
-    return result.toLocaleString("pt-BR");
+    set((state) => ({
+        history: [...state.history, { calculo: sanitized, resultado: result }],
+    }));
+
+    return result;
 }
