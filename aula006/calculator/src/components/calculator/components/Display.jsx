@@ -15,7 +15,6 @@ export function Display() {
             const allowedKeys = "0123456789+-*/,";
             const specialKeys = ["Backspace", "Delete", "Enter", "="];
             const lastChar = inputValue[inputValue.length - 1];
-            //todo: colocar lastChar se for uma operação como um estado
 
             if (allowedKeys.includes(e.key)) {
                 if (

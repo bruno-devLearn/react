@@ -1,12 +1,16 @@
+import { useStore } from "../../../js/Store";
+
 export function Calculations() {
+    const { history } = useStore();
+
     return (
         <div className="calculations">
-            <div className="calc-div">
-                <div className="calc">
-                    9 + 9999999999999999999999999999999999999999
+            {history.map((calc, index) => (
+                <div className="calc-div" key={index}>
+                    <div className="calc">{calc.calculo}</div>
+                    <div className="result">{calc.resultado}</div>
                 </div>
-                <div className="result">1.23456e+45</div>
-            </div>
+            ))}
         </div>
     );
 }
