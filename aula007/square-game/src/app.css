@@ -1,0 +1,20 @@
+main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.start-div {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.start-div h1 {
+    position: absolute;
+    top: 50px;
+    font-size: 28px;
+    font-weight: 600;
+}
