@@ -1,0 +1,36 @@
+main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.start-div,
+.end-div {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.start-div h1 {
+    position: absolute;
+    top: 50px;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.end-div .pontuation {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 50px;
+}
+
+.game-div .points {
+    margin-bottom: 10px;
+}
+
+.game-div .points .game-points {
+    font-size: 20px;
+    font-weight: 600;
+}
