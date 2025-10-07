@@ -1,0 +1,5 @@
+tela de inicio vai ter tres modos, 3x3 4x4 5x5
+
+ao escolher uma opção, o jogo inicia, tem um contador ao topo e mostra quantas tentativas. hover a cada quadrado, ao errado cor vermelha, ao certo cor verde.
+
+ao fim mostra quantas tentativas e btn de tela de inicio
