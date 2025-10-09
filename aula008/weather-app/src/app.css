@@ -113,3 +113,9 @@ main .cities-div .cities .city .temperture {
     font-size: 16px;
     font-weight: 400;
 }
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

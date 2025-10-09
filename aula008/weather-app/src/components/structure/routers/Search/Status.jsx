@@ -1,4 +1,4 @@
-import { VStack, EmptyState } from "@chakra-ui/react";
+import { VStack, EmptyState, Button, Spinner } from "@chakra-ui/react";
 import { MdError } from "react-icons/md";
 
 export function Empty() {
@@ -38,5 +38,37 @@ export function NotFound() {
                 </VStack>
             </EmptyState.Content>
         </EmptyState.Root>
+    );
+}
+
+export function Error() {
+    return (
+        <EmptyState.Root size="lg">
+            <EmptyState.Content gap="10px">
+                <EmptyState.Indicator>
+                    <MdError color="red" />
+                </EmptyState.Indicator>
+                <VStack textAlign="center">
+                    <EmptyState.Title color="#ef3e3e">Erro</EmptyState.Title>
+                    <Button bgColor="#0a0a0a" color="#fff" w="130px">
+                        Tente Novamente
+                    </Button>
+                </VStack>
+            </EmptyState.Content>
+        </EmptyState.Root>
+    );
+}
+
+export function Loading() {
+    return (
+        <div className="loading">
+            <Spinner
+                color="grey"
+                w="100px"
+                h="100px"
+                borderWidth="6px"
+                animationDuration="0.9s"
+            />
+        </div>
     );
 }
