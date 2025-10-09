@@ -7,6 +7,10 @@
     --input-text: #0a0a0a;
     --input-border: #d1d5db;
     --condition-color: #4a5565;
+    --icon-color: #364153;
+    --back-color: #101828;
+    --location-color: #6a7282;
+    --card-bg: #eff6ff;
 }
 
 * {
@@ -19,12 +23,12 @@
 body {
     width: 100vw;
     height: 100%;
-    background-color: var(--bg-color);
 }
 
 header {
     padding: 24px 99.5px;
     border-bottom: 1px solid var(--heder-border-color);
+    background-color: var(--bg-color);
 }
 
 header h1 {
@@ -118,4 +122,133 @@ main .cities-div .cities .city .temperture {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+main .content {
+    width: 100%;
+    max-width: 672px;
+    min-width: 340px;
+}
+
+main .content .back {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--icon-color);
+}
+
+main .content .back span {
+    color: var(--back-color);
+    font-size: 16px;
+}
+
+main .content .result {
+    background-color: var(--bg-color);
+    padding: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 672px;
+    min-width: 340px;
+    border-radius: 24px;
+    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+        rgba(0, 0, 0, 0.1) 0px 4px 6px -4px;
+    margin-top: 32px;
+}
+
+main .content .result .location {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+main .content .result .location h2 {
+    margin-bottom: 4px;
+    color: var(--back-color);
+    font-size: 24px;
+    font-weight: 500;
+}
+
+main .content .result .location span {
+    color: var(--location-color);
+    font-size: 16px;
+    font-weight: 400;
+}
+
+main .content .result .conditions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+main .content .result .conditions .img img {
+    width: 128px;
+    width: 128px;
+}
+
+main .content .result .conditions .cond {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: var(--location-color);
+    text-align: center;
+}
+
+main .content .result .conditions .cond .temp {
+    color: var(--input-text);
+    font-size: 60px;
+    font-weight: 400;
+}
+
+main .content .result .conditions .cond .cond-text,
+main .content .result .conditions .cond .feel {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+main .content .result .infos {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+}
+
+main .content .result .infos .info-div {
+    background-color: var(--card-bg);
+    width: 100%;
+    max-width: 192px;
+    min-width: 92.25px;
+    height: 84px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+main .content .result .infos .info-div .info-name {
+    color: var(--condition-color);
+}
+
+main .content .result .infos .info-div .info-result {
+    color: var(--back-color);
+}
+
+@media (max-width: 644px) {
+    main {
+        padding: 16px;
+    }
+
+    main .content .result {
+        padding: 24px;
+        margin-top: 24px;
+    }
 }

@@ -7,7 +7,7 @@ export function Search() {
             <div className="input">
                 <input type="text" placeholder="Buscar Cidade..." />
             </div>
-            <Loading />
+            <Empty />
         </div>
     );
 }
