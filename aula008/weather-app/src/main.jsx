@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router";
 import App from "./App.jsx";
-import { Search } from "./components/structure/routers/Search.jsx";
+import { Search } from "./components/structure/routers/Search/Search.jsx";
 
 createRoot(document.getElementById("root")).render(
     <StrictMode>
