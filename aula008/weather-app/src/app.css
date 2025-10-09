@@ -6,6 +6,7 @@
     --heder-border-color: #e5e7eb;
     --input-text: #0a0a0a;
     --input-border: #d1d5db;
+    --condition-color: #4a5565;
 }
 
 * {
@@ -17,7 +18,7 @@
 
 body {
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     background-color: var(--bg-color);
 }
 
@@ -63,4 +64,52 @@ main .cities-div .input input {
     border-radius: 10px;
     outline: none;
     border: 1.1px solid var(--input-border);
+}
+
+main .cities-div .cities {
+    border: 1.1px solid var(--input-border);
+    padding: 16px;
+    color: var(--input-text);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 564px;
+    overflow-y: scroll;
+}
+
+main .cities-div .cities .city {
+    padding: 16px;
+    border: 1.1px solid var(--input-border);
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+main .cities-div .cities .city:hover {
+    background-color: #f5f5f5;
+}
+
+main .cities-div .cities .city .name-condition {
+    display: flex;
+    flex-direction: column;
+}
+
+main .cities-div .cities .city .name-condition .name {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+main .cities-div .cities .city .name-condition .condition {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--condition-color);
+}
+
+main .cities-div .cities .city .temperture {
+    font-size: 16px;
+    font-weight: 400;
 }
