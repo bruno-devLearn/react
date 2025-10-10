@@ -1,7 +1,10 @@
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { NavLink } from "react-router";
+import { useCity } from "../../../../js/Store";
 
 export function Result() {
+    const { city } = useCity();
+
     return (
         <div className="content">
             <div className="back">
@@ -14,31 +17,46 @@ export function Result() {
             </div>
             <div className="result">
                 <div className="location">
-                    <h2>São Paulo</h2>
-                    <span>São Paulo, Brasil</span>
+                    <h2>{city.location.name}</h2>
+                    <span>
+                        {city.location.region}, {city.location.country}
+                    </span>
                 </div>
                 <div className="conditions">
                     <div className="img">
-                        <img src="https://cdn.weatherapi.com/weather/64x64/day/113.png" />
+                        <img src={city.current.condition.icon} />
                     </div>
                     <div className="cond">
-                        <span className="temp">25°C</span>
-                        <span className="cond-text">Ensolarado</span>
-                        <span className="feel">Sensação térmica: 27°C</span>
+                        <span className="temp">
+                            {Math.floor(city.current.temp_c)}°C
+                        </span>
+                        <span className="cond-text">
+                            {city.current.condition.text}
+                        </span>
+                        <span className="feel">
+                            Sensação térmica:{" "}
+                            {Math.floor(city.current.feelslike_c)}°C
+                        </span>
                     </div>
                 </div>
                 <div className="infos">
                     <div className="info-div">
                         <div className="info-name">Vento</div>
-                        <div className="info-result">15 km/h</div>
+                        <div className="info-result">
+                            {Math.floor(city.current.wind_kph)} km/h
+                        </div>
                     </div>
                     <div className="info-div">
                         <div className="info-name">Umidade</div>
-                        <div className="info-result">60%</div>
+                        <div className="info-result">
+                            {city.current.humidity}%
+                        </div>
                     </div>
                     <div className="info-div">
                         <div className="info-name">UV</div>
-                        <div className="info-result">7</div>
+                        <div className="info-result">
+                            {Math.floor(city.current.uv)}
+                        </div>
                     </div>
                 </div>
             </div>
