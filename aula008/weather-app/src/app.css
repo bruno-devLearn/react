@@ -1,0 +1,254 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap");
+
+:root {
+    --bg-color: #fff;
+    --header-color: #1e2939;
+    --heder-border-color: #e5e7eb;
+    --input-text: #0a0a0a;
+    --input-border: #d1d5db;
+    --condition-color: #4a5565;
+    --icon-color: #364153;
+    --back-color: #101828;
+    --location-color: #6a7282;
+    --card-bg: #eff6ff;
+}
+
+* {
+    font-family: "Roboto Flex", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100%;
+}
+
+header {
+    padding: 24px 99.5px;
+    border-bottom: 1px solid var(--heder-border-color);
+    background-color: var(--bg-color);
+}
+
+header h1 {
+    color: var(--header-color);
+    font-size: 24px;
+    font-weight: 500;
+}
+
+@media (max-width: 637px) {
+    header {
+        padding: 16px;
+    }
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 32px;
+}
+
+main .cities-div {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+    max-width: 396px; /* ou o valor que quiser */
+}
+
+main .cities-div .input input {
+    width: 100%;
+    max-width: 396px;
+    min-width: 302px;
+    padding: 12px;
+    background: none;
+    color: var(--input-text);
+    border-radius: 10px;
+    outline: none;
+    border: 1.1px solid var(--input-border);
+}
+
+main .cities-div .cities {
+    border: 1.1px solid var(--input-border);
+    padding: 16px;
+    color: var(--input-text);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 564px;
+    overflow-y: scroll;
+}
+
+main .cities-div .cities .city {
+    padding: 16px;
+    border: 1.1px solid var(--input-border);
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+main .cities-div .cities .city:hover {
+    background-color: #f5f5f5;
+}
+
+main .cities-div .cities .city .name-condition {
+    display: flex;
+    flex-direction: column;
+}
+
+main .cities-div .cities .city .name-condition .name {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+main .cities-div .cities .city .name-condition .condition {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--condition-color);
+}
+
+main .cities-div .cities .city .temperture {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main .content {
+    width: 100%;
+    max-width: 672px;
+    min-width: 340px;
+}
+
+main .content .back {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--icon-color);
+}
+
+main .content .back span {
+    color: var(--back-color);
+    font-size: 16px;
+}
+
+main .content .result {
+    background-color: var(--bg-color);
+    padding: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 672px;
+    min-width: 340px;
+    border-radius: 24px;
+    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+        rgba(0, 0, 0, 0.1) 0px 4px 6px -4px;
+    margin-top: 32px;
+}
+
+main .content .result .location {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+main .content .result .location h2 {
+    margin-bottom: 4px;
+    color: var(--back-color);
+    font-size: 24px;
+    font-weight: 500;
+}
+
+main .content .result .location span {
+    color: var(--location-color);
+    font-size: 16px;
+    font-weight: 400;
+}
+
+main .content .result .conditions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+main .content .result .conditions .img img {
+    width: 128px;
+    width: 128px;
+}
+
+main .content .result .conditions .cond {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: var(--location-color);
+    text-align: center;
+}
+
+main .content .result .conditions .cond .temp {
+    color: var(--input-text);
+    font-size: 60px;
+    font-weight: 400;
+}
+
+main .content .result .conditions .cond .cond-text,
+main .content .result .conditions .cond .feel {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+main .content .result .infos {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+}
+
+main .content .result .infos .info-div {
+    background-color: var(--card-bg);
+    width: 100%;
+    max-width: 192px;
+    min-width: 92.25px;
+    height: 84px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+main .content .result .infos .info-div .info-name {
+    color: var(--condition-color);
+}
+
+main .content .result .infos .info-div .info-result {
+    color: var(--back-color);
+}
+
+@media (max-width: 644px) {
+    main {
+        padding: 16px;
+    }
+
+    main .content .result {
+        padding: 24px;
+        margin-top: 24px;
+    }
+}
