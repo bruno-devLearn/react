@@ -17,7 +17,7 @@ export function Header() {
                 <div className="icon">
                     <CiSearch />
                 </div>
-                <input type="text" />
+                <input type="text" placeholder="Buscar país" />
             </div>
             <div className="status-div">
                 <span className="countries">30 países encontrados</span>
