@@ -2,31 +2,44 @@ import {
     MdOutlineKeyboardArrowLeft,
     MdOutlineKeyboardArrowRight,
 } from "react-icons/md";
+import { useData } from "../js/store";
 
 export function Pages() {
+    const { data, indexPage, updateIndex, updateAfter } = useData();
+
     return (
-        <>
-            <div className="pages">
-                <button className="page-btn prev" disabled>
-                    <div className="icon">
-                        <MdOutlineKeyboardArrowLeft />
-                    </div>
-                    Anterior
-                </button>
-                <div className="page-nuns">
-                    <button className="page-btn active">1</button>
-                    <button className="page-btn">2</button>
-                    <span className="dots">...</span>
-                    <button className="page-btn">8</button>
+        <div className="pages">
+            <button
+                className="page-btn prev"
+                disabled={!data?.pageInfo?.hasPreviousPage}
+                onClick={() => {
+                    updateIndex(indexPage - 1);
+                    updateAfter("", data.pageInfo.endCursor);
+                }}
+            >
+                <div className="icon">
+                    <MdOutlineKeyboardArrowLeft />
                 </div>
-                <button className="page-btn next">
-                    Próximo
-                    <div className="icon">
-                        <MdOutlineKeyboardArrowRight />
-                    </div>
-                </button>
+                Anterior
+            </button>
+
+            <div className="page-nuns">
+                <button className="page-btn active">{indexPage + 1}</button>
             </div>
-            <div className="amount">Mostrando 1 a 12 de 88 países</div>
-        </>
+
+            <button
+                className="page-btn next"
+                disabled={!data?.pageInfo?.hasNextPage}
+                onClick={() => {
+                    updateIndex(indexPage + 1);
+                    updateAfter(data.pageInfo.endCursor, "");
+                }}
+            >
+                Próximo
+                <div className="icon">
+                    <MdOutlineKeyboardArrowRight />
+                </div>
+            </button>
+        </div>
     );
 }

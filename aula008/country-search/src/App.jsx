@@ -7,19 +7,22 @@ import { useData } from "./js/store";
 import "./app.css";
 
 function App() {
-    const { updateDatas, inputValue } = useData();
+    const { updateData, inputValue, after, namePrefix, before } = useData();
 
     useEffect(() => {
         (async () => {
             try {
-                const data = await fetchCountries();
-                updateDatas(data, data.pageInfo.endCursor);
-                console.log(data);
+                const data = await fetchCountries({
+                    after,
+                    namePrefix,
+                    before,
+                });
+                updateData(data);
             } catch (err) {
                 console.error(err);
             }
         })();
-    }, [updateDatas, inputValue]);
+    }, [updateData, inputValue, after, namePrefix, before]);
 
     return (
         <>

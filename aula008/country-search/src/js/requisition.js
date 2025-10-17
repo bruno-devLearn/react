@@ -14,10 +14,25 @@ export const client = new ApolloClient({
     cache: new InMemoryCache(),
 });
 
-export async function fetchCountries({ after, namePrefix } = {}) {
+export async function fetchCountries({
+    after,
+    namePrefix,
+    before,
+    first = 10,
+} = {}) {
     const QUERY = gql`
-        query Countries($after: String, $namePrefix: String) {
-            countries(after: $after, namePrefix: $namePrefix) {
+        query Countries(
+            $after: String
+            $namePrefix: String
+            $before: String
+            $first: Int
+        ) {
+            countries(
+                after: $after
+                before: $before
+                namePrefix: $namePrefix
+                first: $first
+            ) {
                 edges {
                     node {
                         callingCode
@@ -42,9 +57,15 @@ export async function fetchCountries({ after, namePrefix } = {}) {
     `;
 
     try {
+        // monta variáveis sem enviar strings vazias
+        const variables = { first };
+        if (after && after !== "") variables.after = after;
+        if (namePrefix && namePrefix !== "") variables.namePrefix = namePrefix;
+        if (before && before !== "") variables.before = before;
+
         const result = await client.query({
             query: QUERY,
-            variables: { after, namePrefix },
+            variables,
             fetchPolicy: "network-only",
         });
 

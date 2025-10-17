@@ -3,7 +3,7 @@ import { CiSearch } from "react-icons/ci";
 import { useData } from "../js/store";
 
 export function Header() {
-    const { inputValue, updateInput, data } = useData();
+    const { inputValue, updateInput, data, updateNamePrefix } = useData();
 
     return (
         <header>
@@ -26,6 +26,7 @@ export function Header() {
                     value={inputValue}
                     onChange={(e) => {
                         updateInput(e.target.value);
+                        updateNamePrefix(e.target.value);
                     }}
                 />
             </div>
@@ -33,7 +34,16 @@ export function Header() {
                 <span className="countries">
                     {data?.totalCount} países encontrados
                 </span>
-                {inputValue !== "" ? <button>Limpar busca</button> : null}
+                {inputValue !== "" ? (
+                    <button
+                        onClick={() => {
+                            updateInput("");
+                            updateNamePrefix("");
+                        }}
+                    >
+                        Limpar busca
+                    </button>
+                ) : null}
             </div>
         </header>
     );
