@@ -1,7 +1,10 @@
 import { GoGlobe } from "react-icons/go";
 import { CiSearch } from "react-icons/ci";
+import { useData } from "../js/store";
 
 export function Header() {
+    const { inputValue, updateInput, data, updateNamePrefix } = useData();
+
     return (
         <header>
             <div className="header">
@@ -17,11 +20,30 @@ export function Header() {
                 <div className="icon">
                     <CiSearch />
                 </div>
-                <input type="text" placeholder="Buscar país" />
+                <input
+                    type="text"
+                    placeholder="Buscar país"
+                    value={inputValue}
+                    onChange={(e) => {
+                        updateInput(e.target.value);
+                        updateNamePrefix(e.target.value);
+                    }}
+                />
             </div>
             <div className="status-div">
-                <span className="countries">30 países encontrados</span>
-                <button>Limpar busca</button>
+                <span className="countries">
+                    {data?.totalCount} países encontrados
+                </span>
+                {inputValue !== "" ? (
+                    <button
+                        onClick={() => {
+                            updateInput("");
+                            updateNamePrefix("");
+                        }}
+                    >
+                        Limpar busca
+                    </button>
+                ) : null}
             </div>
         </header>
     );
